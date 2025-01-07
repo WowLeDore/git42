@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b01c931931a5962c0c0f068fe3147a69 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_b01c931931a5962c0c0f068fe3147a69" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b01c931931a5962c0c0f068fe3147a69 = L.map(
+                "map_b01c931931a5962c0c0f068fe3147a69",
+                {
+                    center: [48.8566, 2.3522],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_193119c891608f0d3aac39819a9cf863 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_193119c891608f0d3aac39819a9cf863.addTo(map_b01c931931a5962c0c0f068fe3147a69);
+        
+    
+            var feature_group_e6105cb30b5bffc1a6024355269dc15d = L.featureGroup(
+                {}
+            );
+        
+    
+            var feature_group_da4710cc54e87ce4e097a48aead60b94 = L.featureGroup(
+                {}
+            );
+        
+    
+            var circle_marker_192e26d0b2fb5162b6aa6b469726526a = L.circleMarker(
+                [48.8566, 2.342],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 56.54492996711041, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da4710cc54e87ce4e097a48aead60b94);
+        
+    
+        var popup_6a30bf3caf9d45fc1a2c9babe6e22d68 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8afc8609c75e290891aee3766896ef34 = $(`<div id="html_8afc8609c75e290891aee3766896ef34" style="width: 100.0%; height: 100.0%;">Industrie pharmaceutique - Industrie: 30000 employés</div>`)[0];
+                popup_6a30bf3caf9d45fc1a2c9babe6e22d68.setContent(html_8afc8609c75e290891aee3766896ef34);
+            
+        
+
+        circle_marker_192e26d0b2fb5162b6aa6b469726526a.bindPopup(popup_6a30bf3caf9d45fc1a2c9babe6e22d68)
+        ;
+
+        
+    
+    
+            feature_group_da4710cc54e87ce4e097a48aead60b94.addTo(feature_group_e6105cb30b5bffc1a6024355269dc15d);
+        
+    
+            feature_group_e6105cb30b5bffc1a6024355269dc15d.addTo(map_b01c931931a5962c0c0f068fe3147a69);
+        
+    
+            var feature_group_4157ad1c5a5e98ec3e42eefc8ef58016 = L.featureGroup(
+                {}
+            );
+        
+    
+            feature_group_4157ad1c5a5e98ec3e42eefc8ef58016.addTo(map_b01c931931a5962c0c0f068fe3147a69);
+        
+    
+            var feature_group_cf37608838705b159ba77fe4b283e100 = L.featureGroup(
+                {}
+            );
+        
+    
+            feature_group_cf37608838705b159ba77fe4b283e100.addTo(map_b01c931931a5962c0c0f068fe3147a69);
+        
+    
+            var layer_control_998fa18d1e04601c81c6162c24916102_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_193119c891608f0d3aac39819a9cf863,
+                },
+                overlays :  {
+                    "Secteur d\u0027activit\u00e9" : feature_group_e6105cb30b5bffc1a6024355269dc15d,
+                    "Industrie" : feature_group_4157ad1c5a5e98ec3e42eefc8ef58016,
+                    "Commerce" : feature_group_cf37608838705b159ba77fe4b283e100,
+                },
+            };
+            let layer_control_998fa18d1e04601c81c6162c24916102 = L.control.layers(
+                layer_control_998fa18d1e04601c81c6162c24916102_layers.base_layers,
+                layer_control_998fa18d1e04601c81c6162c24916102_layers.overlays,
+                {"autoZIndex": true, "collapsed": false, "position": "topright"}
+            ).addTo(map_b01c931931a5962c0c0f068fe3147a69);
+
+        
+</script>
+</html>

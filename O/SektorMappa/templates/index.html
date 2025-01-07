@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secteurs d'Activités</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th a {
+            text-decoration: none;
+            color: black;
+        }
+        th a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Secteurs d'Activités en Île-de-France</h2>
+
+    <!-- Sélecteur de table -->
+    <form action="/" method="get" style="text-align: center; margin-bottom: 20px;">
+        <label for="table">Choisir une table: </label>
+        <select name="table" id="table" onchange="this.form.submit()">
+            {% for t in tables %}
+                <option value="{{ t }}" {% if t == table %}selected{% endif %}>{{ t }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <!-- Table des données -->
+    <table>
+        <thead>
+            <tr>
+                {% for col in data[0] if data %}
+                    <th><a href="/?table={{ table }}&sort={{ loop.index }}">{{ col[0] }}</a></th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for col in row %}
+                        <td>{{ col }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+

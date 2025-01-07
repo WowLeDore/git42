@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0e0442a5dbb23a501fd56e86ae7aa604 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_0e0442a5dbb23a501fd56e86ae7aa604" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_0e0442a5dbb23a501fd56e86ae7aa604 = L.map(
+                "map_0e0442a5dbb23a501fd56e86ae7aa604",
+                {
+                    center: [48.8566, 2.3522],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_753b0cdb91e52d076b40ea2da5046ade = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_753b0cdb91e52d076b40ea2da5046ade.addTo(map_0e0442a5dbb23a501fd56e86ae7aa604);
+        
+    
+            var feature_group_0572e6149269e3a51b34a936a2829537 = L.featureGroup(
+                {}
+            );
+        
+    
+            var circle_marker_ce3512c0829978227ff1f5c88e3cc22b = L.circleMarker(
+                [48.8566, 2.3522],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 55.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0572e6149269e3a51b34a936a2829537);
+        
+    
+        var popup_d8f049d9a6bc94f4a9afc8504efaf038 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c117e9ae84f8ec16a76cd915b0b70127 = $(`<div id="html_c117e9ae84f8ec16a76cd915b0b70127" style="width: 100.0%; height: 100.0%;">Services financiers - Services: 50000 employés</div>`)[0];
+                popup_d8f049d9a6bc94f4a9afc8504efaf038.setContent(html_c117e9ae84f8ec16a76cd915b0b70127);
+            
+        
+
+        circle_marker_ce3512c0829978227ff1f5c88e3cc22b.bindPopup(popup_d8f049d9a6bc94f4a9afc8504efaf038)
+        ;
+
+        
+    
+    
+            var circle_marker_4abc34c01cda2252bf57652d9f5855df = L.circleMarker(
+                [48.8584, 2.2945],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 105.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0572e6149269e3a51b34a936a2829537);
+        
+    
+        var popup_16e39ac61397b1b106dc4e5992809079 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4013d5c1ee1184c6e671a35ea82b00a4 = $(`<div id="html_4013d5c1ee1184c6e671a35ea82b00a4" style="width: 100.0%; height: 100.0%;">Transport public - Services: 100000 employés</div>`)[0];
+                popup_16e39ac61397b1b106dc4e5992809079.setContent(html_4013d5c1ee1184c6e671a35ea82b00a4);
+            
+        
+
+        circle_marker_4abc34c01cda2252bf57652d9f5855df.bindPopup(popup_16e39ac61397b1b106dc4e5992809079)
+        ;
+
+        
+    
+    
+            feature_group_0572e6149269e3a51b34a936a2829537.addTo(map_0e0442a5dbb23a501fd56e86ae7aa604);
+        
+    
+            var feature_group_aeb061a75b92d1658a202265da045d3a = L.featureGroup(
+                {}
+            );
+        
+    
+            var circle_marker_efdbab1cadff1bfb850d2bd64be15c4d = L.circleMarker(
+                [48.8566, 2.342],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 35.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_aeb061a75b92d1658a202265da045d3a);
+        
+    
+        var popup_acfd3f4b2374387e24af85727bf5104c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_931e2dcc52683679e1b7123a781033a7 = $(`<div id="html_931e2dcc52683679e1b7123a781033a7" style="width: 100.0%; height: 100.0%;">Industrie pharmaceutique - Industrie: 30000 employés</div>`)[0];
+                popup_acfd3f4b2374387e24af85727bf5104c.setContent(html_931e2dcc52683679e1b7123a781033a7);
+            
+        
+
+        circle_marker_efdbab1cadff1bfb850d2bd64be15c4d.bindPopup(popup_acfd3f4b2374387e24af85727bf5104c)
+        ;
+
+        
+    
+    
+            feature_group_aeb061a75b92d1658a202265da045d3a.addTo(map_0e0442a5dbb23a501fd56e86ae7aa604);
+        
+    
+            var feature_group_0332b448fdd05292d808f4f1c2e38579 = L.featureGroup(
+                {}
+            );
+        
+    
+            var circle_marker_e45e0f4c3c55f21e89cdba609dcc0e8c = L.circleMarker(
+                [48.87, 2.34],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_0332b448fdd05292d808f4f1c2e38579);
+        
+    
+        var popup_1363fa239576acf2232fa80f9bf21031 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_89ff33dcff9826f66e3a256343bda659 = $(`<div id="html_89ff33dcff9826f66e3a256343bda659" style="width: 100.0%; height: 100.0%;">Commerce de détail - Commerce: 12000 employés</div>`)[0];
+                popup_1363fa239576acf2232fa80f9bf21031.setContent(html_89ff33dcff9826f66e3a256343bda659);
+            
+        
+
+        circle_marker_e45e0f4c3c55f21e89cdba609dcc0e8c.bindPopup(popup_1363fa239576acf2232fa80f9bf21031)
+        ;
+
+        
+    
+    
+            feature_group_0332b448fdd05292d808f4f1c2e38579.addTo(map_0e0442a5dbb23a501fd56e86ae7aa604);
+        
+    
+            var feature_group_8395fefc535550279a4a329ea40e815d = L.featureGroup(
+                {}
+            );
+        
+    
+            var circle_marker_4045b72a5017f19dd44f8e5f9c607981 = L.circleMarker(
+                [48.8618, 2.3924],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.292, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_067e203d1502ab9095d3313bc5178c6c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_99de44170ad7bcd98fbd3768a0534afd = $(`<div id="html_99de44170ad7bcd98fbd3768a0534afd" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 9292 employés</div>`)[0];
+                popup_067e203d1502ab9095d3313bc5178c6c.setContent(html_99de44170ad7bcd98fbd3768a0534afd);
+            
+        
+
+        circle_marker_4045b72a5017f19dd44f8e5f9c607981.bindPopup(popup_067e203d1502ab9095d3313bc5178c6c)
+        ;
+
+        
+    
+    
+            var circle_marker_6db2720b3f81158d120ebc9516401b7e = L.circleMarker(
+                [48.7982, 2.4149],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 79.51, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_902ca3017355d49a18568beaec76a50a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_71d713884dba96642826b2f51c54f142 = $(`<div id="html_71d713884dba96642826b2f51c54f142" style="width: 100.0%; height: 100.0%;">Technologie - Secteur d'activité: 74510 employés</div>`)[0];
+                popup_902ca3017355d49a18568beaec76a50a.setContent(html_71d713884dba96642826b2f51c54f142);
+            
+        
+
+        circle_marker_6db2720b3f81158d120ebc9516401b7e.bindPopup(popup_902ca3017355d49a18568beaec76a50a)
+        ;
+
+        
+    
+    
+            var circle_marker_ecd3b4278816940a241c22b2760b20b2 = L.circleMarker(
+                [48.8551, 2.2081],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.679, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_e7f4b1149df9e788b2260ff25f0c7d21 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3f72edf8aca81d3d78c568d8f45444fc = $(`<div id="html_3f72edf8aca81d3d78c568d8f45444fc" style="width: 100.0%; height: 100.0%;">Recherche et développement - Secteur d'activité: 6679 employés</div>`)[0];
+                popup_e7f4b1149df9e788b2260ff25f0c7d21.setContent(html_3f72edf8aca81d3d78c568d8f45444fc);
+            
+        
+
+        circle_marker_ecd3b4278816940a241c22b2760b20b2.bindPopup(popup_e7f4b1149df9e788b2260ff25f0c7d21)
+        ;
+
+        
+    
+    
+            var circle_marker_0b87d02b563f38daf7842d644d258da6 = L.circleMarker(
+                [48.7246, 2.4383],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 80.333, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_e403e06436588672341e60588dada8bf = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9cb19bdfd8b6ae5520a945633f006f5d = $(`<div id="html_9cb19bdfd8b6ae5520a945633f006f5d" style="width: 100.0%; height: 100.0%;">Transports - Secteur d'activité: 75333 employés</div>`)[0];
+                popup_e403e06436588672341e60588dada8bf.setContent(html_9cb19bdfd8b6ae5520a945633f006f5d);
+            
+        
+
+        circle_marker_0b87d02b563f38daf7842d644d258da6.bindPopup(popup_e403e06436588672341e60588dada8bf)
+        ;
+
+        
+    
+    
+            var circle_marker_80d9e86b2c4421c15a59984351cc1f88 = L.circleMarker(
+                [48.7128, 2.1219],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.127000000000002, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_7a7039915ae76d95efa64fcf2ba9220d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_645706615a75803721e40a2ec99e4c81 = $(`<div id="html_645706615a75803721e40a2ec99e4c81" style="width: 100.0%; height: 100.0%;">Santé - Secteur d'activité: 12127 employés</div>`)[0];
+                popup_7a7039915ae76d95efa64fcf2ba9220d.setContent(html_645706615a75803721e40a2ec99e4c81);
+            
+        
+
+        circle_marker_80d9e86b2c4421c15a59984351cc1f88.bindPopup(popup_7a7039915ae76d95efa64fcf2ba9220d)
+        ;
+
+        
+    
+    
+            var circle_marker_454492f1baace70f8f3c2211b7e7f957 = L.circleMarker(
+                [49.0271, 2.2076],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 35.872, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_948f1acffc3467a347cbb2e279d34659 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9f3686ffca7596350fdf292114b8b89b = $(`<div id="html_9f3686ffca7596350fdf292114b8b89b" style="width: 100.0%; height: 100.0%;">Agriculture - Secteur d'activité: 30872 employés</div>`)[0];
+                popup_948f1acffc3467a347cbb2e279d34659.setContent(html_9f3686ffca7596350fdf292114b8b89b);
+            
+        
+
+        circle_marker_454492f1baace70f8f3c2211b7e7f957.bindPopup(popup_948f1acffc3467a347cbb2e279d34659)
+        ;
+
+        
+    
+    
+            var circle_marker_63a8ebfaf0bbe9878b6cc609182760fd = L.circleMarker(
+                [48.9445, 2.3984],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 79.773, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_d8011a1bdebf8ae06f4db3a43e6a601c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f45f20a27143c5e2e77b6fd76d38d1c9 = $(`<div id="html_f45f20a27143c5e2e77b6fd76d38d1c9" style="width: 100.0%; height: 100.0%;">Culture - Secteur d'activité: 74773 employés</div>`)[0];
+                popup_d8011a1bdebf8ae06f4db3a43e6a601c.setContent(html_f45f20a27143c5e2e77b6fd76d38d1c9);
+            
+        
+
+        circle_marker_63a8ebfaf0bbe9878b6cc609182760fd.bindPopup(popup_d8011a1bdebf8ae06f4db3a43e6a601c)
+        ;
+
+        
+    
+    
+            var circle_marker_cba8e2b965a28d3a1769ef3d5f0601e3 = L.circleMarker(
+                [48.7156, 2.2732],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 98.802, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_1aa2afe46714a3cfd451046d372fa811 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d57411e6952a4713a16bc3c50baab781 = $(`<div id="html_d57411e6952a4713a16bc3c50baab781" style="width: 100.0%; height: 100.0%;">Transport public - Secteur d'activité: 93802 employés</div>`)[0];
+                popup_1aa2afe46714a3cfd451046d372fa811.setContent(html_d57411e6952a4713a16bc3c50baab781);
+            
+        
+
+        circle_marker_cba8e2b965a28d3a1769ef3d5f0601e3.bindPopup(popup_1aa2afe46714a3cfd451046d372fa811)
+        ;
+
+        
+    
+    
+            var circle_marker_68e14e19e359eda93444a58e88d09b36 = L.circleMarker(
+                [48.7681, 2.3368],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 54.092, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_a0d3382728b830b19f760a66e3de0155 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_701e0602f6988db577b09ca14d5a7256 = $(`<div id="html_701e0602f6988db577b09ca14d5a7256" style="width: 100.0%; height: 100.0%;">Agriculture - Secteur d'activité: 49092 employés</div>`)[0];
+                popup_a0d3382728b830b19f760a66e3de0155.setContent(html_701e0602f6988db577b09ca14d5a7256);
+            
+        
+
+        circle_marker_68e14e19e359eda93444a58e88d09b36.bindPopup(popup_a0d3382728b830b19f760a66e3de0155)
+        ;
+
+        
+    
+    
+            var circle_marker_2051393212a5bef5634ca8339cfe8faf = L.circleMarker(
+                [48.9558, 2.44],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 35.069, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_76dca4af265af20c7ea27f4afc5568ef = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_356a77a612893c8dfa5c5262a29c5781 = $(`<div id="html_356a77a612893c8dfa5c5262a29c5781" style="width: 100.0%; height: 100.0%;">Culture - Secteur d'activité: 30069 employés</div>`)[0];
+                popup_76dca4af265af20c7ea27f4afc5568ef.setContent(html_356a77a612893c8dfa5c5262a29c5781);
+            
+        
+
+        circle_marker_2051393212a5bef5634ca8339cfe8faf.bindPopup(popup_76dca4af265af20c7ea27f4afc5568ef)
+        ;
+
+        
+    
+    
+            var circle_marker_608b65a2fef51721fc6656a7e91ec7ff = L.circleMarker(
+                [48.6406, 2.2074],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 44.822, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_7789622e4d8604ecf94f74dd521a2d73 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_21cf0531d796c10def5e72e15ecf67bc = $(`<div id="html_21cf0531d796c10def5e72e15ecf67bc" style="width: 100.0%; height: 100.0%;">Agriculture - Secteur d'activité: 39822 employés</div>`)[0];
+                popup_7789622e4d8604ecf94f74dd521a2d73.setContent(html_21cf0531d796c10def5e72e15ecf67bc);
+            
+        
+
+        circle_marker_608b65a2fef51721fc6656a7e91ec7ff.bindPopup(popup_7789622e4d8604ecf94f74dd521a2d73)
+        ;
+
+        
+    
+    
+            var circle_marker_aac8c70d503bff42c0848a4c9e7a3260 = L.circleMarker(
+                [48.7218, 2.2605],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.089, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_e6ff7d0fb57c31ee95244af2cbb7859c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1cce5bd05645311634014b2985813b13 = $(`<div id="html_1cce5bd05645311634014b2985813b13" style="width: 100.0%; height: 100.0%;">Logistique - Secteur d'activité: 8089 employés</div>`)[0];
+                popup_e6ff7d0fb57c31ee95244af2cbb7859c.setContent(html_1cce5bd05645311634014b2985813b13);
+            
+        
+
+        circle_marker_aac8c70d503bff42c0848a4c9e7a3260.bindPopup(popup_e6ff7d0fb57c31ee95244af2cbb7859c)
+        ;
+
+        
+    
+    
+            var circle_marker_0479dad1bd43814202d9cb056c4e3d89 = L.circleMarker(
+                [49.0403, 2.3528],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.578, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_87fda6d9d82fedf01522cf03ec5d3f03 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_59c58fd607b3a9469985bfd80327330a = $(`<div id="html_59c58fd607b3a9469985bfd80327330a" style="width: 100.0%; height: 100.0%;">Culture - Secteur d'activité: 10578 employés</div>`)[0];
+                popup_87fda6d9d82fedf01522cf03ec5d3f03.setContent(html_59c58fd607b3a9469985bfd80327330a);
+            
+        
+
+        circle_marker_0479dad1bd43814202d9cb056c4e3d89.bindPopup(popup_87fda6d9d82fedf01522cf03ec5d3f03)
+        ;
+
+        
+    
+    
+            var circle_marker_46065458c7c5b97ccf36feed8b2b103d = L.circleMarker(
+                [48.7522, 2.3408],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 44.176, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_b8428fe77cf3d83b7d4cc23be3cde0a3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_21f0bd4070bda2ed344e86faa12c51e8 = $(`<div id="html_21f0bd4070bda2ed344e86faa12c51e8" style="width: 100.0%; height: 100.0%;">Recherche et développement - Secteur d'activité: 39176 employés</div>`)[0];
+                popup_b8428fe77cf3d83b7d4cc23be3cde0a3.setContent(html_21f0bd4070bda2ed344e86faa12c51e8);
+            
+        
+
+        circle_marker_46065458c7c5b97ccf36feed8b2b103d.bindPopup(popup_b8428fe77cf3d83b7d4cc23be3cde0a3)
+        ;
+
+        
+    
+    
+            var circle_marker_1a240bebf519a1d035d18695045e753a = L.circleMarker(
+                [48.9675, 2.2042],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 56.66, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_c23f9409d86ecefd34cd008090364181 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_43f5bc4b7992dbd59ffeca4b5322a0ec = $(`<div id="html_43f5bc4b7992dbd59ffeca4b5322a0ec" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 51660 employés</div>`)[0];
+                popup_c23f9409d86ecefd34cd008090364181.setContent(html_43f5bc4b7992dbd59ffeca4b5322a0ec);
+            
+        
+
+        circle_marker_1a240bebf519a1d035d18695045e753a.bindPopup(popup_c23f9409d86ecefd34cd008090364181)
+        ;
+
+        
+    
+    
+            var circle_marker_c6b64bbd76024576b41b616c5edce18d = L.circleMarker(
+                [48.6143, 2.1175],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 57.334, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_82230c6bbab70dac0f84978283e0ddcd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_af23c4083d0ac0258abd4cebf262b278 = $(`<div id="html_af23c4083d0ac0258abd4cebf262b278" style="width: 100.0%; height: 100.0%;">Logistique - Secteur d'activité: 52334 employés</div>`)[0];
+                popup_82230c6bbab70dac0f84978283e0ddcd.setContent(html_af23c4083d0ac0258abd4cebf262b278);
+            
+        
+
+        circle_marker_c6b64bbd76024576b41b616c5edce18d.bindPopup(popup_82230c6bbab70dac0f84978283e0ddcd)
+        ;
+
+        
+    
+    
+            var circle_marker_76769b55ff775847642422a6aedc9dc0 = L.circleMarker(
+                [48.8867, 2.1973],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 87.931, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_eb8abea4ae9756a88af7e90922b4dcc9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_30923c78e7e407501982a8ec8b494146 = $(`<div id="html_30923c78e7e407501982a8ec8b494146" style="width: 100.0%; height: 100.0%;">BTP - Secteur d'activité: 82931 employés</div>`)[0];
+                popup_eb8abea4ae9756a88af7e90922b4dcc9.setContent(html_30923c78e7e407501982a8ec8b494146);
+            
+        
+
+        circle_marker_76769b55ff775847642422a6aedc9dc0.bindPopup(popup_eb8abea4ae9756a88af7e90922b4dcc9)
+        ;
+
+        
+    
+    
+            var circle_marker_6cfa24fe312dc97c48c68e91816eb2f6 = L.circleMarker(
+                [48.8439, 2.1761],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.016, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_796c8b5b842b06ea8808f492784d3a98 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bf0c5034da2742ac5c20d081973b5bda = $(`<div id="html_bf0c5034da2742ac5c20d081973b5bda" style="width: 100.0%; height: 100.0%;">Santé - Secteur d'activité: 6016 employés</div>`)[0];
+                popup_796c8b5b842b06ea8808f492784d3a98.setContent(html_bf0c5034da2742ac5c20d081973b5bda);
+            
+        
+
+        circle_marker_6cfa24fe312dc97c48c68e91816eb2f6.bindPopup(popup_796c8b5b842b06ea8808f492784d3a98)
+        ;
+
+        
+    
+    
+            var circle_marker_7a6081f40c076c90348ee35719c99d88 = L.circleMarker(
+                [48.6733, 2.4345],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 38.365, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_3b0804209da1ea5d486b003b12182f88 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3f7a1c9dd9c2c1c40d15bfd0690017e3 = $(`<div id="html_3f7a1c9dd9c2c1c40d15bfd0690017e3" style="width: 100.0%; height: 100.0%;">Recherche et développement - Secteur d'activité: 33365 employés</div>`)[0];
+                popup_3b0804209da1ea5d486b003b12182f88.setContent(html_3f7a1c9dd9c2c1c40d15bfd0690017e3);
+            
+        
+
+        circle_marker_7a6081f40c076c90348ee35719c99d88.bindPopup(popup_3b0804209da1ea5d486b003b12182f88)
+        ;
+
+        
+    
+    
+            var circle_marker_acc875be8de38da96c52bec57b1210c9 = L.circleMarker(
+                [48.6774, 2.1471],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.589, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_2d28bd4c061e8f8c8d727d7fee95e84e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_33a5b9461b410c32b0e3c03dcb31f354 = $(`<div id="html_33a5b9461b410c32b0e3c03dcb31f354" style="width: 100.0%; height: 100.0%;">BTP - Secteur d'activité: 6589 employés</div>`)[0];
+                popup_2d28bd4c061e8f8c8d727d7fee95e84e.setContent(html_33a5b9461b410c32b0e3c03dcb31f354);
+            
+        
+
+        circle_marker_acc875be8de38da96c52bec57b1210c9.bindPopup(popup_2d28bd4c061e8f8c8d727d7fee95e84e)
+        ;
+
+        
+    
+    
+            var circle_marker_4d59d38b4fb07ce5b50e703bb83da08f = L.circleMarker(
+                [48.9836, 2.3805],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 57.196, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_c6da91ab9a1fc2877b455ba93e840b97 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2226225655c3faff789d1388d8a59190 = $(`<div id="html_2226225655c3faff789d1388d8a59190" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 52196 employés</div>`)[0];
+                popup_c6da91ab9a1fc2877b455ba93e840b97.setContent(html_2226225655c3faff789d1388d8a59190);
+            
+        
+
+        circle_marker_4d59d38b4fb07ce5b50e703bb83da08f.bindPopup(popup_c6da91ab9a1fc2877b455ba93e840b97)
+        ;
+
+        
+    
+    
+            var circle_marker_abcc0a1d91eaac20271ac30619766842 = L.circleMarker(
+                [48.9398, 2.2226],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 53.893, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_a0ffb31802728a9c2b40d1cab2775b41 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_849fe2bbaa2a4d93fec1c8c663d1d66e = $(`<div id="html_849fe2bbaa2a4d93fec1c8c663d1d66e" style="width: 100.0%; height: 100.0%;">Commerce de détail - Secteur d'activité: 48893 employés</div>`)[0];
+                popup_a0ffb31802728a9c2b40d1cab2775b41.setContent(html_849fe2bbaa2a4d93fec1c8c663d1d66e);
+            
+        
+
+        circle_marker_abcc0a1d91eaac20271ac30619766842.bindPopup(popup_a0ffb31802728a9c2b40d1cab2775b41)
+        ;
+
+        
+    
+    
+            var circle_marker_079f38e2dbf5ecd63858d5f1218cc2ab = L.circleMarker(
+                [48.8717, 2.3258],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 90.206, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_cf778e009b532b7e8e139d4293bade60 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2ec9f97ec16b285a46fc7c35c869e887 = $(`<div id="html_2ec9f97ec16b285a46fc7c35c869e887" style="width: 100.0%; height: 100.0%;">Industrie pharmaceutique - Secteur d'activité: 85206 employés</div>`)[0];
+                popup_cf778e009b532b7e8e139d4293bade60.setContent(html_2ec9f97ec16b285a46fc7c35c869e887);
+            
+        
+
+        circle_marker_079f38e2dbf5ecd63858d5f1218cc2ab.bindPopup(popup_cf778e009b532b7e8e139d4293bade60)
+        ;
+
+        
+    
+    
+            var circle_marker_647b4580d86aae9c20708eb0d77281ec = L.circleMarker(
+                [48.7089, 2.2283],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 92.243, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_7ee877729526b5635240a445bb5ef64d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2953981ed36d5281f089cda163f79bab = $(`<div id="html_2953981ed36d5281f089cda163f79bab" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 87243 employés</div>`)[0];
+                popup_7ee877729526b5635240a445bb5ef64d.setContent(html_2953981ed36d5281f089cda163f79bab);
+            
+        
+
+        circle_marker_647b4580d86aae9c20708eb0d77281ec.bindPopup(popup_7ee877729526b5635240a445bb5ef64d)
+        ;
+
+        
+    
+    
+            var circle_marker_4cb2fae60e2f15c6bdc7f5a3765ae8c4 = L.circleMarker(
+                [48.613, 2.4482],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 33.628, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_0c3b2cd89ce9865f4bfbadb355ee4bfe = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6b4cb8b6d0f66c02c0ee4959390f8adf = $(`<div id="html_6b4cb8b6d0f66c02c0ee4959390f8adf" style="width: 100.0%; height: 100.0%;">Logistique - Secteur d'activité: 28628 employés</div>`)[0];
+                popup_0c3b2cd89ce9865f4bfbadb355ee4bfe.setContent(html_6b4cb8b6d0f66c02c0ee4959390f8adf);
+            
+        
+
+        circle_marker_4cb2fae60e2f15c6bdc7f5a3765ae8c4.bindPopup(popup_0c3b2cd89ce9865f4bfbadb355ee4bfe)
+        ;
+
+        
+    
+    
+            var circle_marker_a317d2666eadb6688139e0d522f0ad54 = L.circleMarker(
+                [48.7353, 2.1367],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 39.237, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_07718e9398de06190e74560b9a73cc07 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_04c562e928c12dc28c4f45e8d8c0692e = $(`<div id="html_04c562e928c12dc28c4f45e8d8c0692e" style="width: 100.0%; height: 100.0%;">Transports - Secteur d'activité: 34237 employés</div>`)[0];
+                popup_07718e9398de06190e74560b9a73cc07.setContent(html_04c562e928c12dc28c4f45e8d8c0692e);
+            
+        
+
+        circle_marker_a317d2666eadb6688139e0d522f0ad54.bindPopup(popup_07718e9398de06190e74560b9a73cc07)
+        ;
+
+        
+    
+    
+            var circle_marker_f1828caa11ce02e3323329bfee6e860d = L.circleMarker(
+                [49.0885, 2.3428],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 49.396, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_0f07dcb02f2195d0cdbacdc5b507ace6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f5ba189b6f2e809eb2718664419c3973 = $(`<div id="html_f5ba189b6f2e809eb2718664419c3973" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 44396 employés</div>`)[0];
+                popup_0f07dcb02f2195d0cdbacdc5b507ace6.setContent(html_f5ba189b6f2e809eb2718664419c3973);
+            
+        
+
+        circle_marker_f1828caa11ce02e3323329bfee6e860d.bindPopup(popup_0f07dcb02f2195d0cdbacdc5b507ace6)
+        ;
+
+        
+    
+    
+            var circle_marker_1e16ba7612dd371bfd998c6806b230cf = L.circleMarker(
+                [48.9166, 2.2127],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 102.834, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_e8de46ca3529ce040611a7e13774c6a2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e27e4ed722a1fc47443dd546b95ed6fb = $(`<div id="html_e27e4ed722a1fc47443dd546b95ed6fb" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 97834 employés</div>`)[0];
+                popup_e8de46ca3529ce040611a7e13774c6a2.setContent(html_e27e4ed722a1fc47443dd546b95ed6fb);
+            
+        
+
+        circle_marker_1e16ba7612dd371bfd998c6806b230cf.bindPopup(popup_e8de46ca3529ce040611a7e13774c6a2)
+        ;
+
+        
+    
+    
+            var circle_marker_5cff03752fd0bc2e8a589e888e26a183 = L.circleMarker(
+                [49.016, 2.4963],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 72.483, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_6ea22c854c14a79fa6d6588075905e4a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_48af7069c20bd0a68ae377778dad905f = $(`<div id="html_48af7069c20bd0a68ae377778dad905f" style="width: 100.0%; height: 100.0%;">Services financiers - Secteur d'activité: 67483 employés</div>`)[0];
+                popup_6ea22c854c14a79fa6d6588075905e4a.setContent(html_48af7069c20bd0a68ae377778dad905f);
+            
+        
+
+        circle_marker_5cff03752fd0bc2e8a589e888e26a183.bindPopup(popup_6ea22c854c14a79fa6d6588075905e4a)
+        ;
+
+        
+    
+    
+            var circle_marker_d3043a7c3f5b3509b00ff7a43342f07b = L.circleMarker(
+                [48.7691, 2.3005],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 31.988, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_148e813c830cac085a55fe32996de3f3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_36e01a68bf779eaa68594bc04f35f17c = $(`<div id="html_36e01a68bf779eaa68594bc04f35f17c" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 26988 employés</div>`)[0];
+                popup_148e813c830cac085a55fe32996de3f3.setContent(html_36e01a68bf779eaa68594bc04f35f17c);
+            
+        
+
+        circle_marker_d3043a7c3f5b3509b00ff7a43342f07b.bindPopup(popup_148e813c830cac085a55fe32996de3f3)
+        ;
+
+        
+    
+    
+            var circle_marker_df460fcb910d102cf6026bb5623a911d = L.circleMarker(
+                [48.7851, 2.297],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 104.876, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_87623dee430f466b323c28716a29d937 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_18e9d26f4ba02b54aa7639b4adf40585 = $(`<div id="html_18e9d26f4ba02b54aa7639b4adf40585" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 99876 employés</div>`)[0];
+                popup_87623dee430f466b323c28716a29d937.setContent(html_18e9d26f4ba02b54aa7639b4adf40585);
+            
+        
+
+        circle_marker_df460fcb910d102cf6026bb5623a911d.bindPopup(popup_87623dee430f466b323c28716a29d937)
+        ;
+
+        
+    
+    
+            var circle_marker_e2abbff177322a5e0a5d400839182443 = L.circleMarker(
+                [48.6134, 2.1382],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 85.884, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_ece9a9c7308d0babe08f75e900f1318e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_246ef971e4b3029bc3c3242685f1a5e7 = $(`<div id="html_246ef971e4b3029bc3c3242685f1a5e7" style="width: 100.0%; height: 100.0%;">Industrie pharmaceutique - Secteur d'activité: 80884 employés</div>`)[0];
+                popup_ece9a9c7308d0babe08f75e900f1318e.setContent(html_246ef971e4b3029bc3c3242685f1a5e7);
+            
+        
+
+        circle_marker_e2abbff177322a5e0a5d400839182443.bindPopup(popup_ece9a9c7308d0babe08f75e900f1318e)
+        ;
+
+        
+    
+    
+            var circle_marker_34075cb62d789bfa55586503a67ad715 = L.circleMarker(
+                [48.7822, 2.1212],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 95.999, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_1ff8459c0d4dfff08ed04e7108c2034d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fc5a29c48eb8cb0a56c30718d51a4914 = $(`<div id="html_fc5a29c48eb8cb0a56c30718d51a4914" style="width: 100.0%; height: 100.0%;">Tourisme - Secteur d'activité: 90999 employés</div>`)[0];
+                popup_1ff8459c0d4dfff08ed04e7108c2034d.setContent(html_fc5a29c48eb8cb0a56c30718d51a4914);
+            
+        
+
+        circle_marker_34075cb62d789bfa55586503a67ad715.bindPopup(popup_1ff8459c0d4dfff08ed04e7108c2034d)
+        ;
+
+        
+    
+    
+            var circle_marker_596becc9043602c1e6e6be0e53620854 = L.circleMarker(
+                [48.8013, 2.1442],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.275, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_4f545aed3041443970bb18e5bc5b3631 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f039c1d904e00fcd9802b7130443dd00 = $(`<div id="html_f039c1d904e00fcd9802b7130443dd00" style="width: 100.0%; height: 100.0%;">Transports - Secteur d'activité: 13275 employés</div>`)[0];
+                popup_4f545aed3041443970bb18e5bc5b3631.setContent(html_f039c1d904e00fcd9802b7130443dd00);
+            
+        
+
+        circle_marker_596becc9043602c1e6e6be0e53620854.bindPopup(popup_4f545aed3041443970bb18e5bc5b3631)
+        ;
+
+        
+    
+    
+            var circle_marker_f09c01b2447ea89e62b82591404aed5d = L.circleMarker(
+                [48.9602, 2.4779],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 64.553, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_755fa0df59dce6f3993f87eb42ba5c87 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_904cfd70326be13df838297c872d8d71 = $(`<div id="html_904cfd70326be13df838297c872d8d71" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 59553 employés</div>`)[0];
+                popup_755fa0df59dce6f3993f87eb42ba5c87.setContent(html_904cfd70326be13df838297c872d8d71);
+            
+        
+
+        circle_marker_f09c01b2447ea89e62b82591404aed5d.bindPopup(popup_755fa0df59dce6f3993f87eb42ba5c87)
+        ;
+
+        
+    
+    
+            var circle_marker_42938b7a628d67f4ca86ed1c9b51a0b4 = L.circleMarker(
+                [48.6021, 2.1798],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 43.349, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_53cbb155a4db186a1303aa03f88be08d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_43f37ff24eed9332f7d2ea7609a9f0a6 = $(`<div id="html_43f37ff24eed9332f7d2ea7609a9f0a6" style="width: 100.0%; height: 100.0%;">Logistique - Secteur d'activité: 38349 employés</div>`)[0];
+                popup_53cbb155a4db186a1303aa03f88be08d.setContent(html_43f37ff24eed9332f7d2ea7609a9f0a6);
+            
+        
+
+        circle_marker_42938b7a628d67f4ca86ed1c9b51a0b4.bindPopup(popup_53cbb155a4db186a1303aa03f88be08d)
+        ;
+
+        
+    
+    
+            var circle_marker_b18a85104ed4ce7413f4daf1d7a285ca = L.circleMarker(
+                [49.0371, 2.2194],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 38.26, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_4d8bf755a2f5d76976263de96668cd23 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4663434ad9be8414ec8acea768f41389 = $(`<div id="html_4663434ad9be8414ec8acea768f41389" style="width: 100.0%; height: 100.0%;">Culture - Secteur d'activité: 33260 employés</div>`)[0];
+                popup_4d8bf755a2f5d76976263de96668cd23.setContent(html_4663434ad9be8414ec8acea768f41389);
+            
+        
+
+        circle_marker_b18a85104ed4ce7413f4daf1d7a285ca.bindPopup(popup_4d8bf755a2f5d76976263de96668cd23)
+        ;
+
+        
+    
+    
+            var circle_marker_b9e74aeca768776f523d816aa2fd0371 = L.circleMarker(
+                [48.9442, 2.3185],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.857, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_a0cee300c2e384b9674dbcee61816f3f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9ffbb2bd15938ea605690dcf9a17633b = $(`<div id="html_9ffbb2bd15938ea605690dcf9a17633b" style="width: 100.0%; height: 100.0%;">Recherche et développement - Secteur d'activité: 18857 employés</div>`)[0];
+                popup_a0cee300c2e384b9674dbcee61816f3f.setContent(html_9ffbb2bd15938ea605690dcf9a17633b);
+            
+        
+
+        circle_marker_b9e74aeca768776f523d816aa2fd0371.bindPopup(popup_a0cee300c2e384b9674dbcee61816f3f)
+        ;
+
+        
+    
+    
+            var circle_marker_386ec00f625ce7be6331d5d5eabfd6dd = L.circleMarker(
+                [48.8298, 2.2156],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 60.881, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_83bdb99dd188052a79dab6821221858e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c3b1e1707f5a04c4995bac8d38f222b5 = $(`<div id="html_c3b1e1707f5a04c4995bac8d38f222b5" style="width: 100.0%; height: 100.0%;">Santé - Secteur d'activité: 55881 employés</div>`)[0];
+                popup_83bdb99dd188052a79dab6821221858e.setContent(html_c3b1e1707f5a04c4995bac8d38f222b5);
+            
+        
+
+        circle_marker_386ec00f625ce7be6331d5d5eabfd6dd.bindPopup(popup_83bdb99dd188052a79dab6821221858e)
+        ;
+
+        
+    
+    
+            var circle_marker_85672926d53f7a235a92141cec317683 = L.circleMarker(
+                [49.0831, 2.2272],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 41.096, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_e1c7c2af03627852f40bfa9ae41b4141 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_45f3fb1a691f0526e1e6e4a2883e030a = $(`<div id="html_45f3fb1a691f0526e1e6e4a2883e030a" style="width: 100.0%; height: 100.0%;">Commerce de détail - Secteur d'activité: 36096 employés</div>`)[0];
+                popup_e1c7c2af03627852f40bfa9ae41b4141.setContent(html_45f3fb1a691f0526e1e6e4a2883e030a);
+            
+        
+
+        circle_marker_85672926d53f7a235a92141cec317683.bindPopup(popup_e1c7c2af03627852f40bfa9ae41b4141)
+        ;
+
+        
+    
+    
+            var circle_marker_eaa4d01fe72efae324a4f461308d8c79 = L.circleMarker(
+                [48.7955, 2.2863],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 34.644, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_8a100cb2728affa0410aa031119531e3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9e5e798c5ed91d05243cff3cb7e41cdd = $(`<div id="html_9e5e798c5ed91d05243cff3cb7e41cdd" style="width: 100.0%; height: 100.0%;">Commerce de détail - Secteur d'activité: 29644 employés</div>`)[0];
+                popup_8a100cb2728affa0410aa031119531e3.setContent(html_9e5e798c5ed91d05243cff3cb7e41cdd);
+            
+        
+
+        circle_marker_eaa4d01fe72efae324a4f461308d8c79.bindPopup(popup_8a100cb2728affa0410aa031119531e3)
+        ;
+
+        
+    
+    
+            var circle_marker_d91d317994683cc433859cf66ef1ed93 = L.circleMarker(
+                [49.0406, 2.163],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 76.253, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_699442cfae8bac85a4b1c06ed6606cd8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_675a76c33c5130e5015b7f80238820a3 = $(`<div id="html_675a76c33c5130e5015b7f80238820a3" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 71253 employés</div>`)[0];
+                popup_699442cfae8bac85a4b1c06ed6606cd8.setContent(html_675a76c33c5130e5015b7f80238820a3);
+            
+        
+
+        circle_marker_d91d317994683cc433859cf66ef1ed93.bindPopup(popup_699442cfae8bac85a4b1c06ed6606cd8)
+        ;
+
+        
+    
+    
+            var circle_marker_1dab72329c62910b17c62294ee3c8944 = L.circleMarker(
+                [49.0751, 2.1912],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 65.414, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_ee651fea3ad5eb2c6a6bb82fe1009b75 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_efb247da9973f988fe135fa035161a7c = $(`<div id="html_efb247da9973f988fe135fa035161a7c" style="width: 100.0%; height: 100.0%;">Culture - Secteur d'activité: 60414 employés</div>`)[0];
+                popup_ee651fea3ad5eb2c6a6bb82fe1009b75.setContent(html_efb247da9973f988fe135fa035161a7c);
+            
+        
+
+        circle_marker_1dab72329c62910b17c62294ee3c8944.bindPopup(popup_ee651fea3ad5eb2c6a6bb82fe1009b75)
+        ;
+
+        
+    
+    
+            var circle_marker_d14a7b8dc01230769a2ec1722196ab2f = L.circleMarker(
+                [49.0891, 2.3838],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 57.533, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_45441ddf29094fc5fde2bdf302c885d7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e8a8082d4d5171160c42601c6f948d2e = $(`<div id="html_e8a8082d4d5171160c42601c6f948d2e" style="width: 100.0%; height: 100.0%;">Logistique - Secteur d'activité: 52533 employés</div>`)[0];
+                popup_45441ddf29094fc5fde2bdf302c885d7.setContent(html_e8a8082d4d5171160c42601c6f948d2e);
+            
+        
+
+        circle_marker_d14a7b8dc01230769a2ec1722196ab2f.bindPopup(popup_45441ddf29094fc5fde2bdf302c885d7)
+        ;
+
+        
+    
+    
+            var circle_marker_4782f259c59168e24440b05bab1b68a0 = L.circleMarker(
+                [49.0344, 2.2025],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 41.551, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_296e78f2fd65097dc408d9885a7d6889 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ec5415f186fb0230a6bc13a9461043b0 = $(`<div id="html_ec5415f186fb0230a6bc13a9461043b0" style="width: 100.0%; height: 100.0%;">Recherche et développement - Secteur d'activité: 36551 employés</div>`)[0];
+                popup_296e78f2fd65097dc408d9885a7d6889.setContent(html_ec5415f186fb0230a6bc13a9461043b0);
+            
+        
+
+        circle_marker_4782f259c59168e24440b05bab1b68a0.bindPopup(popup_296e78f2fd65097dc408d9885a7d6889)
+        ;
+
+        
+    
+    
+            var circle_marker_7102a06f1078a8d53b34f2b1be92cf78 = L.circleMarker(
+                [48.9458, 2.4809],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 69.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_d67f1cc257ef4a741f7416b33e22e7c7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a7bc438a3d74686e594538f2720f103e = $(`<div id="html_a7bc438a3d74686e594538f2720f103e" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 64000 employés</div>`)[0];
+                popup_d67f1cc257ef4a741f7416b33e22e7c7.setContent(html_a7bc438a3d74686e594538f2720f103e);
+            
+        
+
+        circle_marker_7102a06f1078a8d53b34f2b1be92cf78.bindPopup(popup_d67f1cc257ef4a741f7416b33e22e7c7)
+        ;
+
+        
+    
+    
+            var circle_marker_4e86751ff7894e1edc809bbb8b1a0db3 = L.circleMarker(
+                [48.7521, 2.1178],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 30.345, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_15c0a4db6a7d82f28c5635a6a731a2a9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f9467b72cfa0413e6fda93c0f8528dfc = $(`<div id="html_f9467b72cfa0413e6fda93c0f8528dfc" style="width: 100.0%; height: 100.0%;">Éducation - Secteur d'activité: 25345 employés</div>`)[0];
+                popup_15c0a4db6a7d82f28c5635a6a731a2a9.setContent(html_f9467b72cfa0413e6fda93c0f8528dfc);
+            
+        
+
+        circle_marker_4e86751ff7894e1edc809bbb8b1a0db3.bindPopup(popup_15c0a4db6a7d82f28c5635a6a731a2a9)
+        ;
+
+        
+    
+    
+            var circle_marker_011ce984a7687d43c6333992346ee6bc = L.circleMarker(
+                [48.884, 2.336],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.552, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_40856ce7be956513c34820b0fa6fc954 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3485540d09ee2e3719dfdbc3dec23b56 = $(`<div id="html_3485540d09ee2e3719dfdbc3dec23b56" style="width: 100.0%; height: 100.0%;">Santé - Secteur d'activité: 4552 employés</div>`)[0];
+                popup_40856ce7be956513c34820b0fa6fc954.setContent(html_3485540d09ee2e3719dfdbc3dec23b56);
+            
+        
+
+        circle_marker_011ce984a7687d43c6333992346ee6bc.bindPopup(popup_40856ce7be956513c34820b0fa6fc954)
+        ;
+
+        
+    
+    
+            var circle_marker_599760f7c1969ef64516174c354a47fb = L.circleMarker(
+                [48.6808, 2.3169],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 77.854, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_a43820fe2011c98fc6e52526d695f494 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0121f9f9f946687dc1db9aaffdc136b0 = $(`<div id="html_0121f9f9f946687dc1db9aaffdc136b0" style="width: 100.0%; height: 100.0%;">Éducation - Secteur d'activité: 72854 employés</div>`)[0];
+                popup_a43820fe2011c98fc6e52526d695f494.setContent(html_0121f9f9f946687dc1db9aaffdc136b0);
+            
+        
+
+        circle_marker_599760f7c1969ef64516174c354a47fb.bindPopup(popup_a43820fe2011c98fc6e52526d695f494)
+        ;
+
+        
+    
+    
+            var circle_marker_1641a20deccb52a943c3f3c1b615c0d5 = L.circleMarker(
+                [48.6301, 2.2823],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.106, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_424301eed2a424a4abe1fb389f25c44f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_045c9bdc1446ddf3fb010e261f11559f = $(`<div id="html_045c9bdc1446ddf3fb010e261f11559f" style="width: 100.0%; height: 100.0%;">Santé - Secteur d'activité: 12106 employés</div>`)[0];
+                popup_424301eed2a424a4abe1fb389f25c44f.setContent(html_045c9bdc1446ddf3fb010e261f11559f);
+            
+        
+
+        circle_marker_1641a20deccb52a943c3f3c1b615c0d5.bindPopup(popup_424301eed2a424a4abe1fb389f25c44f)
+        ;
+
+        
+    
+    
+            var circle_marker_5de98a5a7371852c81b9aad75cccb6ed = L.circleMarker(
+                [48.8792, 2.3057],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 61.8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_0bf7cfda27a6d4d034fbddfded111bf9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4531d419d82bd0fcbf85334781c187e4 = $(`<div id="html_4531d419d82bd0fcbf85334781c187e4" style="width: 100.0%; height: 100.0%;">Énergie - Secteur d'activité: 56800 employés</div>`)[0];
+                popup_0bf7cfda27a6d4d034fbddfded111bf9.setContent(html_4531d419d82bd0fcbf85334781c187e4);
+            
+        
+
+        circle_marker_5de98a5a7371852c81b9aad75cccb6ed.bindPopup(popup_0bf7cfda27a6d4d034fbddfded111bf9)
+        ;
+
+        
+    
+    
+            var circle_marker_dc4da2f6550ac004d077f29960e0e189 = L.circleMarker(
+                [48.6198, 2.1001],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.336, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_8bf298f86964dbf1a714bf0d2efe866d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_10fa323f1740bdd85ec9df41397fadad = $(`<div id="html_10fa323f1740bdd85ec9df41397fadad" style="width: 100.0%; height: 100.0%;">Commerce de détail - Secteur d'activité: 8336 employés</div>`)[0];
+                popup_8bf298f86964dbf1a714bf0d2efe866d.setContent(html_10fa323f1740bdd85ec9df41397fadad);
+            
+        
+
+        circle_marker_dc4da2f6550ac004d077f29960e0e189.bindPopup(popup_8bf298f86964dbf1a714bf0d2efe866d)
+        ;
+
+        
+    
+    
+            var circle_marker_eb88132ffb143d1f6e7b496d36757191 = L.circleMarker(
+                [48.9426, 2.2432],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 69.453, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_21dbab1bd24563d16d2374aa60f9e6be = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d2bf09a2aac8cd77b80dc92545878361 = $(`<div id="html_d2bf09a2aac8cd77b80dc92545878361" style="width: 100.0%; height: 100.0%;">Transports - Secteur d'activité: 64453 employés</div>`)[0];
+                popup_21dbab1bd24563d16d2374aa60f9e6be.setContent(html_d2bf09a2aac8cd77b80dc92545878361);
+            
+        
+
+        circle_marker_eb88132ffb143d1f6e7b496d36757191.bindPopup(popup_21dbab1bd24563d16d2374aa60f9e6be)
+        ;
+
+        
+    
+    
+            var circle_marker_7dbe42c0d44831c77649b0209ce8bbdf = L.circleMarker(
+                [48.7624, 2.4185],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 94.082, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_0b8620704f705db28379d41aa1bac21d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_84f62c9bb05423f0f61ee71f495c1dd3 = $(`<div id="html_84f62c9bb05423f0f61ee71f495c1dd3" style="width: 100.0%; height: 100.0%;">BTP - Secteur d'activité: 89082 employés</div>`)[0];
+                popup_0b8620704f705db28379d41aa1bac21d.setContent(html_84f62c9bb05423f0f61ee71f495c1dd3);
+            
+        
+
+        circle_marker_7dbe42c0d44831c77649b0209ce8bbdf.bindPopup(popup_0b8620704f705db28379d41aa1bac21d)
+        ;
+
+        
+    
+    
+            var circle_marker_e4ab6ef52e816d3fcd28bc058a1165e0 = L.circleMarker(
+                [48.7632, 2.4719],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 62.501, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_104093ccec9c51b351efa8e51eb15c0f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a764834178e19af012212c3ff112d174 = $(`<div id="html_a764834178e19af012212c3ff112d174" style="width: 100.0%; height: 100.0%;">Transports - Secteur d'activité: 57501 employés</div>`)[0];
+                popup_104093ccec9c51b351efa8e51eb15c0f.setContent(html_a764834178e19af012212c3ff112d174);
+            
+        
+
+        circle_marker_e4ab6ef52e816d3fcd28bc058a1165e0.bindPopup(popup_104093ccec9c51b351efa8e51eb15c0f)
+        ;
+
+        
+    
+    
+            var circle_marker_4ff5d5b2d9f7e5843b632f650dddb658 = L.circleMarker(
+                [48.7359, 2.3955],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 35.266999999999996, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_e23638a08ccde7ae938370eadb212344 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c31c4fa3089594cadd3162efeb18d45c = $(`<div id="html_c31c4fa3089594cadd3162efeb18d45c" style="width: 100.0%; height: 100.0%;">Santé - Secteur d'activité: 30267 employés</div>`)[0];
+                popup_e23638a08ccde7ae938370eadb212344.setContent(html_c31c4fa3089594cadd3162efeb18d45c);
+            
+        
+
+        circle_marker_4ff5d5b2d9f7e5843b632f650dddb658.bindPopup(popup_e23638a08ccde7ae938370eadb212344)
+        ;
+
+        
+    
+    
+            var circle_marker_1111f628dbf2b24151fb2e960a7d9edf = L.circleMarker(
+                [49.0105, 2.1377],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 57.747, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_e9b8a2263fd6ab59fb188d76966029cc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1dd604afdf40f7d1fe7279b069f41bb9 = $(`<div id="html_1dd604afdf40f7d1fe7279b069f41bb9" style="width: 100.0%; height: 100.0%;">Services financiers - Secteur d'activité: 52747 employés</div>`)[0];
+                popup_e9b8a2263fd6ab59fb188d76966029cc.setContent(html_1dd604afdf40f7d1fe7279b069f41bb9);
+            
+        
+
+        circle_marker_1111f628dbf2b24151fb2e960a7d9edf.bindPopup(popup_e9b8a2263fd6ab59fb188d76966029cc)
+        ;
+
+        
+    
+    
+            var circle_marker_9fd6ba9708d69b99c19700cd9065dc31 = L.circleMarker(
+                [48.8244, 2.3759],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 65.449, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_3743a84320013ac320f8a0edf2190412 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_82ecb1e8cc284656642fe98f9c1205b8 = $(`<div id="html_82ecb1e8cc284656642fe98f9c1205b8" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 60449 employés</div>`)[0];
+                popup_3743a84320013ac320f8a0edf2190412.setContent(html_82ecb1e8cc284656642fe98f9c1205b8);
+            
+        
+
+        circle_marker_9fd6ba9708d69b99c19700cd9065dc31.bindPopup(popup_3743a84320013ac320f8a0edf2190412)
+        ;
+
+        
+    
+    
+            var circle_marker_e2d2caf47efc50d6acc818e7cfa4e4ac = L.circleMarker(
+                [48.8754, 2.4052],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 36.69, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_dbddb8054d15b7cd4e74b39d9de7866b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e7e1d5d402ece9d114e6752f1f0a1388 = $(`<div id="html_e7e1d5d402ece9d114e6752f1f0a1388" style="width: 100.0%; height: 100.0%;">Industrie pharmaceutique - Secteur d'activité: 31690 employés</div>`)[0];
+                popup_dbddb8054d15b7cd4e74b39d9de7866b.setContent(html_e7e1d5d402ece9d114e6752f1f0a1388);
+            
+        
+
+        circle_marker_e2d2caf47efc50d6acc818e7cfa4e4ac.bindPopup(popup_dbddb8054d15b7cd4e74b39d9de7866b)
+        ;
+
+        
+    
+    
+            var circle_marker_badfa3d0d18f603fb439dbf2167548f6 = L.circleMarker(
+                [48.9387, 2.2565],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 27.837, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_f5a0c86a72278689a95e5cd309a0d093 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d0dbae39109b4bed599e0ec2bf7710ef = $(`<div id="html_d0dbae39109b4bed599e0ec2bf7710ef" style="width: 100.0%; height: 100.0%;">Culture - Secteur d'activité: 22837 employés</div>`)[0];
+                popup_f5a0c86a72278689a95e5cd309a0d093.setContent(html_d0dbae39109b4bed599e0ec2bf7710ef);
+            
+        
+
+        circle_marker_badfa3d0d18f603fb439dbf2167548f6.bindPopup(popup_f5a0c86a72278689a95e5cd309a0d093)
+        ;
+
+        
+    
+    
+            var circle_marker_d465c965b861dc5d5b762ab182276c92 = L.circleMarker(
+                [48.7066, 2.3624],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 63.606, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_f2ea69c3679f24745664805fc7027d22 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a278bea86e337518f46fd609a33249f3 = $(`<div id="html_a278bea86e337518f46fd609a33249f3" style="width: 100.0%; height: 100.0%;">BTP - Secteur d'activité: 58606 employés</div>`)[0];
+                popup_f2ea69c3679f24745664805fc7027d22.setContent(html_a278bea86e337518f46fd609a33249f3);
+            
+        
+
+        circle_marker_d465c965b861dc5d5b762ab182276c92.bindPopup(popup_f2ea69c3679f24745664805fc7027d22)
+        ;
+
+        
+    
+    
+            var circle_marker_93a311ae17a4ccf5c4da4659b5f19df0 = L.circleMarker(
+                [48.6299, 2.2457],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 58.449, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_640d7a6a9594c7499b7c82fe60451f11 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_83e9940264542326aa498dad07b5ef63 = $(`<div id="html_83e9940264542326aa498dad07b5ef63" style="width: 100.0%; height: 100.0%;">BTP - Secteur d'activité: 53449 employés</div>`)[0];
+                popup_640d7a6a9594c7499b7c82fe60451f11.setContent(html_83e9940264542326aa498dad07b5ef63);
+            
+        
+
+        circle_marker_93a311ae17a4ccf5c4da4659b5f19df0.bindPopup(popup_640d7a6a9594c7499b7c82fe60451f11)
+        ;
+
+        
+    
+    
+            var circle_marker_6edf4b4cfd77392be96040a86d97d9c7 = L.circleMarker(
+                [48.6276, 2.4141],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 75.267, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_d15b4c3c8762ded4f7227c6b7505cacc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3bbbd06dfb49ce78b5d0866e11658620 = $(`<div id="html_3bbbd06dfb49ce78b5d0866e11658620" style="width: 100.0%; height: 100.0%;">Logistique - Secteur d'activité: 70267 employés</div>`)[0];
+                popup_d15b4c3c8762ded4f7227c6b7505cacc.setContent(html_3bbbd06dfb49ce78b5d0866e11658620);
+            
+        
+
+        circle_marker_6edf4b4cfd77392be96040a86d97d9c7.bindPopup(popup_d15b4c3c8762ded4f7227c6b7505cacc)
+        ;
+
+        
+    
+    
+            var circle_marker_3897766dff38d72c8860978d02d0b76a = L.circleMarker(
+                [48.6711, 2.164],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 49.521, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_ecabda705d181bc994f0ecfe76898077 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_10f3bbd62a3d49d33b0a0ac39760108b = $(`<div id="html_10f3bbd62a3d49d33b0a0ac39760108b" style="width: 100.0%; height: 100.0%;">Transport public - Secteur d'activité: 44521 employés</div>`)[0];
+                popup_ecabda705d181bc994f0ecfe76898077.setContent(html_10f3bbd62a3d49d33b0a0ac39760108b);
+            
+        
+
+        circle_marker_3897766dff38d72c8860978d02d0b76a.bindPopup(popup_ecabda705d181bc994f0ecfe76898077)
+        ;
+
+        
+    
+    
+            var circle_marker_253413d239391d376d82b420c05f3c84 = L.circleMarker(
+                [48.647, 2.3816],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 60.248, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_d8a0588a4bb4600f70c66da6a4fab37f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ecb805e3f0e49594374da99a55c2a667 = $(`<div id="html_ecb805e3f0e49594374da99a55c2a667" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 55248 employés</div>`)[0];
+                popup_d8a0588a4bb4600f70c66da6a4fab37f.setContent(html_ecb805e3f0e49594374da99a55c2a667);
+            
+        
+
+        circle_marker_253413d239391d376d82b420c05f3c84.bindPopup(popup_d8a0588a4bb4600f70c66da6a4fab37f)
+        ;
+
+        
+    
+    
+            var circle_marker_94ea813dc881bd14e34d7ae81ab09ef9 = L.circleMarker(
+                [48.6082, 2.3561],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 74.797, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_efe76c8cdae0bf28e5948444ad369853 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_844df5509002c5688941076a3d752e8f = $(`<div id="html_844df5509002c5688941076a3d752e8f" style="width: 100.0%; height: 100.0%;">Technologie - Secteur d'activité: 69797 employés</div>`)[0];
+                popup_efe76c8cdae0bf28e5948444ad369853.setContent(html_844df5509002c5688941076a3d752e8f);
+            
+        
+
+        circle_marker_94ea813dc881bd14e34d7ae81ab09ef9.bindPopup(popup_efe76c8cdae0bf28e5948444ad369853)
+        ;
+
+        
+    
+    
+            var circle_marker_9acb0e9204c8e02ab5cefe2e5b364708 = L.circleMarker(
+                [48.6309, 2.4872],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 52.651, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_fc1d0d3ed14005c36342194bb63b2feb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0d643094ba4d42d5fd1892b31d47e52e = $(`<div id="html_0d643094ba4d42d5fd1892b31d47e52e" style="width: 100.0%; height: 100.0%;">Commerce de détail - Secteur d'activité: 47651 employés</div>`)[0];
+                popup_fc1d0d3ed14005c36342194bb63b2feb.setContent(html_0d643094ba4d42d5fd1892b31d47e52e);
+            
+        
+
+        circle_marker_9acb0e9204c8e02ab5cefe2e5b364708.bindPopup(popup_fc1d0d3ed14005c36342194bb63b2feb)
+        ;
+
+        
+    
+    
+            var circle_marker_050d10474cce477938274096011095f4 = L.circleMarker(
+                [48.9866, 2.1546],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 41.857, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_52792904b4effb729d44825b1fd19976 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1b5662e8d63938eb011a2a52df8501ec = $(`<div id="html_1b5662e8d63938eb011a2a52df8501ec" style="width: 100.0%; height: 100.0%;">Énergie - Secteur d'activité: 36857 employés</div>`)[0];
+                popup_52792904b4effb729d44825b1fd19976.setContent(html_1b5662e8d63938eb011a2a52df8501ec);
+            
+        
+
+        circle_marker_050d10474cce477938274096011095f4.bindPopup(popup_52792904b4effb729d44825b1fd19976)
+        ;
+
+        
+    
+    
+            var circle_marker_0b534af6ee58412f6f4516302b501b58 = L.circleMarker(
+                [48.8754, 2.233],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 35.081, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_783d1eb5131157e42ee75f28a8fbe99d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8f78b88c67d2dc911c543d82f9626e3d = $(`<div id="html_8f78b88c67d2dc911c543d82f9626e3d" style="width: 100.0%; height: 100.0%;">Industrie pharmaceutique - Secteur d'activité: 30081 employés</div>`)[0];
+                popup_783d1eb5131157e42ee75f28a8fbe99d.setContent(html_8f78b88c67d2dc911c543d82f9626e3d);
+            
+        
+
+        circle_marker_0b534af6ee58412f6f4516302b501b58.bindPopup(popup_783d1eb5131157e42ee75f28a8fbe99d)
+        ;
+
+        
+    
+    
+            var circle_marker_8a798a870b628789f94805bb853fcde2 = L.circleMarker(
+                [48.7668, 2.3328],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 102.988, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_3ebd8e29453c342998b2f179a8032858 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d3cc6e697a0398efc5f8e49f6e4bcc54 = $(`<div id="html_d3cc6e697a0398efc5f8e49f6e4bcc54" style="width: 100.0%; height: 100.0%;">Éducation - Secteur d'activité: 97988 employés</div>`)[0];
+                popup_3ebd8e29453c342998b2f179a8032858.setContent(html_d3cc6e697a0398efc5f8e49f6e4bcc54);
+            
+        
+
+        circle_marker_8a798a870b628789f94805bb853fcde2.bindPopup(popup_3ebd8e29453c342998b2f179a8032858)
+        ;
+
+        
+    
+    
+            var circle_marker_a9757e16e33deaf4e35bae45087237a2 = L.circleMarker(
+                [48.8681, 2.2182],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.031, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_1a700dd770aaa8dffab3817a6ce8a121 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9edec4d733da934c026a7c1146c2f64f = $(`<div id="html_9edec4d733da934c026a7c1146c2f64f" style="width: 100.0%; height: 100.0%;">Éducation - Secteur d'activité: 10031 employés</div>`)[0];
+                popup_1a700dd770aaa8dffab3817a6ce8a121.setContent(html_9edec4d733da934c026a7c1146c2f64f);
+            
+        
+
+        circle_marker_a9757e16e33deaf4e35bae45087237a2.bindPopup(popup_1a700dd770aaa8dffab3817a6ce8a121)
+        ;
+
+        
+    
+    
+            var circle_marker_e499397d2fcb77a5252e2558a32af298 = L.circleMarker(
+                [48.6918, 2.2829],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 46.52, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_af21c8036113347699e5ffcb0549cd4a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3c7f8c332109e9cbf237ae7ddb066fef = $(`<div id="html_3c7f8c332109e9cbf237ae7ddb066fef" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 41520 employés</div>`)[0];
+                popup_af21c8036113347699e5ffcb0549cd4a.setContent(html_3c7f8c332109e9cbf237ae7ddb066fef);
+            
+        
+
+        circle_marker_e499397d2fcb77a5252e2558a32af298.bindPopup(popup_af21c8036113347699e5ffcb0549cd4a)
+        ;
+
+        
+    
+    
+            var circle_marker_14bbcdf8af4b65d0a3edae8ce41abfe0 = L.circleMarker(
+                [48.6133, 2.1313],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 57.076, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_7951598a11b1582e691027ec4571210b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_399275f4232ffa817b20b8dfd60493ac = $(`<div id="html_399275f4232ffa817b20b8dfd60493ac" style="width: 100.0%; height: 100.0%;">Commerce de détail - Secteur d'activité: 52076 employés</div>`)[0];
+                popup_7951598a11b1582e691027ec4571210b.setContent(html_399275f4232ffa817b20b8dfd60493ac);
+            
+        
+
+        circle_marker_14bbcdf8af4b65d0a3edae8ce41abfe0.bindPopup(popup_7951598a11b1582e691027ec4571210b)
+        ;
+
+        
+    
+    
+            var circle_marker_8edd0364dc68fb6b0d008ba8789ec57b = L.circleMarker(
+                [48.794, 2.274],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 76.456, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_bf0a8669460ac1de4dd3583fed9b44ac = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_726cfa637808eaaa3b444a1231e0694b = $(`<div id="html_726cfa637808eaaa3b444a1231e0694b" style="width: 100.0%; height: 100.0%;">Technologie - Secteur d'activité: 71456 employés</div>`)[0];
+                popup_bf0a8669460ac1de4dd3583fed9b44ac.setContent(html_726cfa637808eaaa3b444a1231e0694b);
+            
+        
+
+        circle_marker_8edd0364dc68fb6b0d008ba8789ec57b.bindPopup(popup_bf0a8669460ac1de4dd3583fed9b44ac)
+        ;
+
+        
+    
+    
+            var circle_marker_02e0b86a9dc21d48810d2307e37f1205 = L.circleMarker(
+                [49.0522, 2.3008],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 58.258, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_706569a02e0ef9c8cdb3eb8210e5a9b8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_686b0e38839e57f4a5e9c727b4b5d586 = $(`<div id="html_686b0e38839e57f4a5e9c727b4b5d586" style="width: 100.0%; height: 100.0%;">Transport public - Secteur d'activité: 53258 employés</div>`)[0];
+                popup_706569a02e0ef9c8cdb3eb8210e5a9b8.setContent(html_686b0e38839e57f4a5e9c727b4b5d586);
+            
+        
+
+        circle_marker_02e0b86a9dc21d48810d2307e37f1205.bindPopup(popup_706569a02e0ef9c8cdb3eb8210e5a9b8)
+        ;
+
+        
+    
+    
+            var circle_marker_a77ced1a7387887ac85295fc28b3e817 = L.circleMarker(
+                [48.9392, 2.1327],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.619, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_b84d253bf249771a2054a42af4d666ef = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3376cdff443d19cd4d8333824b2716b7 = $(`<div id="html_3376cdff443d19cd4d8333824b2716b7" style="width: 100.0%; height: 100.0%;">Environnement - Secteur d'activité: 14619 employés</div>`)[0];
+                popup_b84d253bf249771a2054a42af4d666ef.setContent(html_3376cdff443d19cd4d8333824b2716b7);
+            
+        
+
+        circle_marker_a77ced1a7387887ac85295fc28b3e817.bindPopup(popup_b84d253bf249771a2054a42af4d666ef)
+        ;
+
+        
+    
+    
+            var circle_marker_183dc199550d3a18ccb25c2a9bebe809 = L.circleMarker(
+                [48.7524, 2.1252],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 76.076, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_a2e997dda50d2c32e0f464cec7b180f9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7335c1887893880ef3743a564bb847f5 = $(`<div id="html_7335c1887893880ef3743a564bb847f5" style="width: 100.0%; height: 100.0%;">Santé - Secteur d'activité: 71076 employés</div>`)[0];
+                popup_a2e997dda50d2c32e0f464cec7b180f9.setContent(html_7335c1887893880ef3743a564bb847f5);
+            
+        
+
+        circle_marker_183dc199550d3a18ccb25c2a9bebe809.bindPopup(popup_a2e997dda50d2c32e0f464cec7b180f9)
+        ;
+
+        
+    
+    
+            var circle_marker_3f1a94c7bd2599edfa4536bbb732e303 = L.circleMarker(
+                [48.6604, 2.3462],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 52.147, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_87d310e6cd9f11359e50b2adbbfe4002 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_beaef0736d052bdaeb3177e8ceb9921e = $(`<div id="html_beaef0736d052bdaeb3177e8ceb9921e" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 47147 employés</div>`)[0];
+                popup_87d310e6cd9f11359e50b2adbbfe4002.setContent(html_beaef0736d052bdaeb3177e8ceb9921e);
+            
+        
+
+        circle_marker_3f1a94c7bd2599edfa4536bbb732e303.bindPopup(popup_87d310e6cd9f11359e50b2adbbfe4002)
+        ;
+
+        
+    
+    
+            var circle_marker_8d9acd4bd038f1facc218b58c5ee490f = L.circleMarker(
+                [48.6667, 2.4566],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 88.898, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_577253eb70665850118dafaa20e6a0af = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_90b356381e5f0feb8f42accbd2e57ea4 = $(`<div id="html_90b356381e5f0feb8f42accbd2e57ea4" style="width: 100.0%; height: 100.0%;">Agriculture - Secteur d'activité: 83898 employés</div>`)[0];
+                popup_577253eb70665850118dafaa20e6a0af.setContent(html_90b356381e5f0feb8f42accbd2e57ea4);
+            
+        
+
+        circle_marker_8d9acd4bd038f1facc218b58c5ee490f.bindPopup(popup_577253eb70665850118dafaa20e6a0af)
+        ;
+
+        
+    
+    
+            var circle_marker_3659eb88a67395db813fc5b49e1fd650 = L.circleMarker(
+                [49.0495, 2.1484],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 43.664, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_9344bae3cb86d4948e97ab93674e3146 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4ade7dbb27cf33231f7dccd84162607f = $(`<div id="html_4ade7dbb27cf33231f7dccd84162607f" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 38664 employés</div>`)[0];
+                popup_9344bae3cb86d4948e97ab93674e3146.setContent(html_4ade7dbb27cf33231f7dccd84162607f);
+            
+        
+
+        circle_marker_3659eb88a67395db813fc5b49e1fd650.bindPopup(popup_9344bae3cb86d4948e97ab93674e3146)
+        ;
+
+        
+    
+    
+            var circle_marker_d2a32ed63f517ec3ece1896228c8e992 = L.circleMarker(
+                [48.6733, 2.3908],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 58.339, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_337e61a554ae55fdd1b6744cdf8079db = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_634c911fb9f310567746aaca2013152c = $(`<div id="html_634c911fb9f310567746aaca2013152c" style="width: 100.0%; height: 100.0%;">Agriculture - Secteur d'activité: 53339 employés</div>`)[0];
+                popup_337e61a554ae55fdd1b6744cdf8079db.setContent(html_634c911fb9f310567746aaca2013152c);
+            
+        
+
+        circle_marker_d2a32ed63f517ec3ece1896228c8e992.bindPopup(popup_337e61a554ae55fdd1b6744cdf8079db)
+        ;
+
+        
+    
+    
+            var circle_marker_ba2dd5802bc3278e74668729e731f445 = L.circleMarker(
+                [48.8887, 2.4641],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.539, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_a1bf406f61d47d1712a1d39c366a959e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_80389af05343e57d94677a443c7223bc = $(`<div id="html_80389af05343e57d94677a443c7223bc" style="width: 100.0%; height: 100.0%;">Agriculture - Secteur d'activité: 5539 employés</div>`)[0];
+                popup_a1bf406f61d47d1712a1d39c366a959e.setContent(html_80389af05343e57d94677a443c7223bc);
+            
+        
+
+        circle_marker_ba2dd5802bc3278e74668729e731f445.bindPopup(popup_a1bf406f61d47d1712a1d39c366a959e)
+        ;
+
+        
+    
+    
+            var circle_marker_6e85935cb4d3b20100ec72a9af774fdd = L.circleMarker(
+                [48.6371, 2.3643],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 70.834, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_eddc15687fb9b66f4680a331a5bfa3ad = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e1f22b2700a11ffbb0776052e54b7971 = $(`<div id="html_e1f22b2700a11ffbb0776052e54b7971" style="width: 100.0%; height: 100.0%;">Éducation - Secteur d'activité: 65834 employés</div>`)[0];
+                popup_eddc15687fb9b66f4680a331a5bfa3ad.setContent(html_e1f22b2700a11ffbb0776052e54b7971);
+            
+        
+
+        circle_marker_6e85935cb4d3b20100ec72a9af774fdd.bindPopup(popup_eddc15687fb9b66f4680a331a5bfa3ad)
+        ;
+
+        
+    
+    
+            var circle_marker_2828cab6fb7cc085919af88057770713 = L.circleMarker(
+                [48.7511, 2.1125],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 85.651, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_05e021891aa4bfd8be94e66ac5d51c38 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f4d26f11ca18b20c853b4b411afb0409 = $(`<div id="html_f4d26f11ca18b20c853b4b411afb0409" style="width: 100.0%; height: 100.0%;">Transports - Secteur d'activité: 80651 employés</div>`)[0];
+                popup_05e021891aa4bfd8be94e66ac5d51c38.setContent(html_f4d26f11ca18b20c853b4b411afb0409);
+            
+        
+
+        circle_marker_2828cab6fb7cc085919af88057770713.bindPopup(popup_05e021891aa4bfd8be94e66ac5d51c38)
+        ;
+
+        
+    
+    
+            var circle_marker_4bdeeec1e71d09c260c5b381bcd56c76 = L.circleMarker(
+                [49.0795, 2.4289],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 44.064, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_ea725bf0ed85338363a333eda2c372a7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4f4f03fa7fe3b917596fefdaf9df5d27 = $(`<div id="html_4f4f03fa7fe3b917596fefdaf9df5d27" style="width: 100.0%; height: 100.0%;">Recherche et développement - Secteur d'activité: 39064 employés</div>`)[0];
+                popup_ea725bf0ed85338363a333eda2c372a7.setContent(html_4f4f03fa7fe3b917596fefdaf9df5d27);
+            
+        
+
+        circle_marker_4bdeeec1e71d09c260c5b381bcd56c76.bindPopup(popup_ea725bf0ed85338363a333eda2c372a7)
+        ;
+
+        
+    
+    
+            var circle_marker_a1d7c960ae019a093563a3e1c7f3c3ba = L.circleMarker(
+                [48.8342, 2.4389],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 67.24799999999999, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_aba1eb6eb9d4d3606bbc6fca87bf13d5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f66564f0ab5234173bef5fc78de85157 = $(`<div id="html_f66564f0ab5234173bef5fc78de85157" style="width: 100.0%; height: 100.0%;">Éducation - Secteur d'activité: 62248 employés</div>`)[0];
+                popup_aba1eb6eb9d4d3606bbc6fca87bf13d5.setContent(html_f66564f0ab5234173bef5fc78de85157);
+            
+        
+
+        circle_marker_a1d7c960ae019a093563a3e1c7f3c3ba.bindPopup(popup_aba1eb6eb9d4d3606bbc6fca87bf13d5)
+        ;
+
+        
+    
+    
+            var circle_marker_bc9eaef16a049ab1077b283cb2c5bb54 = L.circleMarker(
+                [48.8391, 2.1353],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 45.905, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_f1b6cb85d0bedcc3a2641ae8aecf1412 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7c46f81c72f6c91800788b3f13137485 = $(`<div id="html_7c46f81c72f6c91800788b3f13137485" style="width: 100.0%; height: 100.0%;">Tourisme - Secteur d'activité: 40905 employés</div>`)[0];
+                popup_f1b6cb85d0bedcc3a2641ae8aecf1412.setContent(html_7c46f81c72f6c91800788b3f13137485);
+            
+        
+
+        circle_marker_bc9eaef16a049ab1077b283cb2c5bb54.bindPopup(popup_f1b6cb85d0bedcc3a2641ae8aecf1412)
+        ;
+
+        
+    
+    
+            var circle_marker_c850e8b561ed894147582d33a46281ff = L.circleMarker(
+                [48.764, 2.4003],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 90.721, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_0e67dfaaaa001111de932914165285de = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_960bc9a20b83626e5f7d640440bbd3b7 = $(`<div id="html_960bc9a20b83626e5f7d640440bbd3b7" style="width: 100.0%; height: 100.0%;">Santé - Secteur d'activité: 85721 employés</div>`)[0];
+                popup_0e67dfaaaa001111de932914165285de.setContent(html_960bc9a20b83626e5f7d640440bbd3b7);
+            
+        
+
+        circle_marker_c850e8b561ed894147582d33a46281ff.bindPopup(popup_0e67dfaaaa001111de932914165285de)
+        ;
+
+        
+    
+    
+            var circle_marker_ffd61dca3756f59c416c37bb297fc0a5 = L.circleMarker(
+                [48.6676, 2.3278],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 83.589, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_e8b3c16362c13ffde1936360c280a009 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1c72243172ae799d342a77e5876bf837 = $(`<div id="html_1c72243172ae799d342a77e5876bf837" style="width: 100.0%; height: 100.0%;">Culture - Secteur d'activité: 78589 employés</div>`)[0];
+                popup_e8b3c16362c13ffde1936360c280a009.setContent(html_1c72243172ae799d342a77e5876bf837);
+            
+        
+
+        circle_marker_ffd61dca3756f59c416c37bb297fc0a5.bindPopup(popup_e8b3c16362c13ffde1936360c280a009)
+        ;
+
+        
+    
+    
+            var circle_marker_21f90f52474b7080297fecbdcfdeb6ef = L.circleMarker(
+                [48.958, 2.4662],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 47.922, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_0b5344a4511aceb0e684d7ae70c3b894 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4004546836ab6dc4fbf62d2f50e15677 = $(`<div id="html_4004546836ab6dc4fbf62d2f50e15677" style="width: 100.0%; height: 100.0%;">Agriculture - Secteur d'activité: 42922 employés</div>`)[0];
+                popup_0b5344a4511aceb0e684d7ae70c3b894.setContent(html_4004546836ab6dc4fbf62d2f50e15677);
+            
+        
+
+        circle_marker_21f90f52474b7080297fecbdcfdeb6ef.bindPopup(popup_0b5344a4511aceb0e684d7ae70c3b894)
+        ;
+
+        
+    
+    
+            var circle_marker_d6272cbcc6dccb9a9d1d3f10cc907a98 = L.circleMarker(
+                [48.7705, 2.44],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 91.89, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_494531e43cf684bb6170f18ead291cd4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0254d1fb00cf6516ec3d2fcc8edc8f9d = $(`<div id="html_0254d1fb00cf6516ec3d2fcc8edc8f9d" style="width: 100.0%; height: 100.0%;">Services financiers - Secteur d'activité: 86890 employés</div>`)[0];
+                popup_494531e43cf684bb6170f18ead291cd4.setContent(html_0254d1fb00cf6516ec3d2fcc8edc8f9d);
+            
+        
+
+        circle_marker_d6272cbcc6dccb9a9d1d3f10cc907a98.bindPopup(popup_494531e43cf684bb6170f18ead291cd4)
+        ;
+
+        
+    
+    
+            var circle_marker_560361dc07e5c4baaa2b95c45d3e66c8 = L.circleMarker(
+                [48.7345, 2.1126],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.034, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_33a63a015a06d21086b03266111dc255 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3d49bd53b9081b46836840ce27053342 = $(`<div id="html_3d49bd53b9081b46836840ce27053342" style="width: 100.0%; height: 100.0%;">BTP - Secteur d'activité: 12034 employés</div>`)[0];
+                popup_33a63a015a06d21086b03266111dc255.setContent(html_3d49bd53b9081b46836840ce27053342);
+            
+        
+
+        circle_marker_560361dc07e5c4baaa2b95c45d3e66c8.bindPopup(popup_33a63a015a06d21086b03266111dc255)
+        ;
+
+        
+    
+    
+            var circle_marker_aae8500288c31160a2df3c35fc27d589 = L.circleMarker(
+                [48.6517, 2.1446],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 64.316, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_78250b48d14553f269fa0e43e93d8bdf = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1b7e091d80c5bafea3e8e2ec757739d7 = $(`<div id="html_1b7e091d80c5bafea3e8e2ec757739d7" style="width: 100.0%; height: 100.0%;">Logistique - Secteur d'activité: 59316 employés</div>`)[0];
+                popup_78250b48d14553f269fa0e43e93d8bdf.setContent(html_1b7e091d80c5bafea3e8e2ec757739d7);
+            
+        
+
+        circle_marker_aae8500288c31160a2df3c35fc27d589.bindPopup(popup_78250b48d14553f269fa0e43e93d8bdf)
+        ;
+
+        
+    
+    
+            var circle_marker_dd5de83b7d3975b4e15b356da66c7d5c = L.circleMarker(
+                [48.9015, 2.1158],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 52.537, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_715f0876c04279e0128a2fc10010e8c9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6f55bbc9c9b96699fb76527928098524 = $(`<div id="html_6f55bbc9c9b96699fb76527928098524" style="width: 100.0%; height: 100.0%;">Énergie - Secteur d'activité: 47537 employés</div>`)[0];
+                popup_715f0876c04279e0128a2fc10010e8c9.setContent(html_6f55bbc9c9b96699fb76527928098524);
+            
+        
+
+        circle_marker_dd5de83b7d3975b4e15b356da66c7d5c.bindPopup(popup_715f0876c04279e0128a2fc10010e8c9)
+        ;
+
+        
+    
+    
+            var circle_marker_c3070de27dac3e8578d714dea2236417 = L.circleMarker(
+                [49.0352, 2.3013],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 54.73, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_680dedbd3c372c476581097d3ce916f8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ba28ae4109ec71299e743b551d6beadc = $(`<div id="html_ba28ae4109ec71299e743b551d6beadc" style="width: 100.0%; height: 100.0%;">Agriculture - Secteur d'activité: 49730 employés</div>`)[0];
+                popup_680dedbd3c372c476581097d3ce916f8.setContent(html_ba28ae4109ec71299e743b551d6beadc);
+            
+        
+
+        circle_marker_c3070de27dac3e8578d714dea2236417.bindPopup(popup_680dedbd3c372c476581097d3ce916f8)
+        ;
+
+        
+    
+    
+            var circle_marker_046ea12ddfa8fa0fe9f105a3a052be31 = L.circleMarker(
+                [49.0116, 2.439],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 91.215, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_9b032153f9c0f2c2aae5d44004fa7353 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_86478e9207eb29671e799ad8a444a9bf = $(`<div id="html_86478e9207eb29671e799ad8a444a9bf" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 86215 employés</div>`)[0];
+                popup_9b032153f9c0f2c2aae5d44004fa7353.setContent(html_86478e9207eb29671e799ad8a444a9bf);
+            
+        
+
+        circle_marker_046ea12ddfa8fa0fe9f105a3a052be31.bindPopup(popup_9b032153f9c0f2c2aae5d44004fa7353)
+        ;
+
+        
+    
+    
+            var circle_marker_c7aa3de09ffc384d63269d0a7376341f = L.circleMarker(
+                [48.864, 2.2311],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 37.173, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_b6a0547a16fb050ba494130c76c693b4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d9b5d7b7f76d8cc46fb4da114e04b901 = $(`<div id="html_d9b5d7b7f76d8cc46fb4da114e04b901" style="width: 100.0%; height: 100.0%;">Transport public - Secteur d'activité: 32173 employés</div>`)[0];
+                popup_b6a0547a16fb050ba494130c76c693b4.setContent(html_d9b5d7b7f76d8cc46fb4da114e04b901);
+            
+        
+
+        circle_marker_c7aa3de09ffc384d63269d0a7376341f.bindPopup(popup_b6a0547a16fb050ba494130c76c693b4)
+        ;
+
+        
+    
+    
+            var circle_marker_019cd1c84181c4a235aa415220546380 = L.circleMarker(
+                [48.7665, 2.4397],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 88.56, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_15bd0463d864f17c8a64834c9d5bf0ad = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_174d1e247dd723b5a01fa2cf65b53e4e = $(`<div id="html_174d1e247dd723b5a01fa2cf65b53e4e" style="width: 100.0%; height: 100.0%;">Culture - Secteur d'activité: 83560 employés</div>`)[0];
+                popup_15bd0463d864f17c8a64834c9d5bf0ad.setContent(html_174d1e247dd723b5a01fa2cf65b53e4e);
+            
+        
+
+        circle_marker_019cd1c84181c4a235aa415220546380.bindPopup(popup_15bd0463d864f17c8a64834c9d5bf0ad)
+        ;
+
+        
+    
+    
+            var circle_marker_3ec8c8d3e4a657ea34ccb66143c9dee1 = L.circleMarker(
+                [48.7663, 2.2632],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.762, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_f929c9790aa25ab97ecd77063882dc7e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_05632dad17f4e5d002f24d438ef5f1ab = $(`<div id="html_05632dad17f4e5d002f24d438ef5f1ab" style="width: 100.0%; height: 100.0%;">Logistique - Secteur d'activité: 9762 employés</div>`)[0];
+                popup_f929c9790aa25ab97ecd77063882dc7e.setContent(html_05632dad17f4e5d002f24d438ef5f1ab);
+            
+        
+
+        circle_marker_3ec8c8d3e4a657ea34ccb66143c9dee1.bindPopup(popup_f929c9790aa25ab97ecd77063882dc7e)
+        ;
+
+        
+    
+    
+            var circle_marker_06671be1b2713b3e1bf85507b9de2c5c = L.circleMarker(
+                [49.0693, 2.1117],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 85.317, "stroke": true, "weight": 3}
+            ).addTo(feature_group_8395fefc535550279a4a329ea40e815d);
+        
+    
+        var popup_f93464e5bc288710e424f09e66d20170 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5c33f7b07c9814c88f4c8ccdc1889664 = $(`<div id="html_5c33f7b07c9814c88f4c8ccdc1889664" style="width: 100.0%; height: 100.0%;">Industries - Secteur d'activité: 80317 employés</div>`)[0];
+                popup_f93464e5bc288710e424f09e66d20170.setContent(html_5c33f7b07c9814c88f4c8ccdc1889664);
+            
+        
+
+        circle_marker_06671be1b2713b3e1bf85507b9de2c5c.bindPopup(popup_f93464e5bc288710e424f09e66d20170)
+        ;
+
+        
+    
+    
+            feature_group_8395fefc535550279a4a329ea40e815d.addTo(map_0e0442a5dbb23a501fd56e86ae7aa604);
+        
+    
+            var layer_control_6bab4fdc63a10cb58b5dd455c43cbd3a_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_753b0cdb91e52d076b40ea2da5046ade,
+                },
+                overlays :  {
+                    "Services" : feature_group_0572e6149269e3a51b34a936a2829537,
+                    "Industrie" : feature_group_aeb061a75b92d1658a202265da045d3a,
+                    "Commerce" : feature_group_0332b448fdd05292d808f4f1c2e38579,
+                    "Secteur d\u0027activit\u00e9" : feature_group_8395fefc535550279a4a329ea40e815d,
+                },
+            };
+            let layer_control_6bab4fdc63a10cb58b5dd455c43cbd3a = L.control.layers(
+                layer_control_6bab4fdc63a10cb58b5dd455c43cbd3a_layers.base_layers,
+                layer_control_6bab4fdc63a10cb58b5dd455c43cbd3a_layers.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_0e0442a5dbb23a501fd56e86ae7aa604);
+
+        
+</script>
+</html>
