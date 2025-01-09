@@ -1,16 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/09 17:45:23 by mguillot          #+#    #+#             */
+/*   Updated: 2025/01/09 18:08:39 by mguillot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdarg.h>
 #include <stdio.h>
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	args;
-
-	va_start(args, format);
-	while (*format)
-	{
-		printf("%c\n", *(format++));
-		printf("%c\n", va_arg(args, char));
-	}
-	va_end(args);
+	if (!format)
+		return (1);
 	return (0);
 }
