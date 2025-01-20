@@ -6,35 +6,34 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 17:45:23 by mguillot          #+#    #+#             */
-/*   Updated: 2025/01/09 18:08:39 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:52:14 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
+#include "ft_printf.h"
+
+t_format_spec	extract_specifier(char *str)
+{
+	int				index;
+	t_format_spec	*specifier;
+
+	index = 0;
+	if (str[index++] != '%')
+		return (0);
+	if (str[])
+}
 
 int	ft_printf(const char *format, ...)
 {
+	va_list	args;
+
+	va_start(args, format);
 	while (*format)
 	{
-		if (*format != '%')
-			write(1, format, 1);
-		else if (*(++format) == 'c')
-			write(1, format, 1); //NON
-		else if (*format == 's')
-			write(1, format, 1); //NON
-		else if (*format == 'p')
-			write(1, format, 1); //NON
-		else if (*format == 'd' || *format == 'i')
-			write(1, format, 1); //NON
-		else if (*format == 'u')
-			write(1, format, 1); //NON
-		else if (*format == 'x')
-			write(1, format, 1); //NON
-		else if (*format == 'X')
-			write(1, format, 1); //NON
-		else if (*format == '%')
-			write(1, "%", 1);
+		if (*format == '%')
+			put_flg(*(++format), args);
+		else
+			ft_printf("%c", *format);
 		format++;
 	}
 	return (0);
