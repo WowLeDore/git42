@@ -6,33 +6,24 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:04:31 by mguillot          #+#    #+#             */
-/*   Updated: 2025/01/16 02:51:25 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:22:08 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdarg.h>
-# include <stdbool.h>
+# include "stdarg.h"
+# include "stddef.h"
+# include "unistd.h"
 
-typedef struct s_format_spec
-{
-	bool	align_left;
-	bool	force_sign;
-	bool	space_sign;
-	bool	zeros_left;
-	bool	alter_form;
-	int		width_nmbr;
-	bool	precisionb;
-	int		precisionv;
-	char	specifierf;
-}	t_format_spec;
-
-void	ft_putchar_fd(char c, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	put_flg(char flag, va_list arg);
+int	put_str(char *str);
+int	put_chr(char c);
+int	put_flg(char flag, va_list args);
+int	put_lhx(unsigned long long hex);
+int	put_nbr(int nbr);
+int	put_unb(unsigned int unbr);
+int	put_uhx(unsigned int hex);
+int	ft_printf(const char *format, ...);
 
 #endif
