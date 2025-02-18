@@ -1,1 +1,0 @@
-ocamlc Ocamf.ml tests.ml ; ./a.out ; rm -rf *.cm*
