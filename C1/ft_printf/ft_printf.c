@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 17:45:23 by mguillot          #+#    #+#             */
-/*   Updated: 2025/01/21 16:04:26 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:26:19 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	put_anb(long long snb, unsigned long long unb, char flag)
 		else
 			return (printed + put_anb((unb % 16) + '0', 0, 'c'));
 	}
-	if (flag == 'd' | flag == 'i')
+	if (flag == 'd' || flag == 'i')
 	{
 		if (snb < 0)
 			snb = -snb - ++printed + put_anb('-', 0, 'c');

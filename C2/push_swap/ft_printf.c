@@ -28,7 +28,7 @@ int	put_anb(long long snb, unsigned long long unb, char flag)
 		else
 			return (printed + put_anb((unb % 16) + '0', 0, 'c'));
 	}
-	if (flag == 'd' | flag == 'i')
+	if (flag == 'd' || flag == 'i')
 	{
 		if (snb < 0)
 			snb = -snb - ++printed + put_anb('-', 0, 'c');
