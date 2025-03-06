@@ -15,8 +15,28 @@
 
 # include <stdarg.h>
 # include <unistd.h>
+# include <stdlib.h>
+
+typedef struct s_maillon_icq
+{
+	int						num;
+	struct s_maillon_icq	*next;
+}	t_maillon;
+
+typedef struct s_int_circ_queue
+{
+	int			size;
+	t_maillon	*last;
+}	t_icq;
+
+void	init_icq(t_icq *q);
+int		icq_vide(t_icq *q);
+int		icq_enfile(t_icq *q, int valeur);
+int		icq_dequeue(t_icq *q);
+int		icq_tete(t_icq *q);
 
 int		ft_printf(const char *format, ...);
 char	*ft_strchr(const char *s, int c);
+int		ft_atoi(const char *nptr);
 
 #endif

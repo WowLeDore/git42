@@ -12,6 +12,45 @@
 
 #include "push_swap.h"
 
+int	verif(char *str)
+{
+	if (!str || !*str)
+		return (0);
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (0);
+		while (*str >= '0' && *str <= '9')
+			str++;
+		if (*str && (*(str++) != ' ' || !*str))
+			return (0);
+	}
+	return (1);
+}
+
+int	count(char *str, char c)
+{
+	int	nb;
+
+	nb = 0;
+	while (str && *str)
+		nb = nb + (*(str++) == c);
+	return (nb);
+}
+
+int	*s_to_l(char *str)
+{
+	int	nb_nb;
+	int	*l;
+
+	if (!verif(str))
+		return (NULL);
+	nb_nb = count(str, ' ');
+	while (*str)
+	{
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	int	*a;
