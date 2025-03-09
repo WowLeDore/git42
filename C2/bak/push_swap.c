@@ -6,25 +6,49 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:23:22 by mguillot          #+#    #+#             */
-/*   Updated: 2025/03/07 19:27:30 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:28:57 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	verif(char *str)
+{
+	if (!str || !*str)
+		return (0);
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (0);
+		while (*str >= '0' && *str <= '9')
+			str++;
+		if (*str && (*(str++) != ' ' || !*str))
+			return (0);
+	}
+	return (1);
+}
+
+int	count(char *str, char c)
+{
+	int	nb;
+
+	nb = 0;
+	while (str && *str)
+		nb = nb + (*(str++) == c);
+	return (nb);
+}
+
 int	*s_to_l(char *str)
 {
-	int		nb;
-	int		*l;
+	int	nb_nb;
+	int	*l;
 
-	nb = verif_format(str);
-	if (!nb || !verif_all_nbr(str))
+	if (!verif(str))
 		return (NULL);
-	while (str)
+	nb_nb = count(str, ' ');
+	while (*str)
 	{
-		printf("%d\n", ft_atoi(str));
-		str = ft_strchr(str, ' ');
-		(void) (str && str++);
+
 	}
 }
 
@@ -39,6 +63,6 @@ int	main(int argc, char **argv)
 	//else
 	//	a = sl_to_l(argc - 1, argv + 1);
 	if (!a)
-		return (1 + 0 * write(2, "Error\n", 6));
+		return (1 + 0 * ft_printf_fd(1 ,"Error\n"));
 	//sort(a);
 }
