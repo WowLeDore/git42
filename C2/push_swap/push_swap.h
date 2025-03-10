@@ -39,6 +39,8 @@ int		icq_enfile(t_icq *q, int valeur);
 int		icq_dequeue(t_icq *q);
 int		icq_tete(t_icq *q);
 
+void	icq_print(t_icq *q);
+
 char	*ft_strchr(const char *s, int c);
 int		ft_atoi(const char *nptr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -47,5 +49,7 @@ size_t	ft_strlen(const char *str);
 int		verif_nbr(char *nbr, int end);
 int		verif_all_nbr(char *str);
 int		verif_format(char *str);
+int		verif_list(int i, char **str);
+int		verif_duplicates(t_icq *q);
 
 #endif

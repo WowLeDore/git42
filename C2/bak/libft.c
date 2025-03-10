@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																		    */
-/*														:::      ::::::::   */
-/*   libft.c										    :+:      :+:    :+:   */
-/*												    +:+ +:+		 +:+     */
-/*   By: mguillot <mguillot@student.42.fr>		  +#+  +:+       +#+		*/
+/*																			*/
+/*														:::	  ::::::::   */
+/*   libft.c                                            :+:      :+:    :+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: mguillot <mguillot@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2025/03/03 17:38:49 by mguillot		  #+#    #+#		     */
-/*   Updated: 2025/03/03 17:40:13 by mguillot		 ###   ########.fr       */
-/*																		    */
+/*   Created: 2025/03/03 17:38:49 by mguillot		  #+#	#+#			 */
+/*   Updated: 2025/03/07 18:12:35 by mguillot         ###   ########.fr       */
+/*																			*/
 /* ************************************************************************** */
 
 #include "push_swap.h"
@@ -35,4 +35,23 @@ int	ft_atoi(const char *nptr)
 	while ('0' <= *nptr && *nptr <= '9')
 		res = 10 * res + (*(nptr++) - '0');
 	return (res * (1 - (sign == '-') * 2));
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	if (!n)
+		return (0);
+	while (n && *s1 != '\0' && *s1 == *s2)
+		n -= 1 + 0 * (*(s1++) * *(s2++));
+	return ((n != 0) * ((unsigned char)*s1 - (unsigned char)*s2));
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }

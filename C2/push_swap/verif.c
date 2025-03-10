@@ -15,7 +15,7 @@
 int	verif_nbr(char *nbr, int end)
 {
 	return ((*nbr == '-' && (end < 11 || ft_strncmp(MIN, nbr, end) > 0))
-			|| ((*nbr != '-' && (end < 10 || ft_strncmp(MAX, nbr, end) > 0))));
+		|| (*nbr != '-' && (end < 10 || ft_strncmp(MAX, nbr, end) > 0)));
 }
 
 int	verif_all_nbr(char *str)
@@ -26,6 +26,12 @@ int	verif_all_nbr(char *str)
 	if (nxt)
 		return (verif_nbr(str, nxt - str) && verif_all_nbr(nxt + 1));
 	return (verif_nbr(str, ft_strlen(str)));
+}
+
+int	verif_list(int i, char **str)
+{
+	return (!i || (verif_format(*str) && verif_nbr(*str, ft_strlen(*str))
+			&& verif_list(--i, ++str)));
 }
 
 int	verif_format(char *str)
@@ -48,4 +54,26 @@ int	verif_format(char *str)
 			return (0);
 	}
 	return (nb);
+}
+
+int	verif_duplicates(t_icq *q)
+{
+	t_maillon	*current;
+	t_maillon	*compare;
+
+	if (icq_vide(q))
+		return (1);
+	current = q->last->next;
+	while (current != q->last)
+	{
+		compare = current->next;
+		while (compare != q->last->next)
+		{
+			if (current->num == compare->num)
+				return (0);
+			compare = compare->next;
+		}
+		current = current->next;
+	}
+	return (1);
 }
