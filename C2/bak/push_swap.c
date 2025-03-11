@@ -20,8 +20,10 @@ t_icq	*s_to_l(char *str)
 	nb = verif_format(str);
 	if (!nb || !verif_all_nbr(str))
 		return (NULL);
-	q = malloc(nb * sizeof(t_icq));
-	init_icq(q);
+	q = malloc(sizeof(t_icq));
+	if (!q)
+		return (NULL);
+	icq_init(q);
 	while (str)
 	{
 		icq_enfile(q, ft_atoi(str));
@@ -37,8 +39,10 @@ t_icq	*sl_to_l(int count, char **nbrs)
 
 	if (!verif_list(count, nbrs))
 		return (NULL);
-	q = malloc(count * sizeof(t_icq));
-	init_icq(q);
+	q = malloc(sizeof(t_icq));
+	if (!q)
+		return (NULL);
+	icq_init(q);
 	while (count)
 	{
 		icq_enfile(q, ft_atoi(*(nbrs++)));
@@ -50,7 +54,7 @@ t_icq	*sl_to_l(int count, char **nbrs)
 int	sort(t_icq *a)
 {
 	while (!icq_vide(a))
-		icq_dequeue(a);
+		icq_defile(a);
 	free(a);
 	return (0);
 }
@@ -70,7 +74,7 @@ int	main(int argc, char **argv)
 	if (!verif_duplicates(q))
 	{
 		while (!icq_vide(q))
-			icq_dequeue(q);
+			icq_defile(q);
 		free(q);
 		return (1 + 0 * write(2, "Error\n", 6));
 	}
