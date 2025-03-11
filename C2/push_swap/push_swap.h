@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 # define MAX "2147483648"
 # define MIN "-2147483649"
@@ -35,7 +34,7 @@ typedef struct s_int_circ_queue
 
 void	icq_init(t_icq *q);
 int		icq_vide(t_icq *q);
-int		icq_enfile(t_icq *q, int valeur);
+int		icq_enfile(t_icq *q, int valeur, int reverse);
 int		icq_defile(t_icq *q);
 int		icq_tete(t_icq *q);
 
@@ -44,10 +43,23 @@ int		ft_atoi(const char *nptr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *str);
 
-int		verif_nbr(char *nbr, int end);
 int		verif_all_nbr(char *str);
 int		verif_format(char *str);
 int		verif_list(int i, char **str);
 int		verif_duplicates(t_icq *q);
+
+void	sa(t_icq *a, t_icq *b, int output);
+void	sb(t_icq *a, t_icq *b, int output);
+void	ss(t_icq *a, t_icq *b, int output);
+void	pa(t_icq *a, t_icq *b, int output);
+void	pb(t_icq *a, t_icq *b, int output);
+void	ra(t_icq *a, t_icq *b, int output);
+void	rb(t_icq *a, t_icq *b, int output);
+void	rr(t_icq *a, t_icq *b, int output);
+void	rra(t_icq *a, t_icq *b, int output);
+void	rrb(t_icq *a, t_icq *b, int output);
+void	rrr(t_icq *a, t_icq *b, int output);
+
+void	sort(t_icq *q);
 
 #endif

@@ -12,30 +12,36 @@
 
 #include "push_swap.h"
 
-void	rra(t_icq *a, t_icq *b)
+void	rra(t_icq *a, t_icq *b, int output)
 {
 	t_maillon	*tmp;
 
-	(void) b;
 	tmp = a->last;
 	while (tmp && tmp->next != a->last)
 		tmp = tmp->next;
 	a->last = tmp;
+	if (output)
+		write(1, "rra\n", 4);
+	(void) b;
 }
 
-void	rrb(t_icq *a, t_icq *b)
+void	rrb(t_icq *a, t_icq *b, int output)
 {
 	t_maillon	*tmp;
 
-	(void) a;
 	tmp = b->last;
 	while (tmp && tmp->next != b->last)
 		tmp = tmp->next;
 	b->last = tmp;
+	if (output)
+		write(1, "rrb\n", 4);
+	(void) a;
 }
 
-void	rrr(t_icq *a, t_icq *b)
+void	rrr(t_icq *a, t_icq *b, int output)
 {
-	rra(a, b);
-	rrb(a, b);
+	rra(a, b, 0);
+	rrb(a, b, 0);
+	if (output)
+		write(1, "rrr\n", 4);
 }

@@ -23,7 +23,7 @@ int	icq_vide(t_icq *q)
 	return (q->size == 0);
 }
 
-int	icq_enfile(t_icq *q, int valeur)
+int	icq_enfile(t_icq *q, int valeur, int reverse)
 {
 	t_maillon	*new;
 
@@ -40,7 +40,8 @@ int	icq_enfile(t_icq *q, int valeur)
 	{
 		new->next = q->last->next;
 		q->last->next = new;
-		q->last = new;
+		if (reverse)
+			q->last = new;
 	}
 	return (q->size++);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 17:23:22 by mguillot          #+#    #+#             */
-/*   Updated: 2025/03/10 17:53:22 by mguillot         ###   ########.fr       */
+/*   Created: 2025/03/11 11:05:34 by mguillot          #+#    #+#             */
+/*   Updated: 2025/03/11 11:05:36 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_icq	*s_to_l(char *str)
 	icq_init(q);
 	while (str)
 	{
-		icq_enfile(q, ft_atoi(str));
+		icq_enfile(q, ft_atoi(str), 1);
 		str = ft_strchr(str, ' ');
 		(void) (str && str++);
 	}
@@ -45,18 +45,10 @@ t_icq	*sl_to_l(int count, char **nbrs)
 	icq_init(q);
 	while (count)
 	{
-		icq_enfile(q, ft_atoi(*(nbrs++)));
+		icq_enfile(q, ft_atoi(*(nbrs++)), 1);
 		count--;
 	}
 	return (q);
-}
-
-int	sort(t_icq *a)
-{
-	while (!icq_vide(a))
-		icq_defile(a);
-	free(a);
-	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -78,5 +70,9 @@ int	main(int argc, char **argv)
 		free(q);
 		return (1 + 0 * write(2, "Error\n", 6));
 	}
-	return (sort(q));
+	sort(q);
+	while (!icq_vide(q))
+		icq_defile(q);
+	free(q);
+	return (0);
 }
