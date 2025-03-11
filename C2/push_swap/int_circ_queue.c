@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	init_icq(t_icq *q)
+void	icq_init(t_icq *q)
 {
 	q->size = 0;
 	q->last = NULL;
@@ -45,7 +45,7 @@ int	icq_enfile(t_icq *q, int valeur)
 	return (q->size++);
 }
 
-int	icq_dequeue(t_icq *q)
+int	icq_defile(t_icq *q)
 {
 	int			value;
 	t_maillon	*temp;

@@ -33,13 +33,11 @@ typedef struct s_int_circ_queue
 	t_maillon	*last;
 }	t_icq;
 
-void	init_icq(t_icq *q);
+void	icq_init(t_icq *q);
 int		icq_vide(t_icq *q);
 int		icq_enfile(t_icq *q, int valeur);
-int		icq_dequeue(t_icq *q);
+int		icq_defile(t_icq *q);
 int		icq_tete(t_icq *q);
-
-void	icq_print(t_icq *q);
 
 char	*ft_strchr(const char *s, int c);
 int		ft_atoi(const char *nptr);
