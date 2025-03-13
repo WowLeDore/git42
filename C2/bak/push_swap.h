@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:22:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/03/07 19:18:38 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:44:47 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	rra(t_icq *a, t_icq *b, int output);
 void	rrb(t_icq *a, t_icq *b, int output);
 void	rrr(t_icq *a, t_icq *b, int output);
 
+void	selection(t_icq *a, t_icq *b);
 void	sort(t_icq *q);
 
 #endif
