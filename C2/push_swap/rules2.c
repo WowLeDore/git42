@@ -12,28 +12,28 @@
 
 #include "push_swap.h"
 
-void	ra(t_icq *a, t_icq *b, int output)
+void	ra(t_icq *a, t_icq *b, t_icq *ope)
 {
 	if (!icq_vide(a))
 		a->last = a->last->next;
-	if (output)
-		write(1, "ra\n", 3);
+	if (ope)
+		icq_enfile(ope, 5, 0);
 	(void) b;
 }
 
-void	rb(t_icq *a, t_icq *b, int output)
+void	rb(t_icq *a, t_icq *b, t_icq *ope)
 {
 	if (!icq_vide(b))
 		b->last = b->last->next;
-	if (output)
-		write(1, "rb\n", 3);
+	if (ope)
+		icq_enfile(ope, 6, 0);
 	(void) a;
 }
 
-void	rr(t_icq *a, t_icq *b, int output)
+void	rr(t_icq *a, t_icq *b, t_icq *ope)
 {
 	ra(a, b, 0);
 	rb(a, b, 0);
-	if (output)
-		write(1, "rr\n", 3);
+	if (ope)
+		icq_enfile(ope, 7, 0);
 }

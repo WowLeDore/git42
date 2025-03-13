@@ -60,7 +60,7 @@ void	rra(t_icq *a, t_icq *b, int output);
 void	rrb(t_icq *a, t_icq *b, int output);
 void	rrr(t_icq *a, t_icq *b, int output);
 
-void	selection(t_icq *a, t_icq *b);
+void	bubble(t_icq *a, t_icq *b, t_icq *ope);
 void	sort(t_icq *q);
 
 #endif

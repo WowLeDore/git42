@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	rra(t_icq *a, t_icq *b, int output)
+void	rra(t_icq *a, t_icq *b, t_icq *ope)
 {
 	t_maillon	*tmp;
 
@@ -20,12 +20,12 @@ void	rra(t_icq *a, t_icq *b, int output)
 	while (tmp && tmp->next != a->last)
 		tmp = tmp->next;
 	a->last = tmp;
-	if (output)
-		write(1, "rra\n", 4);
+	if (ope)
+		icq_enfile(ope, 8, 0);
 	(void) b;
 }
 
-void	rrb(t_icq *a, t_icq *b, int output)
+void	rrb(t_icq *a, t_icq *b, t_icq *ope)
 {
 	t_maillon	*tmp;
 
@@ -33,15 +33,15 @@ void	rrb(t_icq *a, t_icq *b, int output)
 	while (tmp && tmp->next != b->last)
 		tmp = tmp->next;
 	b->last = tmp;
-	if (output)
-		write(1, "rrb\n", 4);
+	if (ope)
+		icq_enfile(ope, 9, 0);
 	(void) a;
 }
 
-void	rrr(t_icq *a, t_icq *b, int output)
+void	rrr(t_icq *a, t_icq *b, t_icq *ope)
 {
 	rra(a, b, 0);
 	rrb(a, b, 0);
-	if (output)
-		write(1, "rrr\n", 4);
+	if (ope)
+		icq_enfile(ope, 10, 0);
 }
