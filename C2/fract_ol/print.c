@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 17:45:23 by mguillot          #+#    #+#             */
-/*   Updated: 2025/03/24 17:21:19 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:29:59 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	ft_printfd(int fd, const char *format, ...)
 	int		printed;
 	va_list	args;
 
+	if (!format)
+		return (-1);
 	printed = 0;
 	va_start(args, format);
 	while (*format)
