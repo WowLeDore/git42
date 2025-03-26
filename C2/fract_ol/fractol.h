@@ -15,10 +15,10 @@
 
 # define WIDTH 900
 # define HEIGHT 900
-# define ZOOM 300.0
-# define DX -0.75
+# define ZOOM 200.0
+# define DX -0.0
 # define DY 0.0
-# define MAX_ITER 100
+# define MAX_ITER 50
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -33,11 +33,19 @@ typedef struct s_img
 	int		endi;
 }	t_img;
 
+typedef struct s_fract
+{
+	double	zoom;
+	double  dx;
+	double  dy;
+}	t_fract;
+
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
+	t_fract	*frct;
 }	t_mlx;
 
 int	ft_printfd(int fd, const char *format, ...);

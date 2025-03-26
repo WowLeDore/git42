@@ -32,8 +32,12 @@ int	comp(double x, double y)
 	i = -1;
 	while (++i < MAX_ITER)
 	{
-		if (re * re + im * im > 40.0)
+		if (re * re + im * im > 4)
 			return (i);
+		if (re < 0)
+			re *= -1;
+		if (im < 0)
+			im *= -1;
 		tmp = re;
 		re = re * re - im * im + x;
 		im = 2.0 * tmp * im + y;
@@ -58,7 +62,7 @@ void	mandelbrot(t_mlx *mlx)
 					(1 / ZOOM) * (y - HEIGHT / 2) - DY);
 			color = 0x000000FF;
 			if (iter < MAX_ITER)
-				color = 0x7000 * iter / MAX_ITER;
+				color = 0xFF * (iter / MAX_ITER);
 			put_pixel(mlx->img, x, y, color);
 		}
 	}
