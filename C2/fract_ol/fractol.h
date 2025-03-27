@@ -21,19 +21,19 @@
 
 typedef struct s_fract
 {
-	int		width;
-	int		height;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	char	*img_adr;
-	int		bpp;
-	int		llen;
-	int		end;
-	double	dx;
-	double	dy;
-	double	zoom;
-	int		iter;
+	int			width;
+	int			height;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	char		*img_adr;
+	int			bpp;
+	int			llen;
+	int			end;
+	long double	dx;
+	long double	dy;
+	long double	zoom;
+	int			ite;
 }	t_fract;
 
 int		ft_printfd(int fd, const char *format, ...);

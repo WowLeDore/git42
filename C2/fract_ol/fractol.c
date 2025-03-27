@@ -12,12 +12,12 @@
 
 #include "fractol.h"
 
-int	comp(double x, double y, int max_iter)
+int	comp(long double x, long double y, int max_iter)
 {
-	int		i;
-	double	re;
-	double	im;
-	double	tmp;
+	int			i;
+	long double	re;
+	long double	im;
+	long double	tmp;
 
 	re = 0.0;
 	im = 0.0;
@@ -33,13 +33,13 @@ int	comp(double x, double y, int max_iter)
 	return (max_iter);
 }
 
-int	hsv_rgb(double h, double s, double v)
+int	hsv_rgb(long double h, long double s, long double v)
 {
-	double	p;
-	double	q;
-	double	t;
-	double	f;
-	int		i;
+	long double	p;
+	long double	q;
+	long double	t;
+	long double	f;
+	int			i;
 
 	if (s == 0)
 		return ((int)(v * 255) << 16 | (int)(v * 255) << 8 | (int)(v * 255));
@@ -59,17 +59,16 @@ int	hsv_rgb(double h, double s, double v)
 		return ((int)(p * 255) << 16 | (int)(q * 255) << 8 | (int)(v * 255));
 	else if (i == 4)
 		return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(t * 255));
-	else
-		return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(q * 255));
+	return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(q * 255));
 }
 
 
 void	mandelbrot(t_fract *fo)
 {
-	double	x;
-	double	y;
-	int		iter;
-	int		color;
+	long double	x;
+	long double	y;
+	int			iter;
+	int			color;
 
 	x = -1;
 	while (++x < fo->width)
@@ -78,10 +77,10 @@ void	mandelbrot(t_fract *fo)
 		while (++y < fo->height)
 		{
 			iter = comp((1 / fo->zoom) * (x - fo->width / 2) + fo->dx,
-					(1 / fo->zoom) * (y - fo->height / 2) - fo->dy, fo->iter);
-			color = hsv_rgb(1.0, 1.0, 1.0);
-			if (iter < fo->iter)
-				color = hsv_rgb(iter / 50.0, 1.0, 1.0);
+					(1 / fo->zoom) * (y - fo->height / 2) - fo->dy, fo->ite);
+			color = hsv_rgb(0, 0, 0);
+			if (iter < fo->ite)
+				color = hsv_rgb(iter / (long double)(fo->ite), 1.0, 1.0);
 			put_pixel(fo, x, y, color);
 		}
 	}
