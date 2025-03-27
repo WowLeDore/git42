@@ -12,11 +12,11 @@
 
 #include "fractol.h"
 
-void	put_pixel(t_img *img, int x, int y, int color)
+void	put_pixel(t_fract *fo, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = img->img_adr + (y * img->llen + x * (img->bpp / 8));
+	dst = fo->img_adr + (y * fo->llen + x * (fo->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -34,10 +34,6 @@ int	comp(double x, double y)
 	{
 		if (re * re + im * im > 4)
 			return (i);
-		if (re < 0)
-			re *= -1;
-		if (im < 0)
-			im *= -1;
 		tmp = re;
 		re = re * re - im * im + x;
 		im = 2.0 * tmp * im + y;
@@ -45,7 +41,7 @@ int	comp(double x, double y)
 	return (MAX_ITER);
 }
 
-void	mandelbrot(t_mlx *mlx)
+void	mandelbrot(t_fract *fo)
 {
 	double	x;
 	double	y;
@@ -53,40 +49,95 @@ void	mandelbrot(t_mlx *mlx)
 	int		color;
 
 	x = -1;
-	while (++x < WIDTH)
+	while (++x < fo->width)
 	{
 		y = -1;
-		while (++y < HEIGHT)
+		while (++y < fo->height)
 		{
-			iter = comp((1 / ZOOM) * (x - WIDTH / 2) + DX,
-					(1 / ZOOM) * (y - HEIGHT / 2) - DY);
+			iter = comp((1 / fo->zoom) * (x - fo->width / 2) + fo->dx,
+					(1 / fo->zoom) * (y - fo->height / 2) - fo->dy);
 			color = 0x000000FF;
 			if (iter < MAX_ITER)
 				color = 0xFF * (iter / MAX_ITER);
-			put_pixel(mlx->img, x, y, color);
+			put_pixel(fo, x, y, color);
 		}
 	}
-	put_pixel(mlx->img, WIDTH / 2, HEIGHT / 2, 0x00FFFFFF);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
-		mlx->img->img_ptr, 0, 0);
+	put_pixel(fo, fo->width / 2, fo->height / 2, 0x00FFFFFF);
+	mlx_put_image_to_window(fo->mlx_ptr, fo->win_ptr, fo->img_ptr, 0, 0);
+}
+
+void	init(t_fract *fo)
+{
+	fo->width = 900;
+	fo->height = 900;
+	fo->mlx_ptr = mlx_init();
+	fo->win_ptr = mlx_new_window(fo->mlx_ptr, fo->width, fo->height, "fo'ol");
+	fo->img_ptr = mlx_new_image(fo->mlx_ptr, fo->width, fo->height);
+	fo->img_adr = mlx_get_data_addr(fo->img_ptr, &fo->bpp, &fo->llen, &fo->end);
+	fo->dx = 0.0;
+	fo->dy = 0.0;
+	fo->zoom = 200.0;
+}
+
+int	mousepress(int button, int x, int y, t_fract *fo)
+{
+	(void) x;
+	(void) y;
+	if (button == SCROLL_UP)
+		fo->zoom *= 1.2;
+	else if (button == SCROLL_DOWN)
+		fo->zoom /= 1.2;
+	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
+	mandelbrot(fo);
+	return (0);
+}
+
+int	keypress(int button, t_fract *fo)
+{
+	if (button == UP_ARROW)
+		fo->dy += 10 / fo->zoom;
+	else if (button == DOWN_ARROW)
+		fo->dy -= 10 / fo->zoom;
+	else if (button == LEFT_ARROW)
+		fo->dx -= 10 / fo->zoom;
+	else if (button == RIGHT_ARROW)
+		fo->dx += 10 / fo->zoom;
+	else if (button == ESC)
+	{
+		mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
+		exit(0);
+	}
+	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
+	mandelbrot(fo);
+	return (0);
+}
+
+int	close_win(t_fract *fo)
+{
+	mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
+	exit(0);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_mlx	mlx;
+	t_fract	fo;
 
-	if (argc != 2 || !argv)
-		return (1 + 0 * ft_printfd(2, "Error. Usage : ./fractol <fractal>\n"
-				"Fractals : mandelbrot (m), julia (j)\n"));
-	if (argv[1][0] == 'm')
+	if (argc != 2)
 	{
-		mlx.mlx_ptr = mlx_init();
-		mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
-		mlx.img->img_ptr = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
-		mlx.img->img_adr = mlx_get_data_addr(mlx.img->img_ptr, &mlx.img->bpp,
-				&mlx.img->llen, &mlx.img->endi);
-		mandelbrot(&mlx);
-		mlx_loop(mlx.mlx_ptr);
+		return (1 + 0 * ft_printfd(2, "Error. Usage : ./fool <foal>\n"
+				"foals : mandelbrot (m), julia (j)\n"));
+		exit(1);
 	}
+	init(&fo);
+	if (argv[1][0] == 'm')
+		mandelbrot(&fo);
+	else
+		ft_printfd(2, "Error. Usage : ./fractol <fractal>\n"
+			"fractals : mandelbrot (m), julia (j)\n");
+	mlx_mouse_hook(fo.win_ptr, mousepress, &fo);
+	mlx_key_hook(fo.win_ptr, keypress, &fo);
+	mlx_hook(fo.win_ptr, 17, 0, close_win, &fo);
+	mlx_loop(fo.mlx_ptr);
 	return (0);
 }

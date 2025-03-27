@@ -13,40 +13,29 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIDTH 900
-# define HEIGHT 900
-# define ZOOM 200.0
-# define DX -0.0
-# define DY 0.0
 # define MAX_ITER 50
 
 # include <stdarg.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include "keys.h"
 # include "minilibx-linux/mlx.h"
 
-typedef struct s_img
+typedef struct s_fract
 {
+	int		width;
+	int		height;
+	void	*mlx_ptr;
+	void	*win_ptr;
 	void	*img_ptr;
 	char	*img_adr;
 	int		bpp;
 	int		llen;
-	int		endi;
-}	t_img;
-
-typedef struct s_fract
-{
+	int		end;
+	double	dx;
+	double	dy;
 	double	zoom;
-	double  dx;
-	double  dy;
 }	t_fract;
-
-typedef struct s_mlx
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	*img;
-	t_fract	*frct;
-}	t_mlx;
 
 int	ft_printfd(int fd, const char *format, ...);
 
