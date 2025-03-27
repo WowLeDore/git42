@@ -13,8 +13,6 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define MAX_ITER 50
-
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -35,8 +33,15 @@ typedef struct s_fract
 	double	dx;
 	double	dy;
 	double	zoom;
+	int		iter;
 }	t_fract;
 
-int	ft_printfd(int fd, const char *format, ...);
+int		ft_printfd(int fd, const char *format, ...);
+void	init(t_fract *fo);
+int		mousepress(int button, int x, int y, t_fract *fo);
+int		keypress(int button, t_fract *fo);
+int		close_win(t_fract *fo);
+void	mandelbrot(t_fract *fo);
+void	put_pixel(t_fract *fo, int x, int y, int color);
 
 #endif

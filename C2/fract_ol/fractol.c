@@ -12,15 +12,7 @@
 
 #include "fractol.h"
 
-void	put_pixel(t_fract *fo, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = fo->img_adr + (y * fo->llen + x * (fo->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-int	comp(double x, double y)
+int	comp(double x, double y, int max_iter)
 {
 	int		i;
 	double	re;
@@ -30,7 +22,7 @@ int	comp(double x, double y)
 	re = 0.0;
 	im = 0.0;
 	i = -1;
-	while (++i < MAX_ITER)
+	while (++i < max_iter)
 	{
 		if (re * re + im * im > 4)
 			return (i);
@@ -38,8 +30,39 @@ int	comp(double x, double y)
 		re = re * re - im * im + x;
 		im = 2.0 * tmp * im + y;
 	}
-	return (MAX_ITER);
+	return (max_iter);
 }
+
+int	hsv_rgb(double h, double s, double v)
+{
+	double	p;
+	double	q;
+	double	t;
+	double	f;
+	int		i;
+
+	if (s == 0)
+		return ((int)(v * 255) << 16 | (int)(v * 255) << 8 | (int)(v * 255));
+	h *= 6.0;
+	i = (int)h;
+	f = h - i;
+	p = v * (1.0 - s);
+	q = v * (1.0 - s * f);
+	t = v * (1.0 - s * (1.0 - f));
+	if (i == 0)
+		return ((int)(v * 255) << 16 | (int)(t * 255) << 8 | (int)(p * 255));
+	else if (i == 1)
+		return ((int)(q * 255) << 16 | (int)(v * 255) << 8 | (int)(p * 255));
+	else if (i == 2)
+		return ((int)(p * 255) << 16 | (int)(v * 255) << 8 | (int)(t * 255));
+	else if (i == 3)
+		return ((int)(p * 255) << 16 | (int)(q * 255) << 8 | (int)(v * 255));
+	else if (i == 4)
+		return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(t * 255));
+	else
+		return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(q * 255));
+}
+
 
 void	mandelbrot(t_fract *fo)
 {
@@ -55,68 +78,15 @@ void	mandelbrot(t_fract *fo)
 		while (++y < fo->height)
 		{
 			iter = comp((1 / fo->zoom) * (x - fo->width / 2) + fo->dx,
-					(1 / fo->zoom) * (y - fo->height / 2) - fo->dy);
-			color = 0x000000FF;
-			if (iter < MAX_ITER)
-				color = 0xFF * (iter / MAX_ITER);
+					(1 / fo->zoom) * (y - fo->height / 2) - fo->dy, fo->iter);
+			color = hsv_rgb(1.0, 1.0, 1.0);
+			if (iter < fo->iter)
+				color = hsv_rgb(iter / 50.0, 1.0, 1.0);
 			put_pixel(fo, x, y, color);
 		}
 	}
 	put_pixel(fo, fo->width / 2, fo->height / 2, 0x00FFFFFF);
 	mlx_put_image_to_window(fo->mlx_ptr, fo->win_ptr, fo->img_ptr, 0, 0);
-}
-
-void	init(t_fract *fo)
-{
-	fo->width = 900;
-	fo->height = 900;
-	fo->mlx_ptr = mlx_init();
-	fo->win_ptr = mlx_new_window(fo->mlx_ptr, fo->width, fo->height, "fo'ol");
-	fo->img_ptr = mlx_new_image(fo->mlx_ptr, fo->width, fo->height);
-	fo->img_adr = mlx_get_data_addr(fo->img_ptr, &fo->bpp, &fo->llen, &fo->end);
-	fo->dx = 0.0;
-	fo->dy = 0.0;
-	fo->zoom = 200.0;
-}
-
-int	mousepress(int button, int x, int y, t_fract *fo)
-{
-	(void) x;
-	(void) y;
-	if (button == SCROLL_UP)
-		fo->zoom *= 1.2;
-	else if (button == SCROLL_DOWN)
-		fo->zoom /= 1.2;
-	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
-	mandelbrot(fo);
-	return (0);
-}
-
-int	keypress(int button, t_fract *fo)
-{
-	if (button == UP_ARROW)
-		fo->dy += 10 / fo->zoom;
-	else if (button == DOWN_ARROW)
-		fo->dy -= 10 / fo->zoom;
-	else if (button == LEFT_ARROW)
-		fo->dx -= 10 / fo->zoom;
-	else if (button == RIGHT_ARROW)
-		fo->dx += 10 / fo->zoom;
-	else if (button == ESC)
-	{
-		mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
-		exit(0);
-	}
-	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
-	mandelbrot(fo);
-	return (0);
-}
-
-int	close_win(t_fract *fo)
-{
-	mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
-	exit(0);
-	return (0);
 }
 
 int	main(int argc, char **argv)
