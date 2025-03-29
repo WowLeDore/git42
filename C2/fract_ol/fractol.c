@@ -83,7 +83,7 @@ void	plot(t_fract *fo)
 			ite = comp(fo);
 			color = 0x631416;
 			if (ite < fo->ite)
-				color = hsv_rgb(ite / (long double)(fo->ite), 1.0, 1.0);
+				color *= ite;
 			put_pixel(fo, x, fo->height - y, color);
 		}
 	}
