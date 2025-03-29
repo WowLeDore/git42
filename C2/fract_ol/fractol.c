@@ -38,7 +38,7 @@ int	comp(t_fract *fo)
 	j = -1;
 	while (++j < fo->ite)
 	{
-		if (re * re + im * im > 4)
+		if (re * re + im * im > __DBL_MAX__)
 			return (j);
 		tmp = re;
 		re = re * re - im * im + fo->cz_re;
@@ -80,7 +80,8 @@ void	plot(t_fract *fo)
 			ite = comp(fo);
 			color = hsv_rgb(0, 0, 0);
 			if (ite < fo->ite)
-				color = hsv_rgb(ite / (long double)(fo->ite), 1.0, 1.0);
+				color = 0x112233 * ite;
+				//color = hsv_rgb(ite / (long double)(fo->ite), 1.0, 1.0);
 			put_pixel(fo, x, y, color);
 		}
 	}
@@ -93,10 +94,10 @@ int	main(int argc, char **argv)
 	t_fract	fo;
 
 	init(&fo);
-	if (!verif_args(argv + 1, argc - 1))
+	if (!verif_args(argc - 1, argv + 1))
 		exit(1);
 	else
-		args(argv + 1, argc - 1, &fo);
+		args(argc - 1, argv + 1, &fo);
 	plot(&fo);
 	mlx_mouse_hook(fo.win_ptr, mousepress, &fo);
 	mlx_key_hook(fo.win_ptr, keypress, &fo);

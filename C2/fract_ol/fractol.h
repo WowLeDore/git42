@@ -48,5 +48,7 @@ int		close_win(t_fract *fo);
 void	plot(t_fract *fo);
 void	put_pixel(t_fract *fo, int x, int y, int color);
 int		hsv_rgb(long double h, long double s, long double v);
+int		verif_args(int argc, char **argv);
+int		args(int argc, char **argv, t_fract *fo);
 
 #endif
