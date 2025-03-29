@@ -12,18 +12,33 @@
 
 #include "fractol.h"
 
-void	init(t_fract *fo)
+int	hsv_rgb(long double h, long double s, long double v)
 {
-	fo->width = 900;
-	fo->height = 900;
-	fo->mlx_ptr = mlx_init();
-	fo->win_ptr = mlx_new_window(fo->mlx_ptr, fo->width, fo->height, "fo'ol");
-	fo->img_ptr = mlx_new_image(fo->mlx_ptr, fo->width, fo->height);
-	fo->img_adr = mlx_get_data_addr(fo->img_ptr, &fo->bpp, &fo->llen, &fo->end);
-	fo->dx = 0.0;
-	fo->dy = 0.0;
-	fo->zoom = 200.0;
-	fo->ite = 50;
+	long double	p;
+	long double	q;
+	long double	t;
+	long double	f;
+	int			i;
+
+	if (s == 0)
+		return ((int)(v * 255) << 16 | (int)(v * 255) << 8 | (int)(v * 255));
+	h *= 6.0;
+	i = (int)h;
+	f = h - i;
+	p = v * (1.0 - s);
+	q = v * (1.0 - s * f);
+	t = v * (1.0 - s * (1.0 - f));
+	if (i == 0)
+		return ((int)(v * 255) << 16 | (int)(t * 255) << 8 | (int)(p * 255));
+	else if (i == 1)
+		return ((int)(q * 255) << 16 | (int)(v * 255) << 8 | (int)(p * 255));
+	else if (i == 2)
+		return ((int)(p * 255) << 16 | (int)(v * 255) << 8 | (int)(t * 255));
+	else if (i == 3)
+		return ((int)(p * 255) << 16 | (int)(q * 255) << 8 | (int)(v * 255));
+	else if (i == 4)
+		return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(t * 255));
+	return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(q * 255));
 }
 
 int	mousepress(int button, int x, int y, t_fract *fo)
@@ -34,10 +49,8 @@ int	mousepress(int button, int x, int y, t_fract *fo)
 		fo->zoom *= 1.4;
 	if (button == SCROLL_DOWN)
 		fo->zoom /= 1.4;
-	if (button == SCROLL_UP || button == SCROLL_DOWN)
-		ft_printfd(1, "Zoom is now at %d\n", (int) fo->zoom);
 	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
-	mandelbrot(fo);
+	plot(fo);
 	return (0);
 }
 
@@ -60,14 +73,8 @@ int	keypress(int button, t_fract *fo)
 		mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
 		exit(0);
 	}
-	if (button == UP_ARROW || button == DOWN_ARROW || button == LEFT_ARROW
-		|| button == RIGHT_ARROW)
-		ft_printfd(1, "Center is at coordinates X%d Y%d\n",
-			(int) fo->dx, (int) fo->dy);
-	if (button == PLUS || button == MINUS)
-		ft_printfd(1, "Iterations are at %d\n", fo->ite);
 	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
-	mandelbrot(fo);
+	plot(fo);
 	return (0);
 }
 

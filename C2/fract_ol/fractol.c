@@ -12,62 +12,62 @@
 
 #include "fractol.h"
 
-int	comp(long double x, long double y, int max_iter)
+void	init(t_fract *fo)
 {
-	int			i;
+	fo->width = 500;
+	fo->height = 400;
+	fo->mlx_ptr = mlx_init();
+	fo->win_ptr = mlx_new_window(fo->mlx_ptr, fo->width, fo->height, "fractol");
+	fo->img_ptr = mlx_new_image(fo->mlx_ptr, fo->width, fo->height);
+	fo->img_adr = mlx_get_data_addr(fo->img_ptr, &fo->bpp, &fo->llen, &fo->end);
+	fo->dx = 0.0;
+	fo->dy = 0.0;
+	fo->zoom = 200.0;
+	fo->ite = 50;
+}
+
+int	comp(t_fract *fo)
+{
+	int			j;
+	long double	tmp;
 	long double	re;
 	long double	im;
-	long double	tmp;
 
-	re = 0.0;
-	im = 0.0;
-	i = -1;
-	while (++i < max_iter)
+	re = fo->z0_re;
+	im = fo->z0_im;
+	j = -1;
+	while (++j < fo->ite)
 	{
 		if (re * re + im * im > 4)
-			return (i);
+			return (j);
 		tmp = re;
-		re = re * re - im * im + x;
-		im = 2.0 * tmp * im + y;
+		re = re * re - im * im + fo->cz_re;
+		im = 2.0 * tmp * im + fo->cz_im;
 	}
-	return (max_iter);
+	return (fo->ite);
 }
 
-int	hsv_rgb(long double h, long double s, long double v)
+void	var(t_fract *fo, long double x, long double y)
 {
-	long double	p;
-	long double	q;
-	long double	t;
-	long double	f;
-	int			i;
-
-	if (s == 0)
-		return ((int)(v * 255) << 16 | (int)(v * 255) << 8 | (int)(v * 255));
-	h *= 6.0;
-	i = (int)h;
-	f = h - i;
-	p = v * (1.0 - s);
-	q = v * (1.0 - s * f);
-	t = v * (1.0 - s * (1.0 - f));
-	if (i == 0)
-		return ((int)(v * 255) << 16 | (int)(t * 255) << 8 | (int)(p * 255));
-	else if (i == 1)
-		return ((int)(q * 255) << 16 | (int)(v * 255) << 8 | (int)(p * 255));
-	else if (i == 2)
-		return ((int)(p * 255) << 16 | (int)(v * 255) << 8 | (int)(t * 255));
-	else if (i == 3)
-		return ((int)(p * 255) << 16 | (int)(q * 255) << 8 | (int)(v * 255));
-	else if (i == 4)
-		return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(t * 255));
-	return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(q * 255));
+	if (fo->type == 0)
+	{
+		fo->z0_re = 0;
+		fo->z0_im = 0;
+		fo->cz_re = (1 / fo->zoom) * (x - fo->width / 2) + fo->dx;
+		fo->cz_im = (1 / fo->zoom) * (y - fo->height / 2) - fo->dy;
+	}
+	else if (fo->type == 1)
+	{
+		fo->z0_re = (1 / fo->zoom) * (x - fo->width / 2) + fo->dx;
+		fo->z0_im = (1 / fo->zoom) * (y - fo->height / 2) - fo->dy;
+	}
 }
 
-
-void	mandelbrot(t_fract *fo)
+void	plot(t_fract *fo)
 {
 	long double	x;
 	long double	y;
-	int			iter;
+	int			ite;
 	int			color;
 
 	x = -1;
@@ -76,11 +76,11 @@ void	mandelbrot(t_fract *fo)
 		y = -1;
 		while (++y < fo->height)
 		{
-			iter = comp((1 / fo->zoom) * (x - fo->width / 2) + fo->dx,
-					(1 / fo->zoom) * (y - fo->height / 2) - fo->dy, fo->ite);
+			var(fo, x, y);
+			ite = comp(fo);
 			color = hsv_rgb(0, 0, 0);
-			if (iter < fo->ite)
-				color = hsv_rgb(iter / (long double)(fo->ite), 1.0, 1.0);
+			if (ite < fo->ite)
+				color = hsv_rgb(ite / (long double)(fo->ite), 1.0, 1.0);
 			put_pixel(fo, x, y, color);
 		}
 	}
@@ -92,18 +92,12 @@ int	main(int argc, char **argv)
 {
 	t_fract	fo;
 
-	if (argc != 2)
-	{
-		return (1 + 0 * ft_printfd(2, "Error. Usage : ./fool <foal>\n"
-				"foals : mandelbrot (m), julia (j)\n"));
-		exit(1);
-	}
 	init(&fo);
-	if (argv[1][0] == 'm')
-		mandelbrot(&fo);
+	if (!verif_args(argv + 1, argc - 1))
+		exit(1);
 	else
-		ft_printfd(2, "Error. Usage : ./fractol <fractal>\n"
-			"fractals : mandelbrot (m), julia (j)\n");
+		args(argv + 1, argc - 1, &fo);
+	plot(&fo);
 	mlx_mouse_hook(fo.win_ptr, mousepress, &fo);
 	mlx_key_hook(fo.win_ptr, keypress, &fo);
 	mlx_hook(fo.win_ptr, 17, 0, close_win, &fo);
