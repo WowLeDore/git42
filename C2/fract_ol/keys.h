@@ -13,14 +13,17 @@
 #ifndef KEYS_H
 # define KEYS_H
 
+# define LEFT_CLICK 1
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
-# define UP_ARROW 65362
-# define DOWN_ARROW 65364
-# define LEFT_ARROW 65361
-# define RIGHT_ARROW 65363
-# define ESC 65307
-# define PLUS 61
+# define SPACE 32
 # define MINUS 45
+# define PLUS 61
+# define ESC 65307
+# define LEFT_ARROW 65361
+# define UP_ARROW 65362
+# define RIGHT_ARROW 65363
+# define DOWN_ARROW 65364
+# define LEFT_SHIFT 65505
 
 #endif

@@ -37,18 +37,33 @@ int	hsv_rgb(long double h, long double s, long double v)
 	else if (i == 3)
 		return ((int)(p * 255) << 16 | (int)(q * 255) << 8 | (int)(v * 255));
 	else if (i == 4)
-		return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(t * 255));
+		return ((int)(t * 255) << 16 | (int)(p * 255) << 8 | (int)(v * 255));
 	return ((int)(v * 255) << 16 | (int)(p * 255) << 8 | (int)(q * 255));
 }
 
 int	mousepress(int button, int x, int y, t_fract *fo)
 {
-	(void) x;
-	(void) y;
+	if (button == LEFT_CLICK)
+	{
+		fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2);
+		fo->dy += (1.0 / fo->zoom) * (y - fo->height / 2);
+	}
 	if (button == SCROLL_UP)
-		fo->zoom *= 1.4;
+	{
+		if (fo->shift == 1)
+			fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2) / 1.5;
+		if (fo->shift == 1)
+			fo->dy += (1.0 / fo->zoom) * (y - fo->height / 2) / 1.5;
+		fo->zoom *= 1.5;
+	}
 	if (button == SCROLL_DOWN)
-		fo->zoom /= 1.4;
+	{
+		if (fo->shift == 1)
+			fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2) / 1.5;
+		if (fo->shift == 1)
+			fo->dy += (1.0 / fo->zoom) * (x - fo->height / 2) / 1.5;
+		fo->zoom /= 1.5;
+	}
 	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
 	plot(fo);
 	return (0);
@@ -56,10 +71,18 @@ int	mousepress(int button, int x, int y, t_fract *fo)
 
 int	keypress(int button, t_fract *fo)
 {
+	if (button == LEFT_SHIFT)
+		fo->shift *= -1;
+	if (button == SPACE)
+	{
+		fo->dx = 0.0;
+		fo->dy = 0.0;
+		fo->zoom = 200.0;
+	}
 	if (button == UP_ARROW)
-		fo->dy += 30 / fo->zoom;
-	if (button == DOWN_ARROW)
 		fo->dy -= 30 / fo->zoom;
+	if (button == DOWN_ARROW)
+		fo->dy += 30 / fo->zoom;
 	if (button == LEFT_ARROW)
 		fo->dx -= 30 / fo->zoom;
 	if (button == RIGHT_ARROW)
@@ -69,11 +92,7 @@ int	keypress(int button, t_fract *fo)
 	if (button == MINUS)
 		fo->ite -= 30;
 	if (button == ESC)
-	{
-		mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
-		exit(0);
-	}
-	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
+		close_win(fo);
 	plot(fo);
 	return (0);
 }

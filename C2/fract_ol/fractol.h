@@ -26,28 +26,29 @@ typedef struct s_fract
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	char		*img_adr;
 	int			bpp;
 	int			llen;
 	int			end;
-	int			type;
+	char		*img_adr;
 	long double	dx;
 	long double	dy;
 	long double	zoom;
 	int			ite;
+	int			type;
 	long double	z0_re;
 	long double	z0_im;
 	long double	cz_re;
 	long double	cz_im;
+	int			shift;
 }	t_fract;
 
 int		ft_printfd(int fd, const char *format, ...);
 int		mousepress(int button, int x, int y, t_fract *fo);
 int		keypress(int button, t_fract *fo);
+int		hsv_rgb(long double h, long double s, long double v);
 int		close_win(t_fract *fo);
 void	plot(t_fract *fo);
 void	put_pixel(t_fract *fo, int x, int y, int color);
-int		hsv_rgb(long double h, long double s, long double v);
 int		verif_args(int argc, char **argv);
 int		args(int argc, char **argv, t_fract *fo);
 
