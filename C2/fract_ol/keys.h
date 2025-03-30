@@ -14,6 +14,7 @@
 # define KEYS_H
 
 # define LEFT_CLICK 1
+# define RIGHT_CLICK 3
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 # define SPACE 32

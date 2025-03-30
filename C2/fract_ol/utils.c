@@ -46,25 +46,26 @@ int	mousepress(int button, int x, int y, t_fract *fo)
 	if (button == LEFT_CLICK)
 	{
 		fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2);
-		fo->dy += (1.0 / fo->zoom) * (y - fo->height / 2);
+		fo->dy -= (1.0 / fo->zoom) * (y - fo->height / 2);
 	}
+	if (button == RIGHT_CLICK)
+		fo->color_mode = 1 - fo->color_mode;
 	if (button == SCROLL_UP)
 	{
 		if (fo->shift == 1)
-			fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2) / 1.5;
+			fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2) / 1.25;
 		if (fo->shift == 1)
-			fo->dy += (1.0 / fo->zoom) * (y - fo->height / 2) / 1.5;
+			fo->dy -= (1.0 / fo->zoom) * (y - fo->height / 2) / 1.25;
 		fo->zoom *= 1.5;
 	}
 	if (button == SCROLL_DOWN)
 	{
 		if (fo->shift == 1)
-			fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2) / 1.5;
+			fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2) / 1.25;
 		if (fo->shift == 1)
-			fo->dy += (1.0 / fo->zoom) * (x - fo->height / 2) / 1.5;
+			fo->dy -= (1.0 / fo->zoom) * (x - fo->height / 2) / 1.25;
 		fo->zoom /= 1.5;
 	}
-	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
 	plot(fo);
 	return (0);
 }
@@ -77,12 +78,12 @@ int	keypress(int button, t_fract *fo)
 	{
 		fo->dx = 0.0;
 		fo->dy = 0.0;
-		fo->zoom = 200.0;
+		fo->zoom = 150.0;
 	}
 	if (button == UP_ARROW)
-		fo->dy -= 30 / fo->zoom;
-	if (button == DOWN_ARROW)
 		fo->dy += 30 / fo->zoom;
+	if (button == DOWN_ARROW)
+		fo->dy -= 30 / fo->zoom;
 	if (button == LEFT_ARROW)
 		fo->dx -= 30 / fo->zoom;
 	if (button == RIGHT_ARROW)

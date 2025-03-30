@@ -12,6 +12,46 @@
 
 #include "fractol.h"
 
+int	eq(char *s1, char *s2)
+{
+	while (*s1 != '\0' && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	if (*s1 == *s2)
+		return (1);
+	return (0);
+}
+
+long double	ft_atolf(char *nptr)
+{
+	long double	res;
+	long long	frac;
+	long long	div;
+	char		sign;
+
+	while (('\t' <= *nptr && *nptr <= '\r') || *nptr == ' ')
+		nptr++;
+	sign = *nptr;
+	if (sign == '+' || sign == '-')
+		nptr++;
+	res = 0;
+	while ('0' <= *nptr && *nptr <= '9')
+		res = 10 * res + (*(nptr++) - '0');
+	if (*nptr == '.')
+		nptr++;
+	frac = 0;
+	div = 1;
+	while ('0' <= *nptr && *nptr <= '9')
+	{
+		frac = frac * 10 + (*(nptr++) - '0');
+		div *= 10;
+	}
+	res += ((long double) frac) / ((long double) div);
+	return (res * (long double)(1 - (sign == '-') * 2));
+}
+
 int	put_anb(long long snb, unsigned long long unb, char flag)
 {
 	int	printed;

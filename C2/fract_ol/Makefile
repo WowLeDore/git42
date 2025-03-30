@@ -13,7 +13,7 @@
 NAME = fractol
 HDRS = fractol.h keys.h
 
-SRCS = fractol.c print.c utils.c args.c
+SRCS = fractol.c libft.c utils.c args.c
 OBJS = $(SRCS:.c=.o)
 
 FLGS = -Wall -Wextra -Werror

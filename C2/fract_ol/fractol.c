@@ -22,9 +22,10 @@ void	init(t_fract *fo)
 	fo->img_adr = mlx_get_data_addr(fo->img_ptr, &fo->bpp, &fo->llen, &fo->end);
 	fo->dx = 0.0;
 	fo->dy = 0.0;
-	fo->zoom = 200.0;
+	fo->zoom = 150.0;
 	fo->ite = 50;
 	fo->shift = -1;
+	fo->color_mode = 1;
 }
 
 int	comp(t_fract *fo)
@@ -41,6 +42,10 @@ int	comp(t_fract *fo)
 	{
 		if (re * re + im * im > __DBL_MAX__)
 			return (j);
+		if (re < 0.0 && fo->type == 2)
+			re = -re;
+		if (im < 0.0 && fo->type == 2)
+			im = -im;
 		tmp = re;
 		re = re * re - im * im + fo->cz_re;
 		im = 2.0 * tmp * im + fo->cz_im;
@@ -62,6 +67,13 @@ void	var(t_fract *fo, long double x, long double y)
 		fo->z0_re = (1 / fo->zoom) * (x - fo->width / 2) + fo->dx;
 		fo->z0_im = (1 / fo->zoom) * (y - fo->height / 2) - fo->dy;
 	}
+	else if (fo->type == 2)
+	{
+		fo->z0_re = 0;
+		fo->z0_im = 0;
+		fo->cz_re = (1 / fo->zoom) * (x - fo->width / 2) + fo->dx;
+		fo->cz_im = (1 / fo->zoom) * (y - fo->height / 2) - fo->dy;
+	}
 }
 
 //color = hsv_rgb(ite / (long double)(fo->ite), 1.0, 1.0);
@@ -81,16 +93,15 @@ void	plot(t_fract *fo)
 		{
 			var(fo, x, y);
 			ite = comp(fo);
-			color = 0x631416;
-			if (ite < fo->ite)
-				color = hsv_rgb(ite / (long double)(fo->ite), 1.0, 1.0);
-			put_pixel(fo, x, fo->height - y, color);
+			color = 0xFF3311;
+			if (ite < fo->ite && fo->color_mode)
+				color = hsv_rgb((long double)ite / fo->ite, 1.0, 1.0);
+			else if (ite < fo->ite)
+				color = (int)((long double)ite / fo->ite * 0xFF3311);
+			put_pixel(fo, x, y, color);
 		}
 	}
-	put_pixel(fo, fo->width / 2 - 1, fo->height / 2, 0xFFFFFF);
-	put_pixel(fo, fo->width / 2 + 1, fo->height / 2, 0xFFFFFF);
-	put_pixel(fo, fo->width / 2, fo->height / 2 - 1, 0xFFFFFF);
-	put_pixel(fo, fo->width / 2, fo->height / 2 + 1, 0xFFFFFF);
+	put_pixel(fo, fo->width / 2, fo->height / 2, 0xFFFFFF);
 	mlx_put_image_to_window(fo->mlx_ptr, fo->win_ptr, fo->img_ptr, 0, 0);
 }
 

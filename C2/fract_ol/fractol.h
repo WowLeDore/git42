@@ -40,16 +40,22 @@ typedef struct s_fract
 	long double	cz_re;
 	long double	cz_im;
 	int			shift;
+	int			color_mode;
 }	t_fract;
 
-int		ft_printfd(int fd, const char *format, ...);
-int		mousepress(int button, int x, int y, t_fract *fo);
-int		keypress(int button, t_fract *fo);
-int		hsv_rgb(long double h, long double s, long double v);
-int		close_win(t_fract *fo);
-void	plot(t_fract *fo);
-void	put_pixel(t_fract *fo, int x, int y, int color);
-int		verif_args(int argc, char **argv);
-int		args(int argc, char **argv, t_fract *fo);
+int			eq(char *s1, char *s2);
+long double	ft_atolf(char *nptr);
+int			ft_printfd(int fd, const char *format, ...);
+
+int			hsv_rgb(long double h, long double s, long double v);
+int			mousepress(int button, int x, int y, t_fract *fo);
+int			keypress(int button, t_fract *fo);
+int			close_win(t_fract *fo);
+void		put_pixel(t_fract *fo, int x, int y, int color);
+
+int			verif_args(int argc, char **argv);
+void		args(int argc, char **argv, t_fract *fo);
+
+void		plot(t_fract *fo);
 
 #endif
