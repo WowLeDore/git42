@@ -100,7 +100,11 @@ int	keypress(int button, t_fract *fo)
 
 int	close_win(t_fract *fo)
 {
+	mlx_destroy_image(fo->mlx_ptr, fo->img_ptr);
 	mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
+	mlx_loop_end(fo->mlx_ptr);
+	mlx_destroy_display(fo->mlx_ptr);
+	free(fo->mlx_ptr);
 	exit(0);
 	return (0);
 }

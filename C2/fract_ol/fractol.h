@@ -34,13 +34,13 @@ typedef struct s_fract
 	long double	dy;
 	long double	zoom;
 	int			ite;
+	int			shift;
+	int			color_mode;
 	int			type;
 	long double	z0_re;
 	long double	z0_im;
 	long double	cz_re;
 	long double	cz_im;
-	int			shift;
-	int			color_mode;
 }	t_fract;
 
 int			eq(char *s1, char *s2);

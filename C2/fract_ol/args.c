@@ -52,16 +52,16 @@ int	verif_args(int ac, char **av)
 	return (1);
 }
 
-void	args(int argc, char **argv, t_fract *fo)
+void	args(int ac, char **av, t_fract *fo)
 {
-	if (argc == 1 && argv[0][0] == 'm')
+	if (verif(ac, av, 0))
 		fo->type = 0;
-	else if (argc == 3 && argv[0][0] == 'j')
+	else if (verif(ac, av, 1))
 	{
 		fo->type = 1;
-		fo->cz_re = ft_atolf(argv[1]);
-		fo->cz_im = -ft_atolf(argv[2]);
+		fo->cz_re = ft_atolf(av[1]);
+		fo->cz_im = -ft_atolf(av[2]);
 	}
-	else if (argc == 1 && argv[0][0] == 'b')
+	else if (verif(ac, av, 2))
 		fo->type = 2;
 }

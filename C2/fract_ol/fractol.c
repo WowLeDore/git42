@@ -19,6 +19,9 @@ void	init(t_fract *fo)
 	fo->mlx_ptr = mlx_init();
 	fo->win_ptr = mlx_new_window(fo->mlx_ptr, fo->width, fo->height, "fractol");
 	fo->img_ptr = mlx_new_image(fo->mlx_ptr, fo->width, fo->height);
+	fo->bpp = 0;
+	fo->llen = 0;
+	fo->end = 0;
 	fo->img_adr = mlx_get_data_addr(fo->img_ptr, &fo->bpp, &fo->llen, &fo->end);
 	fo->dx = 0.0;
 	fo->dy = 0.0;
@@ -26,6 +29,11 @@ void	init(t_fract *fo)
 	fo->ite = 50;
 	fo->shift = -1;
 	fo->color_mode = 1;
+	fo->type = -1;
+	fo->z0_re = 0.0;
+	fo->z0_im = 0.0;
+	fo->cz_re = 0.0;
+	fo->cz_im = 0.0;
 }
 
 int	comp(t_fract *fo)
