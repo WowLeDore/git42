@@ -14,8 +14,8 @@
 
 void	init(t_fract *fo)
 {
-	fo->width = 600;
-	fo->height = 400;
+	fo->width = 900;
+	fo->height = 900;
 	fo->mlx_ptr = mlx_init();
 	fo->win_ptr = mlx_new_window(fo->mlx_ptr, fo->width, fo->height, "fractol");
 	fo->img_ptr = mlx_new_image(fo->mlx_ptr, fo->width, fo->height);
@@ -34,6 +34,7 @@ void	init(t_fract *fo)
 	fo->z0_im = 0.0;
 	fo->cz_re = 0.0;
 	fo->cz_im = 0.0;
+	fo->scale = 5;
 }
 
 int	comp(t_fract *fo)
@@ -84,7 +85,6 @@ void	var(t_fract *fo, long double x, long double y)
 	}
 }
 
-//color = hsv_rgb(ite / (long double)(fo->ite), 1.0, 1.0);
 void	plot(t_fract *fo)
 {
 	long double	x;
@@ -92,12 +92,11 @@ void	plot(t_fract *fo)
 	int			ite;
 	int			color;
 
-	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
-	x = -1;
-	while (++x < fo->width)
+	x = 0;
+	while (x < fo->width)
 	{
-		y = -1;
-		while (++y < fo->height)
+		y = 0;
+		while (y < fo->height)
 		{
 			var(fo, x, y);
 			ite = comp(fo);
@@ -107,9 +106,11 @@ void	plot(t_fract *fo)
 			else if (ite < fo->ite)
 				color = (int)((long double)ite / fo->ite * 0xFF3311);
 			put_pixel(fo, x, y, color);
+			y += fo->scale;
 		}
+		x += fo->scale;
 	}
-	put_pixel(fo, fo->width / 2, fo->height / 2, 0xFFFFFF);
+	put_pixel(fo, fo->width / 2, fo->height / 2, 0xFFFFFF);	
 	mlx_put_image_to_window(fo->mlx_ptr, fo->win_ptr, fo->img_ptr, 0, 0);
 }
 

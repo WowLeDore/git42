@@ -44,10 +44,9 @@ int	hsv_rgb(long double h, long double s, long double v)
 int	mousepress(int button, int x, int y, t_fract *fo)
 {
 	if (button == LEFT_CLICK)
-	{
 		fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2);
+	if (button == LEFT_CLICK)
 		fo->dy -= (1.0 / fo->zoom) * (y - fo->height / 2);
-	}
 	if (button == RIGHT_CLICK)
 		fo->color_mode = 1 - fo->color_mode;
 	if (button == SCROLL_UP)
@@ -66,6 +65,7 @@ int	mousepress(int button, int x, int y, t_fract *fo)
 			fo->dy -= (1.0 / fo->zoom) * (x - fo->height / 2) / 1.25;
 		fo->zoom /= 1.5;
 	}
+	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
 	plot(fo);
 	return (0);
 }
@@ -89,11 +89,12 @@ int	keypress(int button, t_fract *fo)
 	if (button == RIGHT_ARROW)
 		fo->dx += 30 / fo->zoom;
 	if (button == PLUS)
-		fo->ite += 30;
+		fo->ite *= 1.1;
 	if (button == MINUS)
-		fo->ite -= 30;
+		fo->ite *= 1.1;
 	if (button == ESC)
 		close_win(fo);
+	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
 	plot(fo);
 	return (0);
 }
@@ -112,7 +113,20 @@ int	close_win(t_fract *fo)
 void	put_pixel(t_fract *fo, int x, int y, int color)
 {
 	char	*dst;
+	int		dx;
+	int		dy;
 
-	dst = fo->img_adr + (y * fo->llen + x * (fo->bpp / 8));
-	*(unsigned int *)dst = color;
+	dx = 0;
+	while (dx < fo->scale && x + dx < fo->width)
+	{
+		dy = 0;
+		while (dy < fo->scale && y + dy < fo->height)
+		{
+			dst = fo->img_adr
+				+ ((y + dy) * fo->llen + (x + dx) * (fo->bpp / 8));
+			*(unsigned int *)dst = color;
+			dy++;
+		}
+		dx++;
+	}
 }

@@ -41,6 +41,7 @@ typedef struct s_fract
 	long double	z0_im;
 	long double	cz_re;
 	long double	cz_im;
+	int			scale;
 }	t_fract;
 
 int			eq(char *s1, char *s2);
