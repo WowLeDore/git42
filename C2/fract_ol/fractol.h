@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 17:21:24 by mguillot          #+#    #+#             */
-/*   Updated: 2025/03/31 13:34:06 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:49:16 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "keys.h"
+# include "minilibx-linux/mlx.h"
 
 typedef struct s_fract
 {

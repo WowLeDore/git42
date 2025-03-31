@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 17:01:16 by mguillot          #+#    #+#             */
-/*   Updated: 2025/03/24 17:30:31 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:41:48 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ int	main(int argc, char **argv)
 {
 	t_fract	fo;
 
-	if (init(&fo))
-		exit(1);
 	if (!verif_args(argc - 1, argv + 1))
+		exit(1);
+	if (init(&fo))
 		exit(1);
 	else
 		args(argc - 1, argv + 1, &fo);
