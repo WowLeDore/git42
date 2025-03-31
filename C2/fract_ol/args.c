@@ -25,7 +25,7 @@ int	verif(int ac, char **av, int fo)
 	else if (fo == 1)
 		return (ac == 3 && (eq(av[0], "Julia") || eq(av[0], "j")) && nbr(++av));
 	else if (fo == 2)
-		return (ac == 1 && (eq(av[0], "Burning Ship") || eq(av[0], "b")));
+		return (ac == 1 && (eq(av[0], "Burning-Ship") || eq(av[0], "b")));
 	return (0);
 }
 
@@ -34,11 +34,11 @@ int	verif_args(int ac, char **av)
 	if (ac == 0 || !av)
 		return (ft_printfd(2, "Error: Insufficient arguments.\nUsage: ./fractol"
 				" <fractal_type> [x (Julia)] [y (Julia)]\nFractals are Mandelbr"
-				"ot (m), Julia (j), Burning Ship (b).\n") * 0);
+				"ot (m), Julia (j), Burning-Ship (b).\n") * 0);
 	else if (ac > 3)
 		return (ft_printfd(2, "Error: Too many arguments.\nUsage: ./fractol"
 				" <fractal_type> [x (Julia)] [y (Julia)]\nFractals are Mandelbr"
-				"ot (m), Julia (j), Burning Ship (b).\n") * 0);
+				"ot (m), Julia (j), Burning-Ship (b).\n") * 0);
 	else if (verif(ac, av, 0) || verif(ac, av, 1) || verif(ac, av, 2))
 		return (ft_printfd(1, "Help:\n	Left Click to go to point\n	Right Click"
 				" to change color mode\n	Scroll Up/Down to zoom/dezoom\n	Lef"
@@ -48,7 +48,7 @@ int	verif_args(int ac, char **av)
 	else
 		return (ft_printfd(2, "Error: Incorrect Usage.\nUsage: ./fractol"
 				" <fractal_type> [x (Julia)] [y (Julia)]\nFractals are Mandelbr"
-				"ot (m), Julia (j), Burning Ship (b).\n") * 0);
+				"ot (m), Julia (j), Burning-Ship (b).\n") * 0);
 	return (1);
 }
 
