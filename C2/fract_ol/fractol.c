@@ -12,11 +12,13 @@
 
 #include "fractol.h"
 
-void	init(t_fract *fo)
+int	init(t_fract *fo)
 {
 	fo->width = 900;
 	fo->height = 900;
 	fo->mlx_ptr = mlx_init();
+	if (!fo->mlx_ptr)
+		return (1);
 	fo->win_ptr = mlx_new_window(fo->mlx_ptr, fo->width, fo->height, "fractol");
 	fo->img_ptr = mlx_new_image(fo->mlx_ptr, fo->width, fo->height);
 	fo->bpp = 0;
@@ -34,7 +36,8 @@ void	init(t_fract *fo)
 	fo->z0_im = 0.0;
 	fo->cz_re = 0.0;
 	fo->cz_im = 0.0;
-	fo->scale = 5;
+	fo->scale = 2;
+	return (0);
 }
 
 int	comp(t_fract *fo)
@@ -110,7 +113,7 @@ void	plot(t_fract *fo)
 		}
 		x += fo->scale;
 	}
-	put_pixel(fo, fo->width / 2, fo->height / 2, 0xFFFFFF);	
+	put_pixel(fo, fo->width / 2, fo->height / 2, 0xFFFFFF);
 	mlx_put_image_to_window(fo->mlx_ptr, fo->win_ptr, fo->img_ptr, 0, 0);
 }
 
@@ -118,7 +121,8 @@ int	main(int argc, char **argv)
 {
 	t_fract	fo;
 
-	init(&fo);
+	if (init(&fo))
+		exit(1);
 	if (!verif_args(argc - 1, argv + 1))
 		exit(1);
 	else

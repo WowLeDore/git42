@@ -63,7 +63,7 @@ int	mousepress(int button, int x, int y, t_fract *fo)
 			fo->dx += (1.0 / fo->zoom) * (x - fo->width / 2) / 1.25;
 		if (fo->shift == 1)
 			fo->dy -= (1.0 / fo->zoom) * (x - fo->height / 2) / 1.25;
-		fo->zoom /= 1.5;
+		fo->zoom = fo->zoom / 1.5;
 	}
 	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
 	plot(fo);
@@ -72,8 +72,8 @@ int	mousepress(int button, int x, int y, t_fract *fo)
 
 int	keypress(int button, t_fract *fo)
 {
-	if (button == LEFT_SHIFT)
-		fo->shift *= -1;
+	fo->ite = 10 * (fo->ite < 10) + fo->ite * (fo->ite >= 10);
+	fo->shift *= -(button == LEFT_SHIFT) + (button != LEFT_SHIFT);
 	if (button == SPACE)
 	{
 		fo->dx = 0.0;
@@ -91,7 +91,7 @@ int	keypress(int button, t_fract *fo)
 	if (button == PLUS)
 		fo->ite *= 1.1;
 	if (button == MINUS)
-		fo->ite *= 1.1;
+		fo->ite *= 0.9;
 	if (button == ESC)
 		close_win(fo);
 	mlx_clear_window(fo->mlx_ptr, fo->win_ptr);
@@ -101,11 +101,16 @@ int	keypress(int button, t_fract *fo)
 
 int	close_win(t_fract *fo)
 {
-	mlx_destroy_image(fo->mlx_ptr, fo->img_ptr);
-	mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
-	mlx_loop_end(fo->mlx_ptr);
-	mlx_destroy_display(fo->mlx_ptr);
-	free(fo->mlx_ptr);
+	if (fo->mlx_ptr && fo->img_ptr)
+		mlx_destroy_image(fo->mlx_ptr, fo->img_ptr);
+	if (fo->mlx_ptr && fo->win_ptr)
+		mlx_destroy_window(fo->mlx_ptr, fo->win_ptr);
+	if (fo->mlx_ptr)
+		mlx_loop_end(fo->mlx_ptr);
+	if (fo->mlx_ptr)
+		mlx_destroy_display(fo->mlx_ptr);
+	if (fo->mlx_ptr)
+		free(fo->mlx_ptr);
 	exit(0);
 	return (0);
 }
