@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:22:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/03 16:29:00 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:11:17 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,18 @@ int		verif_format(char *str);
 int		verif_list(int i, char **str);
 int		verif_duplicates(t_icq *q);
 
-void	sa(t_icq *a, t_icq *b, t_icq *q);
-void	sb(t_icq *a, t_icq *b, t_icq *q);
-void	ss(t_icq *a, t_icq *b, t_icq *q);
-void	pa(t_icq *a, t_icq *b, t_icq *q);
-void	pb(t_icq *a, t_icq *b, t_icq *q);
-void	ra(t_icq *a, t_icq *b, t_icq *q);
-void	rb(t_icq *a, t_icq *b, t_icq *q);
-void	rr(t_icq *a, t_icq *b, t_icq *q);
-void	rra(t_icq *a, t_icq *b, t_icq *q);
-void	rrb(t_icq *a, t_icq *b, t_icq *q);
-void	rrr(t_icq *a, t_icq *b, t_icq *q);
+void	sa(t_icq *a, t_icq *b, char out);
+void	sb(t_icq *a, t_icq *b, char out);
+void	ss(t_icq *a, t_icq *b, char out);
+void	pa(t_icq *a, t_icq *b, char out);
+void	pb(t_icq *a, t_icq *b, char out);
+void	ra(t_icq *a, t_icq *b, char out);
+void	rb(t_icq *a, t_icq *b, char out);
+void	rr(t_icq *a, t_icq *b, char out);
+void	rra(t_icq *a, t_icq *b, char out);
+void	rrb(t_icq *a, t_icq *b, char out);
+void	rrr(t_icq *a, t_icq *b, char out);
 
-void	bubble(t_icq *a, t_icq *b, t_icq *ope);
 void	sort(t_icq *q);
 
 #endif
