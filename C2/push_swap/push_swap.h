@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:22:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 23:08:42 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 00:41:12 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,20 @@
 
 # define MAX "2147483648"
 # define MIN "-2147483649"
+
 # define DIVS 6
+
+# define SA 0
+# define SB 1
+# define SS 2
+# define PA 3
+# define PB 4
+# define RA 5
+# define RB 6
+# define RR 7
+# define RRA 8
+# define RRB 9
+# define RRR 10
 
 typedef struct s_maillon_icq
 {
@@ -38,9 +51,10 @@ typedef struct s_medians
 	int	values[DIVS - 1];
 }	t_medians;
 
+
 void	icq_init(t_icq *q);
 int		icq_vide(t_icq *q);
-int		icq_enfile(t_icq *q, int valeur, int reverse);
+void	icq_enfile(t_icq *q, int valeur, int reverse);
 int		icq_defile(t_icq *q);
 int		icq_tete(t_icq *q);
 
@@ -54,22 +68,25 @@ int		verif_format(char *str);
 int		verif_list(int i, char **str);
 int		verif_duplicates(t_icq *q);
 
-void	sa(t_icq *a, t_icq *b, char out);
-void	sb(t_icq *a, t_icq *b, char out);
-void	ss(t_icq *a, t_icq *b, char out);
-void	pa(t_icq *a, t_icq *b, char out);
-void	pb(t_icq *a, t_icq *b, char out);
-void	ra(t_icq *a, t_icq *b, char out);
-void	rb(t_icq *a, t_icq *b, char out);
-void	rr(t_icq *a, t_icq *b, char out);
-void	rra(t_icq *a, t_icq *b, char out);
-void	rrb(t_icq *a, t_icq *b, char out);
-void	rrr(t_icq *a, t_icq *b, char out);
+void	sa(t_icq *a, t_icq *ops);
+void	sb(t_icq *b, t_icq *ops);
+void	ss(t_icq *a, t_icq *b, t_icq *ops);
+void	pa(t_icq *a, t_icq *b, t_icq *ops);
+void	pb(t_icq *a, t_icq *b, t_icq *ops);
+void	ra(t_icq *a, t_icq *ops);
+void	rb(t_icq *b, t_icq *ops);
+void	rr(t_icq *a, t_icq *b, t_icq *ops);
+void	rra(t_icq *a, t_icq *ops);
+void	rrb(t_icq *b, t_icq *ops);
+void	rrr(t_icq *a, t_icq *b, t_icq *ops);
 
-void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, int i);
+void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, int i, t_icq *ops);
 void	get_med_sorted(t_icq *q, t_medians *meds);
 void	hidded_sort(t_icq *q);
 
-void	sort(t_icq *q);
+void	sort(t_icq *q, t_icq *ops);
+
+void	push_swap(t_icq *ops, t_icq *out);
+void	print_rules(int rule);
 
 #endif

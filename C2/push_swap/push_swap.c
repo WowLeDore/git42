@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:05:34 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 01:10:48 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/09 00:38:53 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_icq	*sl_to_l(int count, char **nbrs)
 int	main(int argc, char **argv)
 {
 	t_icq	*q;
+	t_icq	*ops;
+	t_icq	*out;
 
 	if (argc < 2)
 		return (0);
@@ -70,9 +72,20 @@ int	main(int argc, char **argv)
 		free(q);
 		return (1 + 0 * write(2, "Error\n", 6));
 	}
-	sort(q);
+	ops = malloc(sizeof(t_icq));
+	if (!ops)
+		return (1 + 0 * write(2, "Error\n", 6));
+	sort(q, ops);
 	while (!icq_vide(q))
 		icq_defile(q);
 	free(q);
+	icq_init(ops);
+	out = malloc(sizeof(t_icq));
+	if (!out)
+		return (1 + 0 * write(2, "Error\n", 6));
+	icq_init(out);
+	push_swap(ops, out);
+	while (out->size)
+		print_rules(icq_defile(out));
 	return (0);
 }

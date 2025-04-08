@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   int_circ_queue.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:17:18 by mguillot          #+#    #+#             */
-/*   Updated: 2025/03/04 18:17:19 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/09 00:35:42 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	icq_vide(t_icq *q)
 	return (q->size == 0);
 }
 
-int	icq_enfile(t_icq *q, int valeur, int reverse)
+void	icq_enfile(t_icq *q, int valeur, int reverse)
 {
 	t_maillon	*new;
 
 	new = malloc(sizeof(t_maillon));
 	if (!new)
-		return (0);
+		return ;
 	new->num = valeur;
 	if (icq_vide(q))
 	{
@@ -42,8 +42,7 @@ int	icq_enfile(t_icq *q, int valeur, int reverse)
 		q->last->next = new;
 		if (reverse)
 			q->last = new;
-	}
-	return (q->size++);
+	};
 }
 
 int	icq_defile(t_icq *q)

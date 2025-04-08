@@ -6,20 +6,20 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:38:31 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 23:15:05 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 00:37:38 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_icq *a, t_icq *b, int best_i)
+void	rotate(t_icq *a, int best_i, t_icq *ops)
 {
 	if (best_i <= a->size / 2)
 		while (best_i-- > 0)
-			ra(a, b, 1);
+			ra(a, ops);
 	else
 		while (best_i++ < a->size)
-			rra(a, b, 1);
+			rra(a, ops);
 }
 
 int	min_diff(t_icq *q, int value, int *best_i)
@@ -50,7 +50,7 @@ int	min_diff(t_icq *q, int value, int *best_i)
 	return (min_diff);
 }
 
-void	insert(t_icq *a, t_icq *b, int value, int size)
+void	insert(t_icq *a, t_icq *b, int size, t_icq *ops)
 {
 	t_maillon	*tmp;
 	int			i;
@@ -59,7 +59,7 @@ void	insert(t_icq *a, t_icq *b, int value, int size)
 
 	if (b->size == 0)
 		return ;
-	if (!min_diff(a, value, &best_i))
+	if (!min_diff(a, icq_tete(b), &best_i))
 	{
 		tmp = a->last->next;
 		min = tmp->num;
@@ -73,11 +73,11 @@ void	insert(t_icq *a, t_icq *b, int value, int size)
 			tmp = tmp->next;
 		}
 	}
-	rotate(a, b, best_i);
-	pa(a, b, 1);
+	rotate(a, best_i, ops);
+	pa(a, b, ops);
 }
 
-void	sort_med(t_icq *a, t_medians *meds)
+void	sort_med(t_icq *a, t_medians *meds, t_icq *ops)
 {
 	int		i;
 	t_icq	*b;
@@ -88,18 +88,18 @@ void	sort_med(t_icq *a, t_medians *meds)
 	icq_init(b);
 	i = -1;
 	while (++i < DIVS / 2)
-		pre_tri(a, b, meds, i);
-	while (a->size - 1)
-		pb(a, b, 1);
-	pa(a, b, 1);
+		pre_tri(a, b, meds, i, ops);
+	while (a->size > 1)
+		pb(a, b, ops);
+	pa(a, b, ops);
 	while (b->size)
-		insert(a, b, icq_tete(b), a->size);
+		insert(a, b, a->size, ops);
 	while (a->last->num < icq_tete(a))
-		ra(a, b, 1);
+		ra(a, ops);
 	free(b);
 }
 
-void	sort(t_icq *q)
+void	sort(t_icq *q, t_icq *ops)
 {
 	t_icq		*s;
 	t_maillon	*tmp;
@@ -122,5 +122,5 @@ void	sort(t_icq *q)
 	while (s->size)
 		icq_defile(s);
 	free(s);
-	sort_med(q, &meds);
+	sort_med(q, &meds, ops);
 }

@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:02:34 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 23:16:52 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 00:25:50 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,15 @@ void	get_med_sorted(t_icq *q, t_medians *meds)
 	while (++j < DIVS - 1)
 	{
 		while (i < positions[j])
-			ra(q, q, 0 * i++);
+		{
+			ra(q, NULL);
+			i++;
+		}
 		meds->values[DIVS - 2 - j] = icq_tete(q);
 	}
 }
 
-int	found(t_icq *a, int med_low, int med_high)
+int	found(t_icq *a, int med_low, int med_high, t_icq *ops)
 {
 	int			rot;
 	t_maillon	*tmp;
@@ -71,10 +74,10 @@ int	found(t_icq *a, int med_low, int med_high)
 		{
 			if (rot <= a->size / 2)
 				while (rot-- > 0)
-					ra(a, NULL, 1);
+					ra(a, ops);
 			else
 				while (rot++ < a->size)
-					rra(a, NULL, 1);
+					rra(a, ops);
 			return (0);
 		}
 		tmp = tmp->next;
@@ -82,7 +85,7 @@ int	found(t_icq *a, int med_low, int med_high)
 	return (1);
 }
 
-void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, int i)
+void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, int i, t_icq *ops)
 {
 	int	low;
 	int	high;
@@ -91,11 +94,11 @@ void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, int i)
 	high = meds->values[i];
 	while (1)
 	{
-		if (found(a, low, high))
+		if (found(a, low, high, ops))
 			break ;
 		if (icq_tete(a) < low || icq_tete(a) > high)
-			pb(a, b, 1);
+			pb(a, b, ops);
 		if (icq_tete(b) > high)
-			rb(a, b, 1);
+			rb(b, ops);
 	}
 }

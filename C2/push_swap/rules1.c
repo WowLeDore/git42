@@ -3,59 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   rules1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 09:26:10 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/07 19:10:44 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/09 00:32:08 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_icq *a, t_icq *b, char out)
+void	sa(t_icq *a, t_icq *ops)
 {
 	int	tmp;
 
 	tmp = icq_tete(a);
 	a->last->next->num = a->last->next->next->num;
 	a->last->next->next->num = tmp;
-	if (out)
-		write(1, "sa\n", 3);
-	(void) b;
+	if (ops)
+		icq_enfile(ops, SA, 0);
 }
 
-void	sb(t_icq *a, t_icq *b, char out)
+void	sb(t_icq *b, t_icq *ops)
 {
 	int	tmp;
 
 	tmp = icq_tete(b);
 	b->last->next->num = b->last->next->next->num;
 	b->last->next->next->num = tmp;
-	if (out)
-		write(1, "sb\n", 3);
-	(void) a;
+	if (ops)
+		icq_enfile(ops, SB, 0);
 }
 
-void	ss(t_icq *a, t_icq *b, char out)
+void	ss(t_icq *a, t_icq *b, t_icq *ops)
 {
-	sa(a, b, 0);
-	sb(a, b, 0);
-	if (out)
-		write(1, "ss\n", 3);
+	sa(a, NULL);
+	sb(b, NULL);
+	if (ops)
+		icq_enfile(ops, SS, 0);
 }
 
-void	pa(t_icq *a, t_icq *b, char out)
+void	pa(t_icq *a, t_icq *b, t_icq *ops)
 {
 	if (!icq_vide(b))
 		icq_enfile(a, icq_defile(b), 0);
-	if (out)
-		write(1, "pa\n", 3);
+	if (ops)
+		icq_enfile(ops, PA, 0);
 }
 
-void	pb(t_icq *a, t_icq *b, char out)
+void	pb(t_icq *a, t_icq *b, t_icq *ops)
 {
 	if (!icq_vide(a))
 		icq_enfile(b, icq_defile(a), 0);
-	if (out)
-		write(1, "pb\n", 3);
+	if (ops)
+		icq_enfile(ops, PB, 0);
 }

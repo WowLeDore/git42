@@ -6,15 +6,15 @@
 #    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 16:37:46 by mguillot          #+#    #+#              #
-#    Updated: 2025/04/08 17:59:19 by mguillot         ###   ########.fr        #
+#    Updated: 2025/04/09 00:33:42 by anonymous        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 HDRS = push_swap.h
 
-SRCS =	conquer.c	divide.c	int_circ_queue.c	libft.c	push_swap.c		\
-		rules1.c	rules2.c	rules3.c			verif.c
+SRCS =	push_swap.c	conquer.c	divide.c	int_circ_queue.c	libft.c		\
+		rules1.c	rules2.c	rules3.c	verif.c				print.c
 OBJS = $(SRCS:.c=.o)
 
 FLGS = -Wall -Wextra -Werror -g
