@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:38:31 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 18:55:05 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/08 23:15:05 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ void	sort_med(t_icq *a, t_medians *meds)
 	icq_init(b);
 	i = -1;
 	while (++i < DIVS / 2)
-		pre_tri(a, b, meds->values[DIVS - i - 2], meds->values[i]);
+		pre_tri(a, b, meds, i);
 	while (a->size - 1)
 		pb(a, b, 1);
 	pa(a, b, 1);
 	while (b->size)
 		insert(a, b, icq_tete(b), a->size);
 	while (a->last->num < icq_tete(a))
-		rra(a, b, 1);
+		ra(a, b, 1);
 	free(b);
 }
 
