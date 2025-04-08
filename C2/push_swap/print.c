@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:51:18 by anonymous         #+#    #+#             */
-/*   Updated: 2025/04/09 00:41:31 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 01:08:22 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ void	push_swap(t_icq *ops, t_icq *out)
 		if (ops->size == 0)
 			return (icq_enfile(out, a, 0));
 		b = icq_tete(ops);
-		if ((a == RA && b == RB) || (a == RB && b == RA))
+		if ((a == RA && b == RB) || (a == RB && b == RA)
+			|| (a == RRA && b == RRB) || (a == RRB && b == RRA))
 		{
 			icq_defile(ops);
-			icq_enfile(out, RR, 0);
+			if (a == RA || a == RB)
+				icq_enfile(out, RR, 0);
+			else
+				icq_enfile(out, RRR, 0);
 		}
-		else if ((a == RRA && b == RRB) || (a == RRB && b == RRA))
-		{
-			icq_defile(ops);
-			icq_enfile(out, RRR, 0);
-		}
-		else if ((a == RA && b == RRA) || (a == RRA && b == RA)
+		else if ((a == PA && b == PB) || (a == PB && b == PA)
+			|| (a == RA && b == RRA) || (a == RRA && b == RA)
 			|| (a == RB && b == RRB) || (a == RRB && b == RB))
 			icq_defile(ops);
 		else

@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:38:31 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 00:37:38 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 01:05:39 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,13 @@ void	insert(t_icq *a, t_icq *b, int size, t_icq *ops)
 
 void	sort_med(t_icq *a, t_medians *meds, t_icq *ops)
 {
-	int		i;
 	t_icq	*b;
 
 	b = malloc(sizeof(t_icq));
 	if (!b)
 		return ;
 	icq_init(b);
-	i = -1;
-	while (++i < DIVS / 2)
-		pre_tri(a, b, meds, i, ops);
+	pre_tri(a, b, meds, ops);
 	while (a->size > 1)
 		pb(a, b, ops);
 	pa(a, b, ops);

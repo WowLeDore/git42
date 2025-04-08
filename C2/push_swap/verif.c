@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 18:19:13 by mguillot          #+#    #+#             */
-/*   Updated: 2025/03/07 19:26:41 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/09 01:33:07 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	verif_duplicates(t_icq *q)
 	t_maillon	*current;
 	t_maillon	*compare;
 
-	if (icq_vide(q))
+	if (!q->size)
 		return (1);
 	current = q->last->next;
 	while (current != q->last)

@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:17:18 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 00:35:42 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 01:28:12 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ void	icq_init(t_icq *q)
 	q->last = NULL;
 }
 
-int	icq_vide(t_icq *q)
-{
-	return (q->size == 0);
-}
-
 void	icq_enfile(t_icq *q, int valeur, int reverse)
 {
 	t_maillon	*new;
@@ -31,18 +26,19 @@ void	icq_enfile(t_icq *q, int valeur, int reverse)
 	if (!new)
 		return ;
 	new->num = valeur;
-	if (icq_vide(q))
-	{
-		new->next = new;
-		q->last = new;
-	}
-	else
+	if (q->size)
 	{
 		new->next = q->last->next;
 		q->last->next = new;
 		if (reverse)
 			q->last = new;
-	};
+	}
+	else
+	{
+		new->next = new;
+		q->last = new;
+	}
+	q->size++;
 }
 
 int	icq_defile(t_icq *q)
@@ -50,7 +46,7 @@ int	icq_defile(t_icq *q)
 	int			value;
 	t_maillon	*temp;
 
-	if (icq_vide(q))
+	if (!q->size)
 		return (-2147483648);
 	temp = q->last->next;
 	value = temp->num;
@@ -64,7 +60,14 @@ int	icq_defile(t_icq *q)
 
 int	icq_tete(t_icq *q)
 {
-	if (icq_vide(q))
-		return (-2147483648);
-	return (q->last->next->num);
+	if (q->size)
+		return (q->last->next->num);
+	return (-2147483648);
+}
+
+void	free_all(t_icq *q)
+{
+	while (q->size)
+		icq_defile(q);
+	free(q);
 }

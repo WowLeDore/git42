@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:22:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 00:41:12 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 01:28:04 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define MAX "2147483648"
 # define MIN "-2147483649"
 
-# define DIVS 6
+# define DIVS 9
 
 # define SA 0
 # define SB 1
@@ -51,12 +51,11 @@ typedef struct s_medians
 	int	values[DIVS - 1];
 }	t_medians;
 
-
 void	icq_init(t_icq *q);
-int		icq_vide(t_icq *q);
 void	icq_enfile(t_icq *q, int valeur, int reverse);
 int		icq_defile(t_icq *q);
 int		icq_tete(t_icq *q);
+void	free_all(t_icq *q);
 
 char	*ft_strchr(const char *s, int c);
 int		ft_atoi(const char *nptr);
@@ -80,7 +79,7 @@ void	rra(t_icq *a, t_icq *ops);
 void	rrb(t_icq *b, t_icq *ops);
 void	rrr(t_icq *a, t_icq *b, t_icq *ops);
 
-void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, int i, t_icq *ops);
+void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, t_icq *ops);
 void	get_med_sorted(t_icq *q, t_medians *meds);
 void	hidded_sort(t_icq *q);
 

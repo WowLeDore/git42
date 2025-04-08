@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 09:26:10 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 00:32:08 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 01:32:10 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,18 @@ void	ss(t_icq *a, t_icq *b, t_icq *ops)
 
 void	pa(t_icq *a, t_icq *b, t_icq *ops)
 {
-	if (!icq_vide(b))
-		icq_enfile(a, icq_defile(b), 0);
+	if (!b->size)
+		return ;
+	icq_enfile(a, icq_defile(b), 0);
 	if (ops)
 		icq_enfile(ops, PA, 0);
 }
 
 void	pb(t_icq *a, t_icq *b, t_icq *ops)
 {
-	if (!icq_vide(a))
-		icq_enfile(b, icq_defile(a), 0);
+	if (!a->size)
+		return ;
+	icq_enfile(b, icq_defile(a), 0);
 	if (ops)
 		icq_enfile(ops, PB, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:05:34 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 00:38:53 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 01:35:25 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,33 @@ t_icq	*sl_to_l(int count, char **nbrs)
 	return (q);
 }
 
+int	clean_exit(t_icq *q, t_icq *ops, t_icq *out, int status)
+{
+	if (q)
+		free_all(q);
+	if (ops)
+		free_all(ops);
+	if (out)
+		free_all(out);
+	if (status)
+		write(2, "Error\n", 6);
+	return (status);
+}
+
+t_icq	*parse(int argc, char **argv)
+{
+	t_icq	*q;
+
+	if (argc == 1 && ft_strchr(*argv, ' '))
+		q = s_to_l(*argv);
+	else
+		q = sl_to_l(argc, argv);
+	if (q && verif_duplicates(q))
+		return (q);
+	clean_exit(q, NULL, NULL, 1);
+	return (NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	t_icq	*q;
@@ -58,34 +85,21 @@ int	main(int argc, char **argv)
 	t_icq	*out;
 
 	if (argc < 2)
-		return (0);
-	if (argc == 2 && ft_strchr(argv[1], ' '))
-		q = s_to_l(argv[1]);
-	else
-		q = sl_to_l(argc - 1, argv + 1);
+		return (1);
+	q = parse(argc - 1, ++argv);
 	if (!q)
-		return (1 + 0 * write(2, "Error\n", 6));
-	if (!verif_duplicates(q))
-	{
-		while (!icq_vide(q))
-			icq_defile(q);
-		free(q);
-		return (1 + 0 * write(2, "Error\n", 6));
-	}
+		return (1);
 	ops = malloc(sizeof(t_icq));
 	if (!ops)
-		return (1 + 0 * write(2, "Error\n", 6));
-	sort(q, ops);
-	while (!icq_vide(q))
-		icq_defile(q);
-	free(q);
+		return (clean_exit(q, NULL, NULL, 1));
 	icq_init(ops);
+	sort(q, ops);
 	out = malloc(sizeof(t_icq));
 	if (!out)
-		return (1 + 0 * write(2, "Error\n", 6));
+		return (clean_exit(q, ops, NULL, 1));
 	icq_init(out);
 	push_swap(ops, out);
 	while (out->size)
 		print_rules(icq_defile(out));
-	return (0);
+	return (clean_exit(q, ops, out, 0));
 }
