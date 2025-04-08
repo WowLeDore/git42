@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:22:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 16:48:02 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/08 18:54:53 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_int_circ_queue
 
 typedef struct s_medians
 {
-	int	values[DIVS];
+	int	values[DIVS - 1];
 }	t_medians;
 
 void	icq_init(t_icq *q);
@@ -66,7 +66,7 @@ void	rra(t_icq *a, t_icq *b, char out);
 void	rrb(t_icq *a, t_icq *b, char out);
 void	rrr(t_icq *a, t_icq *b, char out);
 
-void	pre_tri(t_icq *a, t_icq *b, int med);
+void	pre_tri(t_icq *a, t_icq *b, int med_low, int med_high);
 void	get_med_sorted(t_icq *q, t_medians *meds);
 void	hidded_sort(t_icq *q);
 

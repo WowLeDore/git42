@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:02:34 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 17:29:57 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/08 18:54:29 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,37 @@ void	get_med_sorted(t_icq *q, t_medians *meds)
 	}
 }
 
-void	pre_tri(t_icq *a, t_icq *b, int med)
+void	pre_tri(t_icq *a, t_icq *b, int med_low, int med_high)
 {
+	int			rot;
+	int			found;
 	t_maillon	*tmp;
 
 	while (1)
 	{
+		rot = -1;
+		found = 0;
 		tmp = a->last->next;
-		while (1)
+		while (++rot < a->size)
 		{
-			if (tmp->num < med)
+			if (tmp->num < med_low || tmp->num > med_high)
+			{
+				found = 1;
 				break ;
-			if (tmp == a->last)
-				return ;
+			}
 			tmp = tmp->next;
 		}
-		if (icq_tete(a) < med)
-			pb(a, b, 1);
+		if (!found)
+			break ;
+		if (rot <= a->size / 2)
+			while (rot-- > 0)
+				ra(a, b, 1);
 		else
-			ra(a, b, 1);
+			while (rot++ < a->size)
+				rra(a, b, 1);
+		if (icq_tete(a) < med_low || icq_tete(a) > med_high)
+			pb(a, b, 1);
+		if (icq_tete(b) > med_high)
+			rb(a, b, 1);
 	}
 }

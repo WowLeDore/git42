@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:38:31 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 17:29:17 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/08 18:55:05 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ void	sort_med(t_icq *a, t_medians *meds)
 	if (!b)
 		return ;
 	icq_init(b);
-	i = DIVS - 1;
-	while (--i >= 0)
-		pre_tri(a, b, meds->values[i]);
-	while (a->size)
+	i = -1;
+	while (++i < DIVS / 2)
+		pre_tri(a, b, meds->values[DIVS - i - 2], meds->values[i]);
+	while (a->size - 1)
 		pb(a, b, 1);
 	pa(a, b, 1);
 	while (b->size)
