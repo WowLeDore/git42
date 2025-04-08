@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   divide.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:02:34 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/08 01:49:18 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:29:57 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,48 +41,43 @@ void	hidded_sort(t_icq *q)
 	}
 }
 
-void	get_med_sorted(t_icq *q, int *med_t1, int *med_t2)
+void	get_med_sorted(t_icq *q, t_medians *meds)
 {
+	int	positions[DIVS - 1];
 	int	i;
-	int	t1;
-	int	t2;
+	int	j;
 
+	i = -1;
+	while (++i < DIVS - 1)
+		positions[i] = ((i + 1) * q->size) / DIVS;
 	i = 0;
-	t1 = (1 * q->size) / 3;
-	t2 = (2 * q->size) / 3;
-	while (i < t1)
-		ra(q, q, 0 * i++);
-	*med_t1 = icq_tete(q);
-	while (i < t2)
-		ra(q, q, 0 * i++);
-	*med_t2 = icq_tete(q);
-}
-
-void	pre_tri(int tiers, t_icq *a, t_icq *b)
-{
-	if (tiers == 0)
-		ra(a, b, 1);
-	if (tiers == 1)
-		pb(a, b, 1);
-	if (tiers == 2)
+	j = -1;
+	while (++j < DIVS - 1)
 	{
-		pb(a, b, 1);
-		rb(a, b, 1);
+		while (i < positions[j])
+			ra(q, q, 0 * i++);
+		meds->values[DIVS - j - 2] = icq_tete(q);
 	}
 }
 
-int	stop_pre_tri(t_icq *q, int med)
+void	pre_tri(t_icq *a, t_icq *b, int med)
 {
 	t_maillon	*tmp;
 
-	tmp = q->last->next;
 	while (1)
 	{
-		if (tmp->num > med)
-			return (0);
-		if (tmp == q->last)
-			break ;
-		tmp = tmp->next;
+		tmp = a->last->next;
+		while (1)
+		{
+			if (tmp->num < med)
+				break ;
+			if (tmp == a->last)
+				return ;
+			tmp = tmp->next;
+		}
+		if (icq_tete(a) < med)
+			pb(a, b, 1);
+		else
+			ra(a, b, 1);
 	}
-	return (1);
 }
