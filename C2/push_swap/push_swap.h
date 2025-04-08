@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:22:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/07 19:11:17 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/08 01:51:05 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ void	rr(t_icq *a, t_icq *b, char out);
 void	rra(t_icq *a, t_icq *b, char out);
 void	rrb(t_icq *a, t_icq *b, char out);
 void	rrr(t_icq *a, t_icq *b, char out);
+
+void	pre_tri(int tiers, t_icq *a, t_icq *b);
+int		stop_pre_tri(t_icq *q, int med);
+void	get_med_sorted(t_icq *q, int *med_t1, int *med_t2);
+void	hidded_sort(t_icq *q);
 
 void	sort(t_icq *q);
 
