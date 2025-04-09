@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 09:26:10 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 01:32:10 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 02:09:45 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sa(t_icq *a, t_icq *ops)
 	tmp = icq_tete(a);
 	a->last->next->num = a->last->next->next->num;
 	a->last->next->next->num = tmp;
-	if (ops)
+	if (ops && a->size > 1)
 		icq_enfile(ops, SA, 0);
 }
 
@@ -30,7 +30,7 @@ void	sb(t_icq *b, t_icq *ops)
 	tmp = icq_tete(b);
 	b->last->next->num = b->last->next->next->num;
 	b->last->next->next->num = tmp;
-	if (ops)
+	if (ops && b->size > 1)
 		icq_enfile(ops, SB, 0);
 }
 
@@ -38,7 +38,7 @@ void	ss(t_icq *a, t_icq *b, t_icq *ops)
 {
 	sa(a, NULL);
 	sb(b, NULL);
-	if (ops)
+	if (ops && a->size > 1 && b->size > 1)
 		icq_enfile(ops, SS, 0);
 }
 

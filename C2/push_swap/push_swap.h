@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:22:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 01:28:04 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 02:48:12 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define MIN "-2147483649"
 
 # define DIVS 9
+# define DIVS_B 17
 
 # define SA 0
 # define SB 1
@@ -86,6 +87,7 @@ void	hidded_sort(t_icq *q);
 void	sort(t_icq *q, t_icq *ops);
 
 void	push_swap(t_icq *ops, t_icq *out);
+void	simplify(t_icq *ops);
 void	print_rules(int rule);
 
 #endif

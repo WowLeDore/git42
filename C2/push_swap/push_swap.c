@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:05:34 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 01:35:25 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 02:47:52 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	main(int argc, char **argv)
 		return (clean_exit(q, ops, NULL, 1));
 	icq_init(out);
 	push_swap(ops, out);
+	simplify(out);
 	while (out->size)
 		print_rules(icq_defile(out));
 	return (clean_exit(q, ops, out, 0));
