@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:22:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/09 03:04:32 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/09 03:07:17 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define MIN "-2147483649"
 
 # define DIVS 9
-# define DIVS_B 17
 
 # define SA 0
 # define SB 1
