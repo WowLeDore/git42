@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
+#    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/21 16:37:46 by mguillot          #+#    #+#              #
-#    Updated: 2025/04/09 03:14:24 by anonymous        ###   ########.fr        #
+#    Created: 2025/04/10 17:04:19 by mguillot          #+#    #+#              #
+#    Updated: 2025/04/10 17:04:20 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
