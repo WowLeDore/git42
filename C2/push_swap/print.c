@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:51:18 by anonymous         #+#    #+#             */
-/*   Updated: 2025/04/09 03:12:47 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/10 16:22:49 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_rules(int rule)
 {
-	char	*rules[10];
+	char	*rules[11];
 
 	rules[0] = "sa\n";
 	rules[1] = "sb\n";
@@ -44,7 +44,8 @@ void	reduce(t_icq *ops, t_icq *temp, int *changed)
 		if (ops->size > 0)
 		{
 			next = icq_tete(ops);
-			if ((curr == PA && next == PB) || (curr == PB && next == PA))
+			if ((curr == PA && next == PB) || (curr == PB && next == PA)
+				|| (curr == RA && next == RRA) || (curr == RB && next == RRB))
 			{
 				icq_defile(ops);
 				*changed = 1;
