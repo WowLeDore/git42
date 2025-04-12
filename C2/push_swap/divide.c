@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   divide.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:04:11 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/10 17:04:13 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/12 05:18:00 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,76 +39,81 @@ void	hidded_sort(t_icq *q)
 	}
 }
 
-void	get_med_sorted(t_icq *q, t_medians *meds)
+void	get_med_sorted(t_icq *q, int meds[DIVS][2])
 {
-	int	positions[DIVS - 1];
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < DIVS - 1)
-	{
-		positions[i] = ((i + 1) * q->size) / DIVS;
-		i++;
-	}
-	i = 0;
-	j = 0;
-	while (j < DIVS - 1)
-	{
-		while (i < positions[j])
-		{
-			ra(q, NULL);
-			i++;
-		}
-		meds->values[DIVS - 2 - j] = icq_tete(q);
-		j++;
-	}
-}
-
-int	found(t_icq *a, int med_low, int med_high, t_icq *ops)
-{
-	int			rot;
 	t_maillon	*tmp;
+	int			i;
+	int			count;
 
-	rot = -1;
-	if (a->last)
-		tmp = a->last->next;
-	while (a->last && ++rot < a->size)
+	tmp = q->last->next;
+	i = 0;
+	meds[0][0] = tmp->num;
+	count = 1;
+	while (1)
 	{
-		if (tmp->num < med_low || tmp->num > med_high)
+		if ((count++ % (q->size / DIVS + 1)) == 0 && i < DIVS)
 		{
-			if (rot <= a->size / 2)
-				while (rot-- > 0)
-					ra(a, ops);
-			else
-				while (rot++ < a->size)
-					rra(a, ops);
-			return (0);
+			meds[i][1] = tmp->next->num;
+			meds[++i][0] = tmp->num;
 		}
+		if (tmp == q->last)
+			break ;
 		tmp = tmp->next;
 	}
-	return (1);
+	while (i < DIVS)
+	{
+		meds[i][1] = q->last->num;
+		meds[++i][0] = q->last->num;
+	}
+	meds[DIVS - 1][1] = q->last->num;
 }
 
-void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, t_icq *ops)
+int	left(t_icq *q, int lows[2], int highs[2], t_icq *ops)
+{
+	int			found;
+	t_maillon	*tmp;
+
+	tmp = q->last;
+	found = 0;
+	if ((lows[0] <= tmp->num && tmp->num <= highs[0])
+		|| (lows[1] <= tmp->num && tmp->num <= highs[1]))
+		found = 1;
+	tmp = tmp->next;
+	while (tmp != q->last)
+	{
+		if ((lows[0] <= tmp->num && tmp->num <= highs[0])
+			|| (lows[1] <= tmp->num && tmp->num <= highs[1]))
+			found = 1;
+		tmp = tmp->next;
+	}
+	if (found && !((lows[0] <= icq_tete(q) && icq_tete(q) <= highs[0])
+			|| (lows[1] <= icq_tete(q) && icq_tete(q) <= highs[1])))
+		ra(q, ops);
+	return (found);
+}
+
+void	pre_tri(t_icq *a, t_icq *b, int meds[DIVS][2], t_icq *ops)
 {
 	int	i;
-	int	low;
-	int	high;
+	int	lows[2];
+	int	highs[2];
 
 	i = -1;
 	while (++i < DIVS / 2)
 	{
-		low = meds->values[DIVS - 2 - i];
-		high = meds->values[i];
-		while (1)
+		lows[0] = meds[(DIVS / 2 - 1) - i][0];
+		lows[1] = meds[(DIVS / 2 - 1) - i][1];
+		highs[0] = meds[(DIVS / 2 + 0) + i][0];
+		highs[1] = meds[(DIVS / 2 + 0) + i][1];
+		while (a->last && left(a, lows, highs, ops))
 		{
-			if (found(a, low, high, ops))
-				break ;
-			if (icq_tete(a) < low || icq_tete(a) > high)
+			if (lows[0] <= icq_tete(a) && icq_tete(a) <= highs[0])
 				pb(a, b, ops);
-			if (icq_tete(b) > high)
+			if (lows[1] <= icq_tete(a) && icq_tete(a) <= highs[1])
+			{
+				pb(a, b, ops);
 				rb(b, ops);
+			}
 		}
 	}
 }

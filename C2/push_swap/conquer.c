@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conquer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:03:34 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/10 17:03:38 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/12 04:58:38 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	insert(t_icq *a, t_icq *b, int size, t_icq *ops)
 	pa(a, b, ops);
 }
 
-void	sort_med(t_icq *a, t_medians *meds, t_icq *ops)
+void	sort_med(t_icq *a, int meds[DIVS][2], t_icq *ops)
 {
 	t_icq	*b;
 
@@ -100,7 +100,7 @@ void	sort(t_icq *q, t_icq *ops)
 {
 	t_icq		*s;
 	t_maillon	*tmp;
-	t_medians	meds;
+	int			meds[DIVS][2];
 
 	s = malloc(sizeof(t_icq));
 	if (!s)
@@ -115,9 +115,9 @@ void	sort(t_icq *q, t_icq *ops)
 		tmp = tmp->next;
 	}
 	hidded_sort(s);
-	get_med_sorted(s, &meds);
+	get_med_sorted(s, meds);
 	while (s->size)
 		icq_defile(s);
 	free(s);
-	sort_med(q, &meds, ops);
+	sort_med(q, meds, ops);
 }

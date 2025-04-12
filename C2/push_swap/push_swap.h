@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:04:29 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/10 17:04:30 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/12 04:58:15 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define MAX "2147483648"
 # define MIN "-2147483649"
 
-# define DIVS 9
+# define DIVS 8
 
 # define SA 0
 # define SB 1
@@ -45,11 +45,6 @@ typedef struct s_int_circ_queue
 	int			size;
 	t_maillon	*last;
 }	t_icq;
-
-typedef struct s_medians
-{
-	int	values[DIVS - 1];
-}	t_medians;
 
 void	icq_init(t_icq *q);
 void	icq_enfile(t_icq *q, int valeur, int reverse);
@@ -79,8 +74,8 @@ void	rra(t_icq *a, t_icq *ops);
 void	rrb(t_icq *b, t_icq *ops);
 void	rrr(t_icq *a, t_icq *b, t_icq *ops);
 
-void	pre_tri(t_icq *a, t_icq *b, t_medians *meds, t_icq *ops);
-void	get_med_sorted(t_icq *q, t_medians *meds);
+void	pre_tri(t_icq *a, t_icq *b, int meds[DIVS][2], t_icq *ops);
+void	get_med_sorted(t_icq *q, int meds[DIVS][2]);
 void	hidded_sort(t_icq *q);
 
 void	sort(t_icq *q, t_icq *ops);

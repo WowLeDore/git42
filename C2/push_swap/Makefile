@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/10 17:04:19 by mguillot          #+#    #+#              #
-#    Updated: 2025/04/10 17:04:20 by mguillot         ###   ########.fr        #
+#    Updated: 2025/04/12 02:31:35 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS =	push_swap.c	conquer.c	divide.c	int_circ_queue.c	libft.c		\
 		rules1.c	rules2.c	rules3.c	verif.c				print.c
 OBJS = $(SRCS:.c=.o)
 
-FLGS = -Wall -Wextra -Werror
+FLGS = -Wall -Wextra -Werror -g
 
 CC = cc
 RM = rm -f
