@@ -1,0 +1,6 @@
+Démarrage du test : 100 éléments, 100000 itérations
+Pire = 693 instructions
+Moyenne = 608 instructions
+Meilleur = 530 instructions
+Écart-type = 18.8 instructions
+Objectif = 100 % sous 700 (0 au dessus)

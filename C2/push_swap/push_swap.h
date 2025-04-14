@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:04:29 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/13 02:12:33 by anonymous        ###   ########.fr       */
+/*   Updated: 2025/04/14 01:45:48 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define MAX "2147483648"
 # define MIN "-2147483649"
 
-# define DIVS 8
+# define DIVS 10 // keep even
 
 # define SA 0
 # define SB 1
