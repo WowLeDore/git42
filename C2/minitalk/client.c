@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:48:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/16 00:47:26 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:43:45 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	send(pid_t pid, char c)
 		if ((c >> bit) % 2)
 			kill(pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR1);
+			kill(pid, SIGUSR2);
 		usleep(100);
-	}	
+	}
 }
 
 int	main(int argc, char **argv)

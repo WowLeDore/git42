@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:48:58 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/16 00:44:38 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:43:42 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sigs(int sig)
 	static int	bit;
 
 	if (sig == SIGUSR1)
-		c |= 1 << bit;
+		c |= 0x01 << bit;
 	if (++bit == BITS)
 	{
 		ft_printfd(1, "%c", c);
