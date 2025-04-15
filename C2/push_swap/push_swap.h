@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 17:04:29 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/14 02:13:01 by mguillot         ###   ########.fr       */
+/*   Created: 2025/04/15 16:05:38 by mguillot          #+#    #+#             */
+/*   Updated: 2025/04/15 16:21:42 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define MAX "2147483648"
 # define MIN "-2147483649"
 
-# define DIVS 10 // keep even
+# define DIVS 10
 
 # define SA 0
 # define SB 1

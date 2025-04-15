@@ -1,6 +1,0 @@
-$> ../complexity 100 1000000 700
-Pire		= 709  instructions
-Moyenne		= 608  instructions
-Meilleur	= 527  instructions
-Écart-type	= 18.7 instructions
-Objectif	= 99 % sous 700 (3 au dessus)
