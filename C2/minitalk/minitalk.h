@@ -6,12 +6,14 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:56:30 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/15 17:53:51 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/16 00:45:01 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
+
+# define BITS 8
 
 # include <stdarg.h>
 # include <unistd.h>
