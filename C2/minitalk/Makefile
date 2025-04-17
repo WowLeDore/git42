@@ -14,13 +14,13 @@ CNAM = client
 SNAM = server
 HDRS = minitalk.h
 
-CSRC = client.c utils.c
-SSRC = server.c utils.c
+CSRC = client.c
+SSRC = server.c
 
 COBJ = $(CSRC:.c=.o)
 SOBJ = $(SSRC:.c=.o)
 
-FLGS = -Wall -Wextra -Werror
+FLGS = -Wall -Wextra -Werror -g
 
 CC = cc
 RM = rm -f
