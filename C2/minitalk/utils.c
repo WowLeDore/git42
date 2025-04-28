@@ -1,28 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 09:31:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/23 09:31:55 by mguillot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 int	str_nbr(char *s)
 {
-	int		n;
+	int	n;
 
 	n = 0;
-	while ('0' <= *s && *s <= '9')
+	while (*s >= '0' && *s <= '9')
 		n = 10 * n + (*(s++) - '0');
 	return (n);
 }
 
-int	verif(char *argv, int len)
+int	verif(char *s, int len)
 {
-	if (argv && '0' <= *argv && *argv <= '9')
-		return (len < 8 && (!*(argv + 1) || verif(argv + 1, len + 1)));
+	if (s && *s >= '0' && *s <= '9')
+		return (len < 8 && (!*(s + 1) || verif(s + 1, len + 1)));
 	return (0);
 }

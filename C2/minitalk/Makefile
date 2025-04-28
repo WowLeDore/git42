@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/15 16:05:38 by mguillot          #+#    #+#              #
-#    Updated: 2025/04/15 16:55:24 by mguillot         ###   ########.fr        #
+#    Updated: 2025/04/28 12:58:54 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ COBJ_BONUS = $(CSRC:.c=_bonus.o)
 SOBJ_BONUS = $(SSRC:.c=_bonus.o)
 
 HDRS = minitalk.h
-FLGS = -Wall -Wextra -Werror -g
+FLGS = -Wall -Wextra -Werror
 
 CC = cc
 RM = rm -f

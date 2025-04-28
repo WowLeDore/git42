@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:48:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/17 15:16:25 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:32:50 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	send(pid_t pid, unsigned char c)
 	bit = -1;
 	while (++bit < 8)
 	{
-		usleep(20);
+		usleep(50);
 		if (c >> bit & 0x01)
 			fail = kill(pid, SIGUSR2);
 		else
@@ -46,7 +46,7 @@ void	send_all(pid_t cpid, pid_t spid, char *str)
 		;
 	while (len)
 	{
-		send(cpid, (len % 127) + 1);
+		send(spid, (len % 127) + 1);
 		len /= 127;
 	}
 	send(spid, 0);
@@ -84,8 +84,8 @@ int	main(int argc, char **argv)
 	sa.sa_flags = 0;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
-		if (write(2, "Error: Client can't handle SIGUSR1 or SIGUSR2\n", 35))
+		if (write(2, "Error: Client can't handle SIGUSR1 or SIGUSR2\n", 46))
 			return (1);
-	send_all(spid, cpid, *argv);
+	send_all(cpid, spid, *argv);
 	return (0);
 }
