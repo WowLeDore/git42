@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:05:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/15 16:21:42 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/28 21:17:32 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # define MAX "2147483648"
 # define MIN "-2147483649"
 
-# define DIVS 10
+// even number
+# define DIVS 12
 
 # define SA 0
 # define SB 1
@@ -74,6 +75,7 @@ void	rra(t_icq *a, t_icq *ops);
 void	rrb(t_icq *b, t_icq *ops);
 void	rrr(t_icq *a, t_icq *b, t_icq *ops);
 
+int		ez_sort(t_icq *q, t_icq *ops);
 void	pre_tri(t_icq *a, t_icq *b, int meds[DIVS][2], t_icq *ops);
 void	get_med_sorted(t_icq *q, int meds[DIVS][2]);
 void	hidded_sort(t_icq *q);
@@ -83,5 +85,10 @@ void	sort(t_icq *q, t_icq *ops);
 void	push_swap(t_icq *ops, t_icq *out);
 void	simplify(t_icq *ops);
 void	print_rules(int rule);
+
+int		sorted(t_icq *q);
+void	sort_3(t_icq *a, t_icq *ops);
+void	sort_4(t_icq *a, t_icq *ops);
+void	sort_5(t_icq *a, t_icq *ops);
 
 #endif

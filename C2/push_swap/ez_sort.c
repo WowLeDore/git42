@@ -6,9 +6,11 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:43:59 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/28 14:50:33 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/28 21:09:18 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	sorted(t_icq *q)
 {
@@ -17,13 +19,77 @@ int	sorted(t_icq *q)
 	tmp = q->last->next;
 	while (tmp != q->last)
 	{
-		if (tmp->num > tmp->next > num)
+		if (tmp->num > tmp->next->num)
 			return (0);
 		tmp = tmp->next;
 	}
 	return (1);
 }
-void	sort_2(t_icq *q, t_icq *ops)
+
+void	sort_3(t_icq *a, t_icq *ops)
 {
-	
+	int	x;
+	int	y;
+	int	z;
+
+	x = icq_tete(a);
+	y = a->last->next->next->num;
+	z = a->last->num;
+	if ((x - y) * (y - z) * (z - x) < 0)
+		sa(a, ops);
+	else if (y < z && z < x && x > y)
+		ra(a, ops);
+	else if (z < x && x < y && y > z)
+		rra(a, ops);
+	else
+		return ;
+	sort_3(a, ops);
+}
+
+void	sort_4(t_icq *a, t_icq *ops)
+{
+	t_icq	*b;
+
+	b = malloc(sizeof(t_icq));
+	if (!b)
+		return ;
+	pb(a, b, ops);
+	sort_3(a, ops);
+	if (icq_tete(b) > a->last->next->next->num && icq_tete(b) < a->last->num)
+		ra(a, ops);
+	pa(a, b, ops);
+	if (a->last->next->next->next->num > icq_tete(a) && !sorted(a))
+		sa(a, ops);
+	if (a->last->next->next->next->num > a->last->num)
+		rra(a, ops);
+	if (icq_tete(a) > a->last->next->next->num)
+		ra(a, ops);
+	free(b);
+}
+
+void	sort_5(t_icq *a, t_icq *ops)
+{
+	int		tb;
+	t_icq	*b;
+
+	b = malloc(sizeof(t_icq));
+	if (!b)
+		return ;
+	pb(a, b, ops);
+	sort_4(a, ops);
+	tb = icq_tete(b);
+	if (tb > a->last->next->next->next->num && tb < a->last->num)
+		rra(a, ops);
+	if (tb > a->last->next->next->num && tb < a->last->num)
+		ra(a, ops);
+	pa(a, b, ops);
+	free(b);
+	if (icq_tete(a) < a->last->next->next->next->num && !sorted(a))
+		sa(a, ops);
+	if (a->last->next->next->next->num > a->last->num)
+		rra(a, ops);
+	if (!sorted(a))
+		ra(a, ops);
+	if (!sorted(a))
+		ra(a, ops);
 }
