@@ -6,11 +6,26 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:08:03 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/15 16:08:21 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:48:39 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ez_sort(t_icq *q, t_icq *ops)
+{
+	if (q->size == 2)
+		sort_2(q, ops);
+	else if (q->size == 3)
+		sort_3(q, ops);
+	else if (q->size == 4)
+		sort_4(q, ops);
+	else if (q->size == 5)
+		sort_5(q, ops);
+	else if (q->size > 1 && !sorted(q))
+		return (0);
+	return (1);
+}
 
 void	hidded_sort(t_icq *q)
 {

@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:05:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/15 16:08:34 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:40:53 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ int	main(int argc, char **argv)
 	if (!ops)
 		return (clean_exit(q, NULL, NULL, 1));
 	icq_init(ops);
-	sort(q, ops);
+	if (!ez_sort(q, ops))
+		sort(q, ops);
 	out = malloc(sizeof(t_icq));
 	if (!out)
 		return (clean_exit(q, ops, NULL, 1));
