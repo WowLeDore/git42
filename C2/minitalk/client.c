@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:48:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/28 14:32:50 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/01 17:40:49 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	send(pid_t pid, unsigned char c)
 	bit = -1;
 	while (++bit < 8)
 	{
-		usleep(50);
+		usleep(100);
 		if (c >> bit & 0x01)
 			fail = kill(pid, SIGUSR2);
 		else
@@ -31,25 +31,41 @@ void	send(pid_t pid, unsigned char c)
 	}
 }
 
-void	send_all(pid_t cpid, pid_t spid, char *str)
+void	send_len(pid_t spid, char *str)
 {
 	size_t	len;
+	int		count;
+	int		digits[4];
 
-	while (cpid)
-	{
-		send(spid, (cpid % 127) + 1);
-		cpid /= 127;
-	}
-	send(spid, 0);
 	len = 0;
-	while (str && str[len++])
+	while (str[len++])
 		;
-	while (len)
+	count = 0;
+	while (len && count < 4)
 	{
-		send(spid, (len % 127) + 1);
+		digits[count++] = (len % 127) + 1;
 		len /= 127;
 	}
+	while (count--)
+		send(spid, digits[count]);
 	send(spid, 0);
+}
+
+void	send_all(pid_t cpid, pid_t spid, char *str)
+{
+	int		count;
+	int		digits[4];
+
+	count = 0;
+	while (cpid && count < 4)
+	{
+		digits[count++] = (cpid % 127) + 1;
+		cpid /= 127;
+	}
+	while (count--)
+		send(spid, digits[count]);
+	send(spid, 0);
+	send_len(spid, str);
 	while (str && *str)
 		send(spid, *(str++));
 	send(spid, '\n');
