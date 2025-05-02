@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:48:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/01 17:40:49 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/01 21:47:23 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	handler(int sig)
 		if (write(2, "Error: Server did not receive message correctly\n", 48))
 			exit(1);
 	write(1, "Success: Server received message correctly\n", 43);
+	exit(0);
 }
 
 int	main(int argc, char **argv)
@@ -103,5 +104,7 @@ int	main(int argc, char **argv)
 		if (write(2, "Error: Client can't handle SIGUSR1 or SIGUSR2\n", 46))
 			return (1);
 	send_all(cpid, spid, *argv);
+	while (1)
+		pause();
 	return (0);
 }
