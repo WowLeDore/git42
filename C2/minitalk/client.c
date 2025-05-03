@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:48:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/01 21:47:23 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/03 20:33:24 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	send(pid_t pid, unsigned char c)
 	bit = -1;
 	while (++bit < 8)
 	{
-		usleep(100);
+		usleep(300);
 		if (c >> bit & 0x01)
 			fail = kill(pid, SIGUSR2);
 		else
