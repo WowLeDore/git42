@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:43:59 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/05 13:33:29 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:13:36 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,16 @@ int	sorted(t_icq *q)
 
 void	sort_3(t_icq *a, t_icq *b, t_icq *ops)
 {
-	int	x;
-	int	y;
-	int	z;
+	int	middle;
 
 	(void) b;
-	x = icq_tete(a);
-	y = a->last->next->next->num;
-	z = a->last->num;
-	if ((x < z && z < y) || (y < x && x < z) || (z < y && y < x))
-		sa(a, ops);
-	else if (y < z && z < x && x > y)
-		ra(a, ops);
-	else if (z < x && x < y && y > z)
+	middle = a->last->next->next->num;
+	if (middle > icq_tete(a) && middle > a->last->num)
 		rra(a, ops);
-	else
-		return ;
-	sort_3(a, b, ops);
+	if (icq_tete(a) > a->last->next->next->num && icq_tete(a) > a->last->num)
+		ra(a, ops);
+	if (icq_tete(a) > a->last->next->next->num)
+		sa(a, ops);
 }
 
 void	sort_4(t_icq *a, t_icq *b, t_icq *ops)

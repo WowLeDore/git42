@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:08:03 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/05 13:15:36 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/05 13:56:47 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ int	ez_sort(t_icq *a, t_icq *ops)
 		sort_4(a, b, ops);
 	else if (a->size == 5)
 		sort_5(a, b, ops);
-	else if (a->size > 1)
-		return (0);
 	free_all(b);
-	return (1);
+	return (a->size <= 5);
 }
 
 void	hidded_sort(t_icq *q)
