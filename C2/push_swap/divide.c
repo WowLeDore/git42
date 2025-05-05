@@ -6,24 +6,30 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:08:03 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/28 20:41:47 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/05 13:15:36 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ez_sort(t_icq *q, t_icq *ops)
+int	ez_sort(t_icq *a, t_icq *ops)
 {
-	if (q->size == 2)
-		sa(q, ops);
-	else if (q->size == 3)
-		sort_3(q, ops);
-	else if (q->size == 4)
-		sort_4(q, ops);
-	else if (q->size == 5)
-		sort_5(q, ops);
-	else if (q->size > 1)
+	t_icq	*b;
+
+	b = malloc(sizeof(t_icq));
+	if (!b)
+		return (1);
+	if (a->size == 2)
+		sa(a, ops);
+	else if (a->size == 3)
+		sort_3(a, b, ops);
+	else if (a->size == 4)
+		sort_4(a, b, ops);
+	else if (a->size == 5)
+		sort_5(a, b, ops);
+	else if (a->size > 1)
 		return (0);
+	free_all(b);
 	return (1);
 }
 

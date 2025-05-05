@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:05:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/04/28 21:17:32 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/05 13:13:25 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	simplify(t_icq *ops);
 void	print_rules(int rule);
 
 int		sorted(t_icq *q);
-void	sort_3(t_icq *a, t_icq *ops);
-void	sort_4(t_icq *a, t_icq *ops);
-void	sort_5(t_icq *a, t_icq *ops);
+void	sort_3(t_icq *a, t_icq *b, t_icq *ops);
+void	sort_4(t_icq *a, t_icq *b, t_icq *ops);
+void	sort_5(t_icq *a, t_icq *b, t_icq *ops);
 
 #endif
