@@ -5,106 +5,88 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 16:48:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/03 20:33:24 by mguillot         ###   ########.fr       */
+/*   Created: 2025/05/05 14:36:58 by mguillot          #+#    #+#             */
+/*   Updated: 2025/05/05 17:34:57 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	send(pid_t pid, unsigned char c)
+volatile sig_atomic_t	g_recu = 0;
+
+void	recu_handler(int sig)
 {
-	int	bit;
+	(void) sig;
+	g_recu = 1;
+}
+
+int	str_nbr(char *s, int len, char mode)
+{
+	int	n;
+
+	if (mode == 'v')
+		if (s && *s >= '0' && *s <= '9')
+			return (len < 8 && (!*(s + 1) || str_nbr(s + 1, len + 1, 'v')));
+	else if (mode == 'c')
+	{
+		n = 0;
+		while (*s >= '0' && *s <= '9')
+			n = 10 * n + (*(s++) - '0');
+		return (n);
+	}
+}
+
+void	send_char(pid_t spid, unsigned char c)
+{
+	int	i;
 	int	fail;
 
-	bit = -1;
-	while (++bit < 8)
+	i = 0;
+	while (i < 8)
 	{
-		usleep(300);
-		if (c >> bit & 0x01)
-			fail = kill(pid, SIGUSR2);
+		if ((c >> i++) & 1)
+			fail = kill(spid, SIGUSR1);
 		else
-			fail = kill(pid, SIGUSR1);
+			fail = kill(spid, SIGUSR2);
 		if (fail)
-			if (write(2, "Error: Client failed to send signal\n", 36) || 1)
-				exit(1);
-	}
-}
-
-void	send_len(pid_t spid, char *str)
-{
-	size_t	len;
-	int		count;
-	int		digits[4];
-
-	len = 0;
-	while (str[len++])
-		;
-	count = 0;
-	while (len && count < 4)
-	{
-		digits[count++] = (len % 127) + 1;
-		len /= 127;
-	}
-	while (count--)
-		send(spid, digits[count]);
-	send(spid, 0);
-}
-
-void	send_all(pid_t cpid, pid_t spid, char *str)
-{
-	int		count;
-	int		digits[4];
-
-	count = 0;
-	while (cpid && count < 4)
-	{
-		digits[count++] = (cpid % 127) + 1;
-		cpid /= 127;
-	}
-	while (count--)
-		send(spid, digits[count]);
-	send(spid, 0);
-	send_len(spid, str);
-	while (str && *str)
-		send(spid, *(str++));
-	send(spid, '\n');
-	send(spid, 0);
-}
-
-void	handler(int sig)
-{
-	if (sig == SIGUSR1)
-		if (write(2, "Error: Server did not receive message correctly\n", 48))
+		{
+			write(2, "Error: Client failed to send signal\n", 36);
 			exit(1);
-	write(1, "Success: Server received message correctly\n", 43);
-	exit(0);
+		}
+		while (!g_recu)
+			usleep(1);
+		g_recu = 0;
+	}
+}
+
+void	send_all(pid_t spid, char *str)
+{
+	while (str && *str)
+		send_char(spid, *(str++));
+	send_char(spid, '\n');
+	send_char(spid, '\0');
 }
 
 int	main(int argc, char **argv)
 {
-	pid_t				cpid;
-	pid_t				spid;
 	struct sigaction	sa;
+	pid_t				spid;
 
-	if (argc != 3 || !verif(*(++argv), 0))
+	if (argc != 3 || !str_nbr(*(++argv), 0, 'v'))
 		if (write(2, "Error: Incorrect arguments\n"
 				"Usage: ./client <PID> <message>\n", 59) || 1)
 			return (1);
-	spid = str_nbr(*(argv++));
+	spid = str_nbr(*(argv++), 0, 'c');
 	if (spid < 1 || spid > 4194304)
 		if (write(2, "Error: PID number is incorrect\n", 31) || 1)
 			return (1);
-	cpid = getpid();
 	sigemptyset(&sa.sa_mask);
-	sa.sa_handler = handler;
 	sa.sa_flags = 0;
+	sa.sa_handler = recu_handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
 		if (write(2, "Error: Client can't handle SIGUSR1 or SIGUSR2\n", 46))
 			return (1);
-	send_all(cpid, spid, *argv);
-	while (1)
-		pause();
+	send_all(spid, *argv);
 	return (0);
 }
