@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:08:03 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/05 13:56:47 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:19:02 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ez_sort(t_icq *a, t_icq *ops)
 	b = malloc(sizeof(t_icq));
 	if (!b)
 		return (1);
+	icq_init(b);
 	if (a->size == 2)
 		sa(a, ops);
 	else if (a->size == 3)
