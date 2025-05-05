@@ -6,56 +6,23 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:46:39 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/05 18:18:27 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/05 21:08:03 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	put_message(unsigned char msg[BUFFER_SIZE], int *i, int c)
+void	put_message(unsigned char *msg, size_t i)
 {
-	static int	first = 1;
-
-	if (first)
-	{
-		write(1, "\n", 1);
-		write(1, "================== +=============+ ==================\n", 54);
-		write(1, "================== |BEGIN MESSAGE| ==================\n", 54);
-		write(1, "================== +=============+ ==================\n", 54);
-		first = 0;
-	}
-	write(1, msg, *i);
-	if (c == 0)
-	{
-		write(1, "==================  +===========+  ==================\n", 54);
-		write(1, "==================  |END MESSAGE|  ==================\n", 54);
-		write(1, "==================  +===========+  ==================\n", 54);
-		write(1, "\n", 1);
-		first = 1;
-	}
-	*i = 0;
-}
-
-void	handler(int sig, siginfo_t *info, void *context)
-{
-	static unsigned char	msg[BUFFER_SIZE];
-	static int				i = 0;
-	static int				byte = 0;
-	static int				bit = 0;
-
-	(void) context;
-	if (sig == SIGUSR1)
-		byte |= (1 << bit);
-	bit++;
-	if (bit == 8)
-	{
-		msg[i++] = byte;
-		if (i >= BUFFER_SIZE || byte == 0)
-			put_message(msg, &i, byte);
-		bit = 0;
-		byte = 0;
-	}
-	kill(info->si_pid, SIGUSR1);
+	write(1, "\n", 1);
+	write(1, "==================== +=============+ ====================\n", 58);
+	write(1, "==================== |BEGIN MESSAGE| ====================\n", 58);
+	write(1, "==================== +=============+ ====================\n", 58);
+	write(1, msg, i);
+	write(1, "====================  +===========+  ====================\n", 58);
+	write(1, "====================  |END MESSAGE|  ====================\n", 58);
+	write(1, "====================  +===========+  ====================\n", 58);
+	write(1, "\n", 1);
 }
 
 void	put_pid(int pid)
@@ -66,6 +33,52 @@ void	put_pid(int pid)
 		put_pid(pid / 10);
 	c = pid % 10 + '0';
 	write(1, &c, 1);
+}
+
+void	handle_byte(int byte)
+{
+	static unsigned char	*msg = NULL;
+	static size_t			i = 0;
+	static size_t			len = 0;
+	static int				len_byte = 0;
+
+	if (len_byte < (int) sizeof(size_t))
+			len |= ((size_t) byte) << (8 * len_byte++);
+	else
+	{
+		if (!msg)
+			msg = malloc(len);
+		if (!msg)
+			exit(1);
+		msg[i++] = byte;
+		if (i == len)
+		{
+			put_message(msg, i);
+			free(msg);
+			msg = NULL;
+			i = 0;
+			len = 0;
+			len_byte = 0;
+		}
+	}
+}
+
+void	handler(int sig, siginfo_t *info, void *context)
+{
+	static int				byte = 0;
+	static int				bit = 0;
+
+	(void) context;
+	if (sig == SIGUSR1)
+		byte |= (1 << bit);
+	bit++;
+	if (bit == 8)
+	{
+		handle_byte(byte);
+		bit = 0;
+		byte = 0;
+	}
+	kill(info->si_pid, SIGUSR1);
 }
 
 int	main(int argc, char **argv)
@@ -83,8 +96,7 @@ int	main(int argc, char **argv)
 	sa.sa_sigaction = handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
-		if (write(2, "Error: Server can't handle SIGUSR1 or SIGUSR2\n", 46))
-			return (1);
+		return (write(2, "Error: Server can't handle signals\n", 46) * 0 + 1);
 	while (1)
 		pause();
 	return (0);
