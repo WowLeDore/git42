@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:46:39 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/05 21:08:03 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/06 03:24:31 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	handle_byte(int byte)
 	static int				len_byte = 0;
 
 	if (len_byte < (int) sizeof(size_t))
-			len |= ((size_t) byte) << (8 * len_byte++);
+		len |= ((size_t) byte) << (8 * len_byte++);
 	else
 	{
 		if (!msg)
@@ -96,7 +96,7 @@ int	main(int argc, char **argv)
 	sa.sa_sigaction = handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
-		return (write(2, "Error: Server can't handle signals\n", 46) * 0 + 1);
+		return (write(2, "Error: Server can't handle signals\n", 35) * 0 + 1);
 	while (1)
 		pause();
 	return (0);
