@@ -27,6 +27,8 @@ RM = rm -f
 
 all: $(CNAM) $(SNAM)
 
+bonus: all
+
 $(CNAM): $(COBJ)
 	$(CC) $(FLGS) $(COBJ) -o $(CNAM)
 
@@ -44,4 +46,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
