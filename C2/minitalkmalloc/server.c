@@ -12,17 +12,19 @@
 
 #include "minitalk.h"
 
-void	put_message(unsigned char *msg, size_t i)
+void	put_message(unsigned char **msg, size_t i)
 {
 	write(1, "\n", 1);
 	write(1, "==================== +=============+ ====================\n", 58);
 	write(1, "==================== |BEGIN MESSAGE| ====================\n", 58);
 	write(1, "==================== +=============+ ====================\n", 58);
-	write(1, msg, i);
+	write(1, *msg, i);
 	write(1, "====================  +===========+  ====================\n", 58);
 	write(1, "====================  |END MESSAGE|  ====================\n", 58);
 	write(1, "====================  +===========+  ====================\n", 58);
 	write(1, "\n", 1);
+	free(*msg);
+	*msg = NULL;
 }
 
 void	put_pid(int pid)
@@ -35,7 +37,7 @@ void	put_pid(int pid)
 	write(1, &c, 1);
 }
 
-void	handle_byte(int byte)
+int	handle_byte(int byte)
 {
 	static unsigned char	*msg = NULL;
 	static size_t			i = 0;
@@ -46,37 +48,43 @@ void	handle_byte(int byte)
 		len |= ((size_t) byte) << (8 * len_byte++);
 	else
 	{
+		if (len > MAX_SIZE)
+			return (write(2, "Error: Message too long.\n", 25) * 0 + 1);
 		if (!msg)
 			msg = malloc(len);
 		if (!msg)
-			exit(1);
+			return (write(2, "Error: Malloc failed\n", 21) * 0 + 1);
 		msg[i++] = byte;
 		if (i == len)
 		{
-			put_message(msg, i);
-			free(msg);
-			msg = NULL;
+			put_message(&msg, i);
 			i = 0;
 			len = 0;
 			len_byte = 0;
 		}
 	}
+	return (0);
 }
 
 void	handler(int sig, siginfo_t *info, void *context)
 {
-	static int				byte = 0;
-	static int				bit = 0;
+	static int	byte = 0;
+	static int	bit = 0;
 
 	(void) context;
 	if (sig == SIGUSR1)
-		byte |= (1 << bit);
-	bit++;
+		byte |= (1 << bit++);
+	else if (sig == SIGUSR2)
+		bit++;
 	if (bit == 8)
 	{
-		handle_byte(byte);
-		bit = 0;
+		if (handle_byte(byte))
+		{
+			kill(info->si_pid, SIGUSR2);
+			exit(1);
+		}
 		byte = 0;
+		bit = 0;
 	}
 	kill(info->si_pid, SIGUSR1);
 }
@@ -86,8 +94,8 @@ int	main(int argc, char **argv)
 	struct sigaction	sa;
 
 	if (argc != 1 || !argv)
-		if (write(2, "Error: Incorrect arguments\nUsage: ./server\n", 43) || 1)
-			return (1);
+		return (write(2, "Error: Incorrect arguments\n"
+				"Usage: ./server\n", 43) * 0 + 1);
 	write(1, "Server PID: ", 12);
 	put_pid(getpid());
 	write(1, "\n", 1);
