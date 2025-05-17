@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:14:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/14 19:05:29 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/17 12:18:28 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_uint(char *str)
 	return (len < 10 || (len < 11 && str[0] < '5' && to_uint(str) > 999999999));
 }
 
-int	all_uint(int argc, char **argv, t_philo *philo)
+int	all_uint(int argc, char **argv, t_table *table)
 {
 	int	i;
 
@@ -44,24 +44,26 @@ int	all_uint(int argc, char **argv, t_philo *philo)
 	while (i < argc)
 		if (!is_uint(argv[i++]))
 			return (0);
-	philo->number_of_philosophers = to_uint(argv[1]);
-	philo->time_to_die = to_uint(argv[2]);
-	philo->time_to_eat = to_uint(argv[3]);
-	philo->time_to_sleep = to_uint(argv[4]);
+	table->number_of_philosophers = to_uint(argv[1]);
+	table->time_to_die = to_uint(argv[2]);
+	table->time_to_eat = to_uint(argv[3]);
+	table->time_to_sleep = to_uint(argv[4]);
 	if (argc == 6)
-		philo->number_of_times_each_philosopher_must_eat = to_uint(argv[5]);
+		table->philosophers_must_eat = 1;
+	if (argc == 6)
+		table->number_of_times_each_philosopher_must_eat = to_uint(argv[5]);
 	else
-		philo->number_of_times_each_philosopher_must_eat = 0;
+		table->philosophers_must_eat = 0;
 	return (1);
 }
 
-t_errors	parse(int argc, char **argv, t_philo *philo)
+t_errors	parse(int argc, char **argv, t_table *table)
 {
 	if (argc < 5 || argc > 6 || !argv)
 		return (ARGC);
-	if (!all_uint(argc, argv, philo))
+	if (!all_uint(argc, argv, table))
 		return (FORMAT);
-	if (philo->number_of_philosophers == 0)
+	if (table->number_of_philosophers == 0)
 		return (PHILO);
 	return (OK);
 }

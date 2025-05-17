@@ -6,14 +6,16 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:40:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/14 19:15:17 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/17 12:20:08 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <pthread.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 //messages d'erreurs, d'usage
 # define MSG_ARGC "Error: Incorrect number of arguments."
@@ -31,15 +33,34 @@ typedef enum e_errors
 	PHILO
 }	t_errors;
 
+typedef struct s_fork
+{
+	unsigned int	id;
+	pthread_mutex_t	lock;
+}	t_fork;
+
 typedef struct s_philo
+{
+	struct s_philo	*prev;
+	t_fork			*left;
+	unsigned int	id;
+	pthread_t		thread;
+	int				dead;
+	t_fork			*right;
+	struct s_philo	*next;
+}	t_philo;
+
+typedef struct s_table
 {
 	unsigned int	number_of_philosophers;
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
+	int				philosophers_must_eat;
 	unsigned int	number_of_times_each_philosopher_must_eat;
-}	t_philo;
+	t_philo			*philos;
+}	t_table;
 
-t_errors	parse(int argc, char **argv, t_philo *philo);
+t_errors	parse(int argc, char **argv, t_table *table);
 
 #endif
