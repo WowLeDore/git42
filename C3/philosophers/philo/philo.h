@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:40:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/17 12:20:08 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:31:31 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define PHILO_H
 
 # include <pthread.h>
-# include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 //messages d'erreurs, d'usage
 # define MSG_ARGC "Error: Incorrect number of arguments."
