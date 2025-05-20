@@ -16,8 +16,9 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <sys/time.h>
 
-//messages d'erreurs, d'usage
 # define MSG_ARGC "Error: Incorrect number of arguments."
 # define MSG_FORMAT "Error: All arguments must be unsigned integers."
 # define MSG_PHILO "Error: There should be at least one philosopher."
@@ -48,6 +49,7 @@ typedef struct s_philo
 	int				dead;
 	t_fork			*right;
 	struct s_philo	*next;
+	struct s_table	*table;
 }	t_philo;
 
 typedef struct s_table
@@ -59,8 +61,12 @@ typedef struct s_table
 	int				philosophers_must_eat;
 	unsigned int	number_of_times_each_philosopher_must_eat;
 	t_philo			*philos;
+	pthread_mutex_t	lock;
+	int				start;
+	unsigned long	timer;
 }	t_table;
 
 t_errors	parse(int argc, char **argv, t_table *table);
+int			error(t_errors error);
 
 #endif

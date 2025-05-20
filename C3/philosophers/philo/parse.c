@@ -69,3 +69,21 @@ t_errors	parse(int argc, char **argv, t_table *table)
 		return (PHILO);
 	return (OK);
 }
+
+int	error(t_errors error)
+{
+	if (error == OK)
+		return (0);
+	if (error == ARGC)
+		write(2, MSG_ARGC, 37);
+	if (error == FORMAT)
+		write(2, MSG_FORMAT, 47);
+	if (error == PHILO)
+		write(2, MSG_PHILO, 48);
+	write(2, "\n", 1);
+	write(2, MSG_USAGE1, 40);
+	write(2, MSG_USAGE2, 43);
+	write(2, MSG_USAGE3, 44);
+	write(2, "\n", 1);
+	return (1);
+}
