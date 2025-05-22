@@ -6,50 +6,47 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:21:10 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/19 13:39:39 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:44:58 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-unsigned long	timestamp_ms(t_philo *philo)
+static unsigned long	get_time(t_philo *philo)
 {
-	struct timeval	tv;
+	struct timeval	time;
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000UL) + (tv.tv_usec / 1000) - philo->table->timer);
+	if (gettimeofday(&time, NULL) == -1)
+		return (-1);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000 - philo->table->timer);
 }
 
-void	odd_life(t_philo *philo)
-{
-	(void) philo;
-}
-
-void	even_life(t_philo *philo)
+void	life(t_philo *philo)
 {
 	while (1)
 	{
 		if (philo->id % 2)
 		{
 			pthread_mutex_lock(&philo->left->lock);
-			printf("%lu %u has taken a fork\n", timestamp_ms(philo), philo->id);
+			printf("%014lu %u has taken a fork\n", get_time(philo), philo->id);
 			pthread_mutex_lock(&philo->right->lock);
-			printf("%lu %u has taken a fork\n", timestamp_ms(philo), philo->id);
+			printf("%014lu %u has taken a fork\n", get_time(philo), philo->id);
 		}
 		else
 		{
 			pthread_mutex_lock(&philo->right->lock);
-			printf("%lu %u has taken a fork\n", timestamp_ms(philo), philo->id);
+			printf("%014lu %u has taken a fork\n", get_time(philo), philo->id);
 			pthread_mutex_lock(&philo->left->lock);
-			printf("%lu %u has taken a fork\n", timestamp_ms(philo), philo->id);
+			printf("%014lu %u has taken a fork\n", get_time(philo), philo->id);
 		}
-		printf("%lu %u is eating\n", timestamp_ms(philo), philo->id);
+		printf("%014lu %u is eating\n", get_time(philo), philo->id);
+		philo->meals++;
 		usleep(philo->table->time_to_eat * 1000);
 		pthread_mutex_unlock(&philo->left->lock);
 		pthread_mutex_unlock(&philo->right->lock);
-		printf("%lu %u is sleeping\n", timestamp_ms(philo), philo->id);
+		printf("%014lu %u is sleeping\n", get_time(philo), philo->id);
 		usleep(philo->table->time_to_sleep * 1000);
-		printf("%lu %u is thinking\n", timestamp_ms(philo), philo->id);
+		printf("%014lu %u is thinking\n", get_time(philo), philo->id);
 	}
 }
 
@@ -68,10 +65,8 @@ void	*live(void *p)
 		}
 		pthread_mutex_unlock(&philo->table->lock);
 	}
-	if (philo->table->number_of_philosophers % 2)
-		even_life(philo);
-	else
-		even_life(philo);
+	printf("%014lu %u is thinking\n", get_time(philo), philo->id);
+	life(philo);
 	return (NULL);
 }
 
@@ -104,12 +99,13 @@ t_philo	*born(t_philo *prev, t_fork *left, unsigned int id, t_table *table)
 		free(philo);
 		return (NULL);
 	}
-	philo->table = table;
+	philo->left = left;
+	philo->next = NULL;
+	philo->prev = prev;
 	philo->id = id;
 	philo->dead = 0;
-	philo->prev = prev;
-	philo->next = NULL;
-	philo->left = left;
+	philo->meals = 0;
+	philo->table = table;
 	if (pthread_create(&philo->thread, NULL, live, (void *)philo))
 	{
 		free(philo->right);
@@ -172,7 +168,7 @@ void	think(t_table *table)
 {
 	pthread_mutex_lock(&table->lock);
 	table->start = 1;
-	table->timer = timestamp_ms(table->philos);
+	table->timer = get_time(table->philos);
 	pthread_mutex_unlock(&table->lock);
 }
 

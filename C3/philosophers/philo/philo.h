@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:40:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/19 13:31:31 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:13:14 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,21 @@ typedef enum e_errors
 
 typedef struct s_fork
 {
-	unsigned int	id;
 	pthread_mutex_t	lock;
+	unsigned int	id;
 }	t_fork;
 
 typedef struct s_philo
 {
-	struct s_philo	*prev;
-	t_fork			*left;
-	unsigned int	id;
-	pthread_t		thread;
-	int				dead;
 	t_fork			*right;
+	t_fork			*left;
 	struct s_philo	*next;
+	struct s_philo	*prev;
+	unsigned int	id;
+	int				dead;
+	unsigned int	meals;
 	struct s_table	*table;
+	pthread_t		thread;
 }	t_philo;
 
 typedef struct s_table
@@ -60,10 +61,10 @@ typedef struct s_table
 	unsigned int	time_to_sleep;
 	int				philosophers_must_eat;
 	unsigned int	number_of_times_each_philosopher_must_eat;
-	t_philo			*philos;
 	pthread_mutex_t	lock;
 	int				start;
 	unsigned long	timer;
+	t_philo			*philos;
 }	t_table;
 
 t_errors	parse(int argc, char **argv, t_table *table);
