@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:14:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/19 11:36:22 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:48:33 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ t_errors	parse(int argc, char **argv, t_table *table)
 		return (FORMAT);
 	if (table->number_of_philosophers == 0)
 		return (PHILO);
+	if (pthread_mutex_init(&table->lock, NULL))
+		return (MUTEX);
+	table->ready = 0;
+	table->timer = 0;
 	return (OK);
 }
 
@@ -76,10 +80,12 @@ int	error(t_errors error)
 		return (0);
 	if (error == ARGC)
 		write(2, MSG_ARGC, 37);
-	if (error == FORMAT)
+	else if (error == FORMAT)
 		write(2, MSG_FORMAT, 47);
-	if (error == PHILO)
+	else if (error == PHILO)
 		write(2, MSG_PHILO, 48);
+	else if (error == MUTEX)
+		return ((write(2, MSG_MUTEX, 45) + write(1, "\n", 1)) * 0 + 1);
 	write(2, "\n", 1);
 	write(2, MSG_USAGE1, 40);
 	write(2, MSG_USAGE2, 43);

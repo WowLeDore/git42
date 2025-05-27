@@ -6,14 +6,14 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 17:06:27 by mguillot          #+#    #+#              #
-#    Updated: 2025/05/19 13:32:00 by mguillot         ###   ########.fr        #
+#    Updated: 2025/05/27 13:39:31 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 HDRS = philo.h
 
-SRCS = philo.c parse.c
+SRCS = philo.c parse.c init.c live.c
 OBJS = $(SRCS:.c=.o)
 
 FLGS = -Wall -Wextra -Werror
@@ -25,6 +25,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(FLGS) $(OBJS) -o $(NAME)
+
+gdb:
+	$(CC) $(FLGS) -g *.c -o $(NAME)
 
 %.o: %.c $(HDRS)
 	$(CC) $(FLGS) -c $< -o $@
