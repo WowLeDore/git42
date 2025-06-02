@@ -6,18 +6,11 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 13:21:58 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/27 15:09:18 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:43:41 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	verif(int d)
-{
-	if (d == 0)
-		return (printf(""));
-	return (0);
-}
 
 static unsigned long	get_time(t_philo *philo)
 {
@@ -62,8 +55,6 @@ void	*live(void *p)
 	philo->table->ready++;
 	pthread_mutex_init(&philo->fork, NULL);
 	pthread_mutex_unlock(&philo->table->lock);
-	verif(pthread_mutex_lock(&philo->fork));
-	verif(pthread_mutex_unlock(&philo->fork));
 	while (1)
 	{
 		pthread_mutex_lock(&philo->table->lock);
