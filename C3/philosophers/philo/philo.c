@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:21:10 by mguillot          #+#    #+#             */
-/*   Updated: 2025/06/03 02:01:32 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/03 17:41:34 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,52 @@ static unsigned long	get_time(t_philo *philo)
 {
 	struct timeval	time;
 
-	if (gettimeofday(&time, NULL) == -1)
-		return (-1);
+	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000 - philo->table->timer);
+}
+
+void	dodo(t_philo *philo, unsigned long time)
+{
+	unsigned long	start;
+
+	start = get_time(philo);
+	while ((get_time(philo) - start) < time)
+		usleep(20);
 }
 
 void	print(t_philo *philo, char *str)
 {
+	pthread_mutex_lock(&philo->table->print);
 	printf("%014lu %u %s\n", get_time(philo), philo->id + 1, str);
+	pthread_mutex_unlock(&philo->table->print);
 }
 
 void	*think(void *p)
 {
 	t_philo			*philo;
-	unsigned int	nb;
+	unsigned int	right;
 
 	philo = (t_philo *)p;
-	nb = philo->table->number_of_philosophers;
+	right = (philo->id + 1) % philo->table->number_of_philosophers;
 	print(philo, "is thinking");
 	while (1)
 	{
 		if (philo->id % 2)
-			pthread_mutex_lock(&philo->table->mutexes[philo->id - 1]);
-		else
 			pthread_mutex_lock(&philo->table->mutexes[philo->id]);
+		else
+			pthread_mutex_lock(&philo->table->mutexes[right]);
 		print(philo, "has taken a fork");
 		if (philo->id % 2)
-			pthread_mutex_lock(&philo->table->mutexes[philo->id]);
-		else if (philo->id == 0)
-			pthread_mutex_lock(&philo->table->mutexes[nb - 1]);
+			pthread_mutex_lock(&philo->table->mutexes[right]);
 		else
-			pthread_mutex_lock(&philo->table->mutexes[philo->id - 1]);
+			pthread_mutex_lock(&philo->table->mutexes[philo->id]);
 		print(philo, "has taken a fork");
 		print(philo, "is eating");
-		usleep(philo->table->time_to_eat * 1000);
-		if (philo->id == 0)
-			pthread_mutex_unlock(&philo->table->mutexes[nb - 1]);
-		else
-			pthread_mutex_unlock(&philo->table->mutexes[philo->id - 1]);
+		dodo(philo, philo->table->time_to_eat);
+		pthread_mutex_unlock(&philo->table->mutexes[right]);
 		pthread_mutex_unlock(&philo->table->mutexes[philo->id]);
 		print(philo, "is sleeping");
-		usleep(philo->table->time_to_sleep * 1000);
+		dodo(philo, philo->table->time_to_sleep);
 		print(philo, "is thinking");
 	}
 	return (p);
@@ -76,6 +81,7 @@ t_errors	free_mutex(t_table *table, unsigned int nb)
 	free(table->mutexes);
 	if (err)
 		return (MUTEX);
+	pthread_mutex_destroy(&table->print);
 	return (OK);
 }
 
@@ -88,7 +94,7 @@ t_errors	free_threads(t_table *table, unsigned int nb)
 	if (nb != table->number_of_philosophers)
 		err = 1;
 	i = 0;
-	while (i < nb)
+	while (i < nb && i < table->number_of_philosophers)
 		pthread_join(table->threads[i++], NULL);
 	free(table->threads);
 	if (err)
@@ -106,9 +112,9 @@ t_errors	live(t_table *table)
 	{
 		if (pthread_create(&table->threads[i], NULL, think, &table->philos[i]))
 		{
-			free_threads(table, i);
+			free_mutex(table, table->number_of_philosophers);
 			free(table->philos);
-			return (free_mutex(table, table->number_of_philosophers + 1));
+			return (free_threads(table, i));
 		}
 		i++;
 	}
@@ -132,6 +138,12 @@ t_errors	sit(t_table *table)
 		}
 		i++;
 	}
+	if (pthread_mutex_init(&table->print, NULL))
+	{
+		free_threads(table, 0);
+		free(table->philos);
+		return (free_mutex(table, table->number_of_philosophers + 1));
+	}
 	return (live(table));
 }
 
@@ -145,16 +157,17 @@ t_errors	alloc(t_table *table)
 		return (ALLOC);
 	table->mutexes = malloc(sizeof(pthread_mutex_t) * nb);
 	if (!table->mutexes)
+	{
 		free(table->threads);
-	if (!table->mutexes)
 		return (ALLOC);
+	}
 	table->philos = malloc(sizeof(t_philo) * nb);
 	if (!table->philos)
+	{
 		free(table->threads);
-	if (!table->philos)
 		free(table->mutexes);
-	if (!table->philos)
 		return (ALLOC);
+	}
 	return (sit(table));
 }
 

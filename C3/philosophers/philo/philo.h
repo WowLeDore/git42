@@ -58,6 +58,7 @@ typedef struct s_table
 	pthread_t		*threads;
 	pthread_mutex_t	*mutexes;
 	unsigned long	timer;
+	pthread_mutex_t	print;
 }	t_table;
 
 t_errors	parse(int argc, char **argv, t_table *table);
