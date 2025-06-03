@@ -13,7 +13,7 @@
 NAME = philo
 HDRS = philo.h
 
-SRCS = philo.c parse.c
+SRCS = philo.c parse.c init.c live.c
 OBJS = $(SRCS:.c=.o)
 
 FLGS = -Wall -Wextra -Werror

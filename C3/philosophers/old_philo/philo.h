@@ -22,9 +22,7 @@
 # define MSG_ARGC "Error: Incorrect number of arguments."
 # define MSG_FORMAT "Error: All arguments must be unsigned integers."
 # define MSG_PHILO "Error: There should be at least one philosopher."
-# define MSG_ALLOC "Error: Memory allocation failed.\n"
-# define MSG_MUTEX "Error: A mutex was not initialized correctly.\n"
-# define MSG_THREAD "Error: A thread was not initialized correctly.\n"
+# define MSG_MUTEX "Error: A mutex was not initialized correctly."
 # define MSG_USAGE1 "Usage: ./philo <number_of_philosophers> "
 # define MSG_USAGE2 "<time_to_die> <time_to_eat> <time_to_sleep>"
 # define MSG_USAGE3 " [number_of_times_each_philosopher_must_eat]"
@@ -35,15 +33,19 @@ typedef enum e_errors
 	ARGC,
 	FORMAT,
 	PHILO,
-	ALLOC,
-	MUTEX,
-	THREAD
+	MUTEX
 }	t_errors;
 
 typedef struct s_philo
 {
+	pthread_mutex_t	fork;
+	struct s_philo	*next;
+	struct s_philo	*prev;
 	unsigned int	id;
+	int				dead;
+	unsigned int	meals;
 	struct s_table	*table;
+	pthread_t		thread;
 }	t_philo;
 
 typedef struct s_table
@@ -54,13 +56,18 @@ typedef struct s_table
 	unsigned int	time_to_sleep;
 	int				philosophers_must_eat;
 	unsigned int	number_of_times_each_philosopher_must_eat;
-	t_philo			*philos;
-	pthread_t		*threads;
-	pthread_mutex_t	*mutexes;
+	pthread_mutex_t	lock;
+	unsigned int	ready;
 	unsigned long	timer;
+	t_philo			*philos;
 }	t_table;
 
 t_errors	parse(int argc, char **argv, t_table *table);
 int			error(t_errors error);
+
+int			init(t_table *table);
+int			free_all(t_table *table, unsigned int thread);
+
+int			think(t_table *table);
 
 #endif

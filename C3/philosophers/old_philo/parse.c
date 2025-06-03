@@ -67,6 +67,9 @@ t_errors	parse(int argc, char **argv, t_table *table)
 		return (FORMAT);
 	if (table->number_of_philosophers == 0)
 		return (PHILO);
+	if (pthread_mutex_init(&table->lock, NULL))
+		return (MUTEX);
+	table->ready = 0;
 	table->timer = 0;
 	return (OK);
 }
@@ -81,12 +84,8 @@ int	error(t_errors error)
 		write(2, MSG_FORMAT, 47);
 	else if (error == PHILO)
 		write(2, MSG_PHILO, 48);
-	else if (error == ALLOC)
-		return (1 + 0 * write(2, MSG_ALLOC, 33));
 	else if (error == MUTEX)
-		return (1 + 0 * write(2, MSG_MUTEX, 46));
-	else if (error == THREAD)
-		return (1 + 0 * write(2, MSG_THREAD, 47));
+		return ((write(2, MSG_MUTEX, 45) + write(1, "\n", 1)) * 0 + 1);
 	write(2, "\n", 1);
 	write(2, MSG_USAGE1, 40);
 	write(2, MSG_USAGE2, 43);
