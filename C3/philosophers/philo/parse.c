@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:14:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/05/27 14:48:33 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/09 11:47:17 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	all_uint(int argc, char **argv, t_table *table)
 	table->time_to_die = to_uint(argv[2]);
 	table->time_to_eat = to_uint(argv[3]);
 	table->time_to_sleep = to_uint(argv[4]);
+	table->dead = 0;
 	if (argc == 6)
 		table->philosophers_must_eat = 1;
 	else
@@ -67,7 +68,6 @@ t_errors	parse(int argc, char **argv, t_table *table)
 		return (FORMAT);
 	if (table->number_of_philosophers == 0)
 		return (PHILO);
-	table->timer = 0;
 	return (OK);
 }
 
@@ -87,6 +87,8 @@ int	error(t_errors error)
 		return (1 + 0 * write(2, MSG_MUTEX, 46));
 	else if (error == THREAD)
 		return (1 + 0 * write(2, MSG_THREAD, 47));
+	else if (error == TIME)
+		return (1 + 0 * write(2, MSG_TIME, 42));
 	write(2, "\n", 1);
 	write(2, MSG_USAGE1, 40);
 	write(2, MSG_USAGE2, 43);
