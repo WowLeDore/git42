@@ -6,66 +6,11 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:21:10 by mguillot          #+#    #+#             */
-/*   Updated: 2025/06/03 17:41:34 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/09 11:49:34 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static unsigned long	get_time(t_philo *philo)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000 - philo->table->timer);
-}
-
-void	dodo(t_philo *philo, unsigned long time)
-{
-	unsigned long	start;
-
-	start = get_time(philo);
-	while ((get_time(philo) - start) < time)
-		usleep(20);
-}
-
-void	print(t_philo *philo, char *str)
-{
-	pthread_mutex_lock(&philo->table->print);
-	printf("%014lu %u %s\n", get_time(philo), philo->id + 1, str);
-	pthread_mutex_unlock(&philo->table->print);
-}
-
-void	*think(void *p)
-{
-	t_philo			*philo;
-	unsigned int	right;
-
-	philo = (t_philo *)p;
-	right = (philo->id + 1) % philo->table->number_of_philosophers;
-	print(philo, "is thinking");
-	while (1)
-	{
-		if (philo->id % 2)
-			pthread_mutex_lock(&philo->table->mutexes[philo->id]);
-		else
-			pthread_mutex_lock(&philo->table->mutexes[right]);
-		print(philo, "has taken a fork");
-		if (philo->id % 2)
-			pthread_mutex_lock(&philo->table->mutexes[right]);
-		else
-			pthread_mutex_lock(&philo->table->mutexes[philo->id]);
-		print(philo, "has taken a fork");
-		print(philo, "is eating");
-		dodo(philo, philo->table->time_to_eat);
-		pthread_mutex_unlock(&philo->table->mutexes[right]);
-		pthread_mutex_unlock(&philo->table->mutexes[philo->id]);
-		print(philo, "is sleeping");
-		dodo(philo, philo->table->time_to_sleep);
-		print(philo, "is thinking");
-	}
-	return (p);
-}
 
 t_errors	free_mutex(t_table *table, unsigned int nb)
 {
@@ -102,12 +47,106 @@ t_errors	free_threads(t_table *table, unsigned int nb)
 	return (OK);
 }
 
+unsigned long long	get_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL))
+		return (0);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	dodo(t_philo *philo, unsigned long time)
+{
+	unsigned long	start;
+
+	start = get_time();
+	if (!start)
+	{
+		free_threads(philo->table, philo->table->number_of_philosophers);
+		free(philo->table->philos);
+		free_mutex(philo->table, philo->table->number_of_philosophers);
+		return ;
+	}
+	while ((get_time() - start) < time)
+		usleep(50);
+}
+
+void	print(t_philo *philo, char *str)
+{
+	unsigned long long	time;
+
+	pthread_mutex_lock(&philo->table->print);
+	time = get_time() - philo->table->timer;
+	if (!time)
+	{
+		free_threads(philo->table, philo->table->number_of_philosophers);
+		free(philo->table->philos);
+		free_mutex(philo->table, philo->table->number_of_philosophers);
+		return ;
+	}
+	if (!philo->table->dead)
+		printf("%014llu %u %s\n", time, philo->id, str);
+	pthread_mutex_unlock(&philo->table->print);
+}
+
+void	*think(void *p)
+{
+	t_philo			*philo;
+	unsigned int	right;
+
+	philo = (t_philo *)p;
+	right = (philo->id + 1) % philo->table->number_of_philosophers;
+	print(philo, "is thinking");
+	while (!philo->table->dead)
+	{
+		if (philo->id % 2)
+			pthread_mutex_lock(&philo->table->mutexes[philo->id]);
+		else
+			pthread_mutex_lock(&philo->table->mutexes[right]);
+		if (get_time() >= philo->dead_time)
+		{
+			print(philo, "died");
+			philo->table->dead = 1;
+			return (p);
+		}
+		print(philo, "has taken a fork");
+		if (philo->id % 2)
+			pthread_mutex_lock(&philo->table->mutexes[right]);
+		else
+			pthread_mutex_lock(&philo->table->mutexes[philo->id]);
+		if (get_time() >= philo->dead_time)
+		{
+			philo->table->dead = 1;
+			print(philo, "died");
+			return (p);
+		}
+		print(philo, "has taken a fork");
+		print(philo, "is eating");
+		philo->dead_time = get_time() + philo->table->time_to_die;
+		dodo(philo, philo->table->time_to_eat);
+		pthread_mutex_unlock(&philo->table->mutexes[right]);
+		pthread_mutex_unlock(&philo->table->mutexes[philo->id]);
+		print(philo, "is sleeping");
+		dodo(philo, philo->table->time_to_sleep);
+		print(philo, "is thinking");
+	}
+	return (p);
+}
+
 t_errors	live(t_table *table)
 {
 	unsigned int	i;
 
 	i = 0;
-	table->timer = get_time(table->philos);
+	table->timer = get_time();
+	if (!table->timer)
+	{
+		free(table->threads);
+		free(table->philos);
+		free_mutex(table, table->number_of_philosophers);
+		return (TIME);
+	}
 	while (i < table->number_of_philosophers)
 	{
 		if (pthread_create(&table->threads[i], NULL, think, &table->philos[i]))
@@ -130,6 +169,8 @@ t_errors	sit(t_table *table)
 	{
 		table->philos[i].table = table;
 		table->philos[i].id = i;
+		table->philos[i].dead = 0;
+		table->philos[i].dead_time = get_time() + table->time_to_die;
 		if (pthread_mutex_init(&table->mutexes[i], NULL))
 		{
 			free_threads(table, 0);
