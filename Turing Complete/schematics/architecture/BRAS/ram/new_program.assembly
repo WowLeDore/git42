@@ -1,0 +1,10 @@
+i1 32 into b
+label loop1
+store in a _
+add|i2 a 1 a
+jle a b loop1
+and|i1 0 into a
+label loop2
+load _ a out
+add|i2 a 1 a
+jle a b loop2
