@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 17:06:27 by mguillot          #+#    #+#              #
-#    Updated: 2025/06/09 11:51:22 by mguillot         ###   ########.fr        #
+#    Updated: 2025/06/10 13:50:21 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRCS = philo.c parse.c
 OBJS = $(SRCS:.c=.o)
 
 FLGS = -Wall -Wextra -Werror
-#FLGS = -Wall -Wextra -Werror -fsanitize=address
 
 CC = cc
 RM = rm -f

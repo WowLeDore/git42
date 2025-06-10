@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:14:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/06/09 11:47:17 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:13:24 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	all_uint(int argc, char **argv, t_table *table)
 	if (argc == 6)
 		table->philosophers_must_eat = 1;
 	else
-		table->number_of_times_each_philosopher_must_eat = 0;
+		table->number_of_times_must_eat = 0;
 	if (argc == 6)
-		table->number_of_times_each_philosopher_must_eat = to_uint(argv[5]);
+		table->number_of_times_must_eat = to_uint(argv[5]);
 	else
 		table->philosophers_must_eat = 0;
 	return (1);

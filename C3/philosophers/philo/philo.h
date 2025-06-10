@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:40:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/06/09 11:46:58 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:13:23 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct s_philo
 {
 	unsigned int		id;
 	struct s_table		*table;
-	int					dead;
 	unsigned long long	dead_time;
+	unsigned long long	meals;
 }	t_philo;
 
 typedef struct s_table
@@ -58,13 +58,15 @@ typedef struct s_table
 	unsigned int		time_to_eat;
 	unsigned int		time_to_sleep;
 	int					philosophers_must_eat;
-	unsigned int		number_of_times_each_philosopher_must_eat;
+	unsigned int		number_of_times_must_eat;
 	t_philo				*philos;
 	pthread_t			*threads;
 	pthread_mutex_t		*mutexes;
 	unsigned long long	timer;
 	pthread_mutex_t		print;
 	int					dead;
+	pthread_mutex_t		dead_mutex;
+	pthread_mutex_t		meals_mutex;
 }	t_table;
 
 t_errors	parse(int argc, char **argv, t_table *table);
