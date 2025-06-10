@@ -1,9 +1,0 @@
-i1 15 _ b
-label loop
-store in a _
-i2 a 1 a
-jle a b loop
-i1|and 0 _ a
-label loop1
-load _ a c
-store|i1 0 a
