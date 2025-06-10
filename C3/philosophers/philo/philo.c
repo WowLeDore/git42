@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:56:57 by mguillot          #+#    #+#             */
-/*   Updated: 2025/06/10 16:20:21 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:15:44 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -70,7 +70,7 @@ void	dodo(t_philo *philo, unsigned long time)
 		return ;
 	}
 	while ((timer() - start) < time)
-		usleep(200);
+		usleep(500);
 }
 
 void	print(t_philo *philo, char *str)
