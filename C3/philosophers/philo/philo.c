@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:56:57 by mguillot          #+#    #+#             */
-/*   Updated: 2025/06/10 20:15:44 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:55:59 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -60,6 +60,7 @@ unsigned long long	timer(void)
 void	dodo(t_philo *philo, unsigned long time)
 {
 	unsigned long	start;
+	int				dead;
 
 	start = timer();
 	if (!start)
@@ -70,10 +71,17 @@ void	dodo(t_philo *philo, unsigned long time)
 		return ;
 	}
 	while ((timer() - start) < time)
-		usleep(500);
+	{
+		pthread_mutex_lock(&philo->table->dead_mutex);
+		dead = philo->table->dead;
+		pthread_mutex_unlock(&philo->table->dead_mutex);
+		if (dead)
+			return ;
+		usleep(100);
+	}
 }
 
-void	print(t_philo *philo, char *str)
+void	*print(t_philo *philo, char *str)
 {
 	int	dead;
 
@@ -81,29 +89,11 @@ void	print(t_philo *philo, char *str)
 	dead = philo->table->dead;
 	pthread_mutex_unlock(&philo->table->dead_mutex);
 	if (dead)
-		return ;
+		return (NULL);
 	pthread_mutex_lock(&philo->table->print);
 	printf("%09llu %u %s\n", timer() - philo->table->timer, philo->id + 1, str);
 	pthread_mutex_unlock(&philo->table->print);
-}
-
-int	check_finish(t_table *table)
-{
-	int				finish;
-	unsigned int	i;
-
-	if (!table->philosophers_must_eat)
-		return (0);
-	finish = 1;
-	i = 0;
-	pthread_mutex_lock(&table->meals_mutex);
-	while (finish && i < table->number_of_philosophers)
-	{
-		finish &= table->philos[i].meals >= table->number_of_times_must_eat;
-		i++;
-	}
-	pthread_mutex_unlock(&table->meals_mutex);
-	return (finish);
+	return (philo);
 }
 
 void	*handle_death(t_philo *philo, unsigned int f1, unsigned int f2)
@@ -122,58 +112,71 @@ void	*handle_death(t_philo *philo, unsigned int f1, unsigned int f2)
 	return (philo);
 }
 
-void	*fork_logic(t_philo *philo)
+void	swap(unsigned int *first_fork, unsigned int *last_fork, t_philo *philo)
 {
-	unsigned int	first_fork;
-	unsigned int	last_fork;
+	unsigned int	tmp;
 
-	first_fork = (philo->id % 2 == 0) * philo->id + (philo->id % 2 == 1)
-		* ((philo->id + 1) % philo->table->number_of_philosophers);
-	last_fork = (philo->id % 2 == 1) * philo->id + (philo->id % 2 == 0)
-		* ((philo->id + 1) % philo->table->number_of_philosophers);
-	pthread_mutex_lock(&philo->table->mutexes[first_fork]);
+	*first_fork = philo->id;
+	*last_fork = (philo->id + 1) % philo->table->number_of_philosophers;
+	tmp = *first_fork;
+	if (philo->id % 2)
+	{
+		*first_fork = *last_fork;
+		*last_fork = tmp;
+	}
+}
+
+void	*fork_logic(t_philo *philo, unsigned int ff, unsigned int lf)
+{
+	print(philo, "is thinking");
+	pthread_mutex_lock(&philo->table->mutexes[ff]);
+	print(philo, "has taken a fork");
+	if (ff == lf)
+		dodo(philo, philo->table->time_to_die);
+	if (timer() >= philo->dead_time)
+		return (handle_death(philo, ff, ff));
+	pthread_mutex_lock(&philo->table->mutexes[lf]);
 	print(philo, "has taken a fork");
 	if (timer() >= philo->dead_time)
-		return (handle_death(philo, first_fork, first_fork));
-	if (first_fork != last_fork)
-		pthread_mutex_lock(&philo->table->mutexes[last_fork]);
-	if (first_fork != last_fork)
-		print(philo, "has taken a fork");
-	while (first_fork == last_fork && timer() < philo->dead_time)
-		usleep(200);
-	if (timer() >= philo->dead_time)
-		return (handle_death(philo, first_fork, last_fork));
+		return (handle_death(philo, ff, lf));
 	print(philo, "is eating");
 	philo->dead_time = timer() + philo->table->time_to_die;
 	dodo(philo, philo->table->time_to_eat);
-	pthread_mutex_unlock(&philo->table->mutexes[first_fork]);
-	pthread_mutex_unlock(&philo->table->mutexes[last_fork]);
+	pthread_mutex_unlock(&philo->table->mutexes[ff]);
+	pthread_mutex_unlock(&philo->table->mutexes[lf]);
+	pthread_mutex_lock(&philo->table->meals_mutex);
+	philo->meals++;
+	pthread_mutex_unlock(&philo->table->meals_mutex);
+	print(philo, "is sleeping");
+	dodo(philo, philo->table->time_to_sleep);
+	if (philo->meals >= philo->table->number_of_times_must_eat)
+		return (philo);
 	return (NULL);
 }
 
 void	*think(void *p)
 {
 	t_philo			*philo;
-	int				finish;
+	unsigned int	first_fork;
+	unsigned int	last_fork;
+	int				dead;
 
 	philo = (t_philo *)p;
+	swap(&first_fork, &last_fork, philo);
+	print(philo, "is thinking");
 	while (1)
 	{
 		pthread_mutex_lock(&philo->table->dead_mutex);
-		finish = (philo->table->dead || check_finish(philo->table));
+		dead = philo->table->dead;
 		pthread_mutex_unlock(&philo->table->dead_mutex);
-		if (finish)
-			break ;
-		print(philo, "is thinking");
-		if (fork_logic(philo))
+		if (dead || philo->meals >= philo->table->number_of_times_must_eat)
 			return (p);
-		pthread_mutex_lock(&philo->table->meals_mutex);
-		philo->meals++;
-		pthread_mutex_unlock(&philo->table->meals_mutex);
-		print(philo, "is sleeping");
-		dodo(philo, philo->table->time_to_sleep);
+		if (philo->id != (philo->meals % philo->table->number_of_philosophers))
+			usleep(500);
+		if (fork_logic(philo, first_fork, last_fork))
+			return (print(philo, "is thinking"));
 	}
-	return (philo);
+	return (NULL);
 }
 
 t_errors	live(t_table *table)

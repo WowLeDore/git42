@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:40:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/06/10 15:13:23 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:38:02 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_table
 	unsigned int		time_to_die;
 	unsigned int		time_to_eat;
 	unsigned int		time_to_sleep;
-	int					philosophers_must_eat;
 	unsigned int		number_of_times_must_eat;
 	t_philo				*philos;
 	pthread_t			*threads;
