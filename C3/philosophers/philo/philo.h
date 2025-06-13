@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:40:43 by mguillot          #+#    #+#             */
-/*   Updated: 2025/06/13 12:38:02 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/06/13 13:45:24 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,15 @@ typedef struct s_table
 	pthread_mutex_t		meals_mutex;
 }	t_table;
 
-t_errors	parse(int argc, char **argv, t_table *table);
-int			error(t_errors error);
+t_errors			parse(int argc, char **argv, t_table *table);
+int					error(t_errors error);
+
+t_errors			free_mutex(t_table *table, unsigned int nb);
+t_errors			free_threads(t_table *table, unsigned int nb);
+unsigned long long	timer(void);
+void				dodo(t_philo *philo, unsigned long time);
+void				*print(t_philo *philo, char *str);
+
+void				*think(void *p);
 
 #endif
