@@ -6,81 +6,122 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:01:56 by pbona             #+#    #+#             */
-/*   Updated: 2025/06/29 22:56:43 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:23:53 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	free_all(char *input, t_shell shell)
+void	frexit(char *err, t_shell *shell)
 {
-	if (shell.line.tokens)
-		free(shell.line.tokens);
-	if (input)
-		free(input);
-	exit(1);
-}
+	t_token_list	*tmp;
 
-const char	*token_type_to_str(t_token_type type)
-{
-	if (type == TOK_EMPTY) return "TOK_EMPTY";
-	if (type == TOK_SINGLE_QUOTE) return "TOK_SINGLE_QUOTE";
-	if (type == TOK_DOUBLE_QUOTE) return "TOK_DOUBLE_QUOTE";
-	if (type == TOK_REDIRE_INPUT) return "TOK_REDIRE_INPUT";
-	if (type == TOK_REDIRE_OUTPUT) return "TOK_REDIRE_OUTPUT";
-	if (type == TOK_READ_DELIMITER) return "TOK_READ_DELIMITER";
-	if (type == TOK_REDIRE_OUTPUT_APPEND) return "TOK_REDIRE_OUTPUT_APPEND";
-	if (type == TOK_PIPE) return "TOK_PIPE";
-	if (type == TOK_ENV_VAR) return "TOK_ENV_VAR";
-	if (type == TOK_LAST_EXIT) return "TOK_LAST_EXIT";
-	if (type == TOK_WORD) return "TOK_WORD";
-	return "UNKNOWN";
-}
-
-void	print_token_list(t_token_list *lst)
-{
-	int	i = 0;
-
-	printf("---- TOKEN LIST DEBUG ----\n");
-	while (lst)
+	if (shell)
 	{
-		printf("Token %d:\n", i++);
-		printf("  Type      : %s\n", token_type_to_str(lst->token));
-		printf("  Word      : \"%.*s\"\n", lst->word_size, lst->word);
-		printf("  Word Size : %d\n", lst->word_size);
-		printf("  Prev      : %p\n", (void *)lst->prev);
-		printf("  Curr      : %p\n", (void *)lst);
-		printf("  Next      : %p\n\n", (void *)lst->next);
-		lst = lst->next;
+		if (err)
+			free(shell->input);
+		while (shell->tokens)
+		{
+			tmp = shell->tokens->next;
+			free(shell->tokens);
+			shell->tokens = tmp;
+		}
+		if (err)
+			free(shell);
 	}
-	printf("--------------------------\n");
+	if (err)
+		write(2, err, ft_strlen(err));
+	if (err)
+		write(2, "\n", 1);
+	if (err)
+		exit(1);
 }
 
-
-void	minishell(void)
+void	print_t(t_token_list *tokens)
 {
-	char			*input;
-	static t_shell	shell;
+	char	*type;
 
-	input = readline("mSh:~# ");
-	while (input)
+	while (tokens)
 	{
-		shell.line.tokens = lex(input);
-		if (!shell.line.tokens)
-			free_all(input, shell);
-		//print_token_list(shell.line.tokens);
-		free(input);
-		input = readline("mSh:~# ");
+		if (tokens->type == T_WORD)
+			type = "Word type token";
+		else if (tokens->type == T_XWORD)
+			type = "Xword type token";
+		else if (tokens->type == T_ALL)
+			type = "All type token";
+		else if (tokens->type == T_VAR)
+			type = "Var type token";
+		else if (tokens->type == T_VAL)
+			type = "Val type token";
+		else if (tokens->type == T_SYM)
+			type = "Symbol type token";
+		else
+			type = "Other type token";
+		printf("id : |%-14p|, next_id : |%-14p|, size : |%-2ld|, type : |%-17s|"
+			", group : |%-2ld|, word : |%.*s|\n", tokens, tokens->next,
+			tokens->size, type, tokens->group, (int)tokens->size, tokens->word);
+		tokens = tokens->next;
 	}
-	printf("%s\n", "exit");
+}
+
+void	print_a(t_tree *ast, size_t level)
+{
+	const char			*type;
+
+	if (!ast)
+		return ;
+	type = (char *[]){[N_PIPE] = "Pipe node", [N_IN] = "In node",
+	[N_OUT] = "Out node", [N_APPEND] = "Append node",
+	[N_HEREDOC] = "Heredoc node", [N_TOKEN] = "Token node"}[ast->type];
+	printf("%*s┌─[ AST Node @ %p ]\n%*s│ Type   : %-13s\n%*s│ Depth  : "
+		"%ld\n%*s│ Tokens :\n%*s", (int) level * 2, "", (void *)ast,
+		(int) level * 2, "", type, (int) level * 2, "", (long)level,
+		(int) level * 2, "", (int) level * 2, "");
+	print_t(ast->node);
+	printf("\n");
+	if (ast->left)
+		printf("%*s│\n%*s├─ Left  of %p:\n%*s", (int) level * 2, "",
+			(int) level * 2, "", (void *) ast, (int) level * 2, "");
+	if (ast->left)
+		print_a(ast->left, level + 1);
+	if (ast->right)
+		printf("%*s│\n%*s└─ Right of %p:\n%*s", (int) level * 2, "",
+			(int) level * 2, "", (void *) ast, (int) level * 2, "");
+	if (ast->right)
+		print_a(ast->right, level + 1);
+}
+
+void	minishell(char **env)
+{
+	t_shell	*shell;
+
+	shell = malloc(sizeof(t_shell));
+	if (!shell)
+		frexit("Error in minishell", NULL);
+	shell->env = env;
+	shell->input = readline("mSh:~# ");
+	shell->tokens = NULL;
+	shell->ast = NULL;
+	shell->value = 0;
+	while (shell->input)
+	{
+		lexer(shell);
+		parse(shell);
+		free(shell->input);
+		shell->input = readline("mSh:~# ");
+		frexit(NULL, shell);
+		shell->tokens = NULL;
+	}
+	free(shell);
+	printf("exit\n");
 	exit(0);
 }
 
-int	main(int ac, char *av[])
+int	main(int ac, char *av[], char *env[])
 {
 	(void) av;
 	if (ac != 1)
 		return (0);
-	minishell();
+	minishell(env);
 	return (0);
 }

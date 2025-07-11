@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 18:35:44 by pbona             #+#    #+#              #
-#    Updated: 2025/06/29 19:58:27 by mguillot         ###   ########.fr        #
+#    Updated: 2025/07/11 10:47:00 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,10 @@ DIR_SRCS = srcs
 SRCS = \
 	$(DIR_SRCS)/main.c \
 	$(DIR_SRCS)/lexer.c \
+	$(DIR_SRCS)/lexer_quotes.c \
+	$(DIR_SRCS)/lexer_expand.c \
+	$(DIR_SRCS)/lexer_symbols.c \
+	$(DIR_SRCS)/parser.c \
 	
 OBJS = $(SRCS:.c=.o)
 

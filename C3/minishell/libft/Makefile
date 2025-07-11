@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pbona <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/08 14:10:13 by pbona             #+#    #+#              #
-#    Updated: 2025/04/25 15:54:12 by pbona            ###   ########.fr        #
+#    Updated: 2025/07/07 19:07:11 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS = \
 	$(DIR_CONVERSION)/ft_atoi.c $(DIR_CONVERSION)/ft_itoa.c \
 	$(DIR_GNL)/get_next_line_utils.c $(DIR_GNL)/get_next_line.c \
 	$(DIR_LIST)/ft_lstadd_back.c $(DIR_LIST)/ft_lstadd_front.c $(DIR_LIST)/ft_lstclear.c $(DIR_LIST)/ft_lstdelone.c $(DIR_LIST)/ft_lstiter.c $(DIR_LIST)/ft_lstlast.c $(DIR_LIST)/ft_lstnew.c $(DIR_LIST)/ft_lstsize.c \
-	$(DIR_MEMORY)/ft_bzero.c $(DIR_MEMORY)/ft_calloc.c $(DIR_MEMORY)/ft_memchr.c $(DIR_MEMORY)/ft_memcmp.c $(DIR_MEMORY)/ft_memcpy.c $(DIR_MEMORY)/ft_memmove.c $(DIR_MEMORY)/ft_memset.c \
+	$(DIR_MEMORY)/ft_bzero.c $(DIR_MEMORY)/ft_calloc.c $(DIR_MEMORY)/ft_memchr.c $(DIR_MEMORY)/ft_memrchr.c $(DIR_MEMORY)/ft_memcmp.c $(DIR_MEMORY)/ft_memcpy.c $(DIR_MEMORY)/ft_memmove.c $(DIR_MEMORY)/ft_memset.c \
 	$(DIR_OUTPUT)/ft_putchar_fd.c $(DIR_OUTPUT)/ft_putendl_fd.c $(DIR_OUTPUT)/ft_putnbr_fd.c $(DIR_OUTPUT)/ft_putstr_fd.c \
 	$(DIR_PRINTF)/ft_printf.c $(DIR_PRINTF)/ft_printf_conversion1.c $(DIR_PRINTF)/ft_printf_conversion2.c $(DIR_PRINTF)/ft_printf_util.c \
 	$(DIR_STRING)/ft_split.c $(DIR_STRING)/ft_strchr.c $(DIR_STRING)/ft_strdup.c $(DIR_STRING)/ft_striteri.c $(DIR_STRING)/ft_strjoin.c $(DIR_STRING)/ft_strlcat.c $(DIR_STRING)/ft_strlcpy.c $(DIR_STRING)/ft_strlen.c $(DIR_STRING)/ft_strmapi.c $(DIR_STRING)/ft_strncmp.c $(DIR_STRING)/ft_strnstr.c $(DIR_STRING)/ft_strrchr.c $(DIR_STRING)/ft_strtrim.c $(DIR_STRING)/ft_substr.c \
