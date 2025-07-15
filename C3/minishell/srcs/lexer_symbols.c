@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 19:48:48 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/11 10:56:13 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/15 18:12:00 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	find_sym(char **str_l, size_t *len_l, char *str, size_t len)
 		if (str[i] == '|' || str[i] == '<' || str[i] == '>')
 		{
 			str_l[0] = str + i;
-			len_l[0] = 1 + (str[i] == str[i + 1]);
+			len_l[0] = 1 + (str[i] == str[i + 1] && str[i] != '|');
 			if (i + len_l[0] >= len)
 				break ;
 			str_l[1] = str + i + len_l[0];
@@ -37,7 +37,7 @@ void	find_sym(char **str_l, size_t *len_l, char *str, size_t len)
 	}
 }
 
-int	make(t_token_list **head, char	**str, size_t *len, int sym)
+int	make_sym(t_token_list **head, char	**str, size_t *len, int sym)
 {
 	t_token_list	*token;
 
@@ -50,8 +50,16 @@ int	make(t_token_list **head, char	**str, size_t *len, int sym)
 	token->word = str[sym];
 	token->size = len[sym];
 	token->type = T_ALL;
-	if (!sym)
-		token->type = T_SYM;
+	if (!sym && *str[sym] == '|')
+		token->type = N_PIPE;
+	if (!sym && *str[sym] == '>')
+		token->type = N_OUT;
+	if (!sym && *str[sym] == '<')
+		token->type = N_IN;
+	if (!sym && len[sym] == 2 && *(str[sym] + 1) == '>')
+		token->type = N_APPEND;
+	if (!sym && len[sym] == 2 && *(str[sym] + 1) == '<')
+		token->type = N_HEREDOC;
 	token->group = 0;
 	(*head)->next = token;
 	return (0);
@@ -70,8 +78,8 @@ int	lex_split(t_token_list **head)
 		{
 			find_sym(sym_str_list, sym_len_list, (*tmp)->word, (*tmp)->size);
 			(*tmp)->size -= sym_len_list[0] + sym_len_list[1];
-			if (make(tmp, sym_str_list, sym_len_list, 1)
-				|| make(tmp, sym_str_list, sym_len_list, 0))
+			if (make_sym(tmp, sym_str_list, sym_len_list, 1)
+				|| make_sym(tmp, sym_str_list, sym_len_list, 0))
 				return (1);
 		}
 		tmp = &(*tmp)->next;

@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 12:34:56 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/11 11:05:57 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/15 00:33:57 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ void	lexer(t_shell *shell)
 	if (lex_split(&shell->tokens))
 		frexit("Error in lex_split", shell);
 	lex_clean(&shell->tokens);
-	print_t(shell->tokens);
+	print_t(shell->tokens, 0);
 }

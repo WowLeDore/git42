@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:49 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/11 15:04:37 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/15 01:11:59 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 
 # include <stdio.h>
 # include <readline/readline.h>
-//# include <readline/history.h>
-//# include <sys/wait.h>
 
 /*structures*/
 typedef struct s_shell
@@ -38,7 +36,7 @@ typedef struct s_shell
 void	lexer(t_shell *shell);
 void	parse(t_shell *shell);
 void	frexit(char *err, t_shell *shell);
-void	print_t(t_token_list *tokens);
+void	print_t(t_token_list *tokens, size_t level);
 void	print_a(t_tree *ast, size_t level);
 int		lex_quote(t_token_list **head, char *str);
 int		mak_expnd(t_token_list	**head);
