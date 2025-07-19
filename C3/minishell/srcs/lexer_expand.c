@@ -6,27 +6,25 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 21:21:00 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/12 17:11:33 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:42:52 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	val_expnd(t_token_list *tokens, char value)
+int	val_expnd(t_token_list *tokens, unsigned char value)
 {
-	tokens->word = &value;
+	*tokens->word = (char) value;
 	tokens->size = 1;
-	if (value < 0)
-		tokens->size = 2;
-	if (value > 9 || value < -9)
+	if (value > 9)
 		tokens->size++;
-	if (value > 99 || value < -99)
+	if (value > 99)
 		tokens->size++;
 	tokens->type = T_VAL;
 	return (0);
 }
 
-void	lex_expnd(t_token_list *tokens, char **env, int value)
+void	lex_expnd(t_token_list *tokens, char **env, unsigned char value)
 {
 	size_t	i;
 

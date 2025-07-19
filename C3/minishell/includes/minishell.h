@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:49 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/15 01:11:59 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:43:12 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_shell
 	char			*input;
 	t_token_list	*tokens;
 	t_tree			*ast;
-	char			value;
+	unsigned char	value;
+	char			*tot_str;
 }	t_shell;
 
 /*fonctions*/
@@ -40,7 +41,8 @@ void	print_t(t_token_list *tokens, size_t level);
 void	print_a(t_tree *ast, size_t level);
 int		lex_quote(t_token_list **head, char *str);
 int		mak_expnd(t_token_list	**head);
-void	lex_expnd(t_token_list *tokens, char **env, int value);
+void	lex_expnd(t_token_list *tokens, char **env, unsigned char value);
 int		lex_split(t_token_list **head);
+int		group_str(t_shell *shell);
 
 #endif

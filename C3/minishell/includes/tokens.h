@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:29:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/15 17:25:54 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:07:40 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_tree
 	t_token_list	*node;
 	struct s_tree	*left;
 	struct s_tree	*right;
+	size_t			len;
 }	t_tree;
 
 #endif

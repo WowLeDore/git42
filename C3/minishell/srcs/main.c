@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:01:56 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/15 18:30:54 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:45:10 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	frexit(char *err, t_shell *shell)
 		free_t(shell->ast);
 	if (shell)
 		free(shell->input);
+	if (shell)
+		free(shell->tot_str);
 	if (!err)
 		return ;
 	else if (shell)
@@ -80,8 +82,9 @@ void	print_a(t_tree *ast, size_t level)
 		[N_IN] = "In", [N_OUT] = "Out", [N_APPEND] = "Append",
 		[N_HEREDOC] = "Heredoc", [N_TOKEN] = "Token"}[ast->type];
 	printf("%*s┌─[AST Node @%p]\n%*s├──Type   : %-6s\n%*s├──Depth  : %ld\n%*s├─"
-		"─Tokens :\n", (int) level * 2, "", (void *) ast, (int) level * 2, "",
-		type, (int) level * 2, "", level, (int) level * 2, "");
+		"─Len    : %ld\n%*s├──Tokens :\n", (int) level * 2, "", (void *) ast,
+		(int) level * 2, "", type, (int) level * 2, "", level, (int) level * 2,
+		"", ast->len, (int) level * 2, "");
 	print_t(ast->node, level + 6);
 	printf("%*s├─Left  of %p:\n", (int) level * 2, "", (void *) ast);
 	print_a(ast->left, level);
