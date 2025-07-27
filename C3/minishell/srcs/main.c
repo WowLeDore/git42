@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:01:56 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/17 19:45:10 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:35:22 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	frexit(char *err, t_shell *shell)
 		free_t(shell->ast);
 	if (shell)
 		free(shell->input);
-	if (shell)
+	if (shell && shell->tot_str)
 		free(shell->tot_str);
 	if (!err)
 		return ;
@@ -93,6 +93,14 @@ void	print_a(t_tree *ast, size_t level)
 	printf("%*s└─\n", (int) level * 2, "");
 }
 
+void	reset_shell(t_shell *shell)
+{
+	shell->input = readline("mSh:~# ");
+	shell->tokens = NULL;
+	shell->ast = NULL;
+	shell->tot_str = NULL;
+}
+
 int	main(int ac, char *av[], char *env[])
 {
 	t_shell	*shell;
@@ -103,18 +111,14 @@ int	main(int ac, char *av[], char *env[])
 	if (!shell)
 		frexit("Error in minishell", NULL);
 	shell->env = env;
-	shell->tokens = NULL;
-	shell->ast = NULL;
 	shell->value = 0;
-	shell->input = readline("mSh:~# ");
+	reset_shell(shell);
 	while (shell->input)
 	{
 		lexer(shell);
 		parse(shell);
 		frexit(NULL, shell);
-		shell->tokens = NULL;
-		shell->ast = NULL;
-		shell->input = readline("mSh:~# ");
+		reset_shell(shell);
 	}
 	frexit(NULL, shell);
 	free(shell);

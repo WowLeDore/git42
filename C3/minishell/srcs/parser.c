@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:00:04 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/17 19:46:49 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:58:51 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	parse(t_shell *shell)
 	print_a(shell->ast, 0);
 	i = 0;
 	while (shell->ast && i < shell->ast->len)
-		printf("%c", shell->tot_str[i++]);
+		printf("|%c| ", shell->tot_str[i++]);
 	printf("\n");
-	//bug uninitialised value ?
+	printf("%ld\n", shell->ast->len);
 }

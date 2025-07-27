@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 14:59:54 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/17 19:44:50 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:13:15 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ size_t	copy_all_str(t_tree *ast, char *big_str, size_t i)
 		last_group = 0;
 		while (tmp)
 		{
-			if (tmp->group != last_group || (!tmp->group && big_str[i]))
+			if (i && big_str[i -1] && (tmp->group != last_group || !tmp->group))
 				big_str[i++] = '\0';
 			copy_word(big_str + i, tmp->type, tmp->word, tmp->size);
 			i += tmp->size;
@@ -87,10 +87,10 @@ size_t	str_len(t_tree *ast)
 int	group_str(t_shell *shell)
 {
 	str_len(shell->ast);
-	shell->tot_str = NULL;
 	if (!shell->ast || !shell->ast->len)
 		return (0);
 	shell->tot_str = malloc(sizeof(char) * shell->ast->len);
+	ft_bzero(shell->tot_str, shell->ast->len);
 	if (!shell->tot_str)
 		return (1);
 	copy_all_str(shell->ast, shell->tot_str, 0);
