@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 21:21:00 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/17 19:42:52 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:29:13 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	lex_expnd(t_token_list *tokens, char **env, unsigned char value)
 	}
 }
 
-t_token_list	*nxt_expnd(char *word, t_token_list *head, int group)
+t_token_list	*nxt_expnd(char *word, t_token_list *head)
 {
 	t_token_list	*expnd;
 
@@ -60,9 +60,6 @@ t_token_list	*nxt_expnd(char *word, t_token_list *head, int group)
 	if (!expnd)
 		return (NULL);
 	expnd->type = head->type;
-	expnd->group = 0;
-	if (head->type == T_XWORD)
-		expnd->group = group;
 	expnd->next = NULL;
 	expnd->size = *word && (ft_isalpha(*word) || ft_strchr("_?", *word));
 	if (*word && (ft_isalpha(*word) || *word == '_'))
@@ -74,7 +71,7 @@ t_token_list	*nxt_expnd(char *word, t_token_list *head, int group)
 	return (expnd);
 }
 
-t_token_list	*var_expnd(t_token_list *head, int group)
+t_token_list	*var_expnd(t_token_list *head)
 {
 	t_token_list	*expnd;
 
@@ -89,10 +86,7 @@ t_token_list	*var_expnd(t_token_list *head, int group)
 			|| expnd->word[expnd->size] == '_')
 			expnd->size++;
 	expnd->type = T_VAR;
-	expnd->group = 0;
-	if (head->type == T_XWORD)
-		expnd->group = group;
-	expnd->next = nxt_expnd(expnd->word, head, group);
+	expnd->next = nxt_expnd(expnd->word, head);
 	if (!expnd->next)
 	{
 		free(expnd);
@@ -107,18 +101,14 @@ int	mak_expnd(t_token_list	**head)
 {
 	t_token_list	*tmp;
 	t_token_list	*expnd;
-	size_t			groups;
 
 	tmp = *head;
-	groups = 0;
 	while (tmp)
 	{
 		if (tmp->type != T_WORD
 			&& ft_memchr(tmp->word, '$', tmp->size))
 		{
-			if (tmp->type == T_XWORD && !tmp->group)
-				tmp->group = ++groups;
-			expnd = var_expnd(tmp, groups);
+			expnd = var_expnd(tmp);
 			if (!expnd)
 				return (1);
 			tmp->next = expnd;

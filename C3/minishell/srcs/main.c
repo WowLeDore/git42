@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:01:56 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/27 17:35:22 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/28 19:44:30 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,53 +46,6 @@ void	frexit(char *err, t_shell *shell)
 	exit(1);
 }
 
-void	print_t(t_token_list *tokens, size_t level)
-{
-	char	*type;
-	char	*word;
-
-	while (tokens)
-	{
-		type = (char *[]){[T_WORD] = "Word", [T_XWORD] = "Xword",
-		[T_ALL] = "All", [T_VAR] = "Var", [T_VAL] = "Val", [N_PIPE] = "Pipe",
-		[N_IN] = "In", [N_OUT] = "Out", [N_APPEND] = "Append",
-		[N_HEREDOC] = "Heredoc", [N_TOKEN] = "Token"}[tokens->type];
-		word = tokens->word;
-		if (tokens->type == T_VAL)
-			word = "123";
-		printf("%*sid : |%-14p|, next_id : |%-14p|, size : |%-2ld|, type : |%-6"
-			"s|, group : |%-2ld|, word : |%.*s|\n", (int) level * 2, "",
-			tokens, tokens->next, tokens->size, type, tokens->group,
-			(int)tokens->size, word);
-		tokens = tokens->next;
-	}
-}
-
-void	print_a(t_tree *ast, size_t level)
-{
-	const char			*type;
-
-	if (!ast)
-		return ;
-	level++;
-	type = "";
-	if (ast->node)
-		type = (char *[]){[T_WORD] = "Word", [T_XWORD] = "Xword",
-		[T_ALL] = "All", [T_VAR] = "Var", [T_VAL] = "Val", [N_PIPE] = "Pipe",
-		[N_IN] = "In", [N_OUT] = "Out", [N_APPEND] = "Append",
-		[N_HEREDOC] = "Heredoc", [N_TOKEN] = "Token"}[ast->type];
-	printf("%*s┌─[AST Node @%p]\n%*s├──Type   : %-6s\n%*s├──Depth  : %ld\n%*s├─"
-		"─Len    : %ld\n%*s├──Tokens :\n", (int) level * 2, "", (void *) ast,
-		(int) level * 2, "", type, (int) level * 2, "", level, (int) level * 2,
-		"", ast->len, (int) level * 2, "");
-	print_t(ast->node, level + 6);
-	printf("%*s├─Left  of %p:\n", (int) level * 2, "", (void *) ast);
-	print_a(ast->left, level);
-	printf("%*s├─Right of %p:\n", (int) level * 2, "", (void *) ast);
-	print_a(ast->right, level);
-	printf("%*s└─\n", (int) level * 2, "");
-}
-
 void	reset_shell(t_shell *shell)
 {
 	shell->input = readline("mSh:~# ");
@@ -117,6 +70,7 @@ int	main(int ac, char *av[], char *env[])
 	{
 		lexer(shell);
 		parse(shell);
+		print_a(shell->ast, 0);
 		frexit(NULL, shell);
 		reset_shell(shell);
 	}
@@ -125,3 +79,53 @@ int	main(int ac, char *av[], char *env[])
 	printf("exit\n");
 	exit(0);
 }
+
+void	print_t(t_token_list *tokens, size_t level)
+{
+	char	*type;
+	char	*word;
+
+	while (tokens)
+	{
+		type = (char *[]){[T_WORD] = "Word", [T_XWORD] = "Xword",
+		[T_ALL] = "All", [T_VAR] = "Var", [T_VAL] = "Val", [N_PIPE] = "Pipe",
+		[N_IN] = "In", [N_OUT] = "Out", [N_APPEND] = "Append",
+		[N_HEREDOC] = "Heredoc", [N_TOKEN] = "Token"}[tokens->type];
+		word = tokens->word;
+		if (tokens->type == T_VAL)
+			word = "123";
+		printf("%*sid : |%-14p|, next_id : |%-14p|, size : |%-2ld|, type : |%-6"
+			"s|, word : |%.*s|\n", (int) level * 2, "", tokens, tokens->next,
+			tokens->size, type, (int)tokens->size, word);
+		tokens = tokens->next;
+	}
+}
+
+void	print_a(t_tree *ast, size_t level)
+{
+	const char			*type;
+
+	if (!ast)
+		return ;
+	level++;
+	type = "";
+	if (ast->node)
+		type = (char *[]){[T_WORD] = "Word", [T_XWORD] = "Xword",
+		[T_ALL] = "All", [T_VAR] = "Var", [T_VAL] = "Val", [N_PIPE] = "Pipe",
+		[N_IN] = "In", [N_OUT] = "Out", [N_APPEND] = "Append",
+		[N_HEREDOC] = "Heredoc", [N_TOKEN] = "Token"}[ast->type];
+	printf("%*s┌─[AST Node @%p]\n%*s├──Type   : %-6s\n%*s├──Depth  : %ld\n%*s├─"
+		"─Len    : %ld\n%*s├──From   : %ld\n%*s├──To     : %ld\n%*s├──Tokens :"
+		"\n", (int) level * 2, "", (void *) ast, (int) level * 2, "", type,
+		(int) level * 2, "", level, (int) level * 2, "", ast->len,
+		(int) level * 2, "", ast->from, (int) level * 2, "", ast->to,
+		(int) level * 2, "");
+	print_t(ast->node, level + 6);
+	printf("%*s├─Left  of %p:\n", (int) level * 2, "", (void *) ast);
+	print_a(ast->left, level);
+	printf("%*s├─Right of %p:\n", (int) level * 2, "", (void *) ast);
+	print_a(ast->right, level);
+	printf("%*s└─\n", (int) level * 2, "");
+}
+/*
+*/

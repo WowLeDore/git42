@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 19:48:48 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/15 18:12:00 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:35:30 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	make_sym(t_token_list **head, char	**str, size_t *len, int sym)
 		token->type = N_APPEND;
 	if (!sym && len[sym] == 2 && *(str[sym] + 1) == '<')
 		token->type = N_HEREDOC;
-	token->group = 0;
 	(*head)->next = token;
 	return (0);
 }

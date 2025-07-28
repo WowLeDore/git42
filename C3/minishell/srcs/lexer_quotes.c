@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:47:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/11 13:48:04 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:33:46 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_token_list	*lex_all(char c, char **p)
 	else
 		all->size = end - *p;
 	all->type = T_ALL;
-	all->group = 0;
 	if (!end)
 		*p += all->size;
 	else
@@ -55,7 +54,6 @@ t_token_list	*lex_quote_c(char c, char **p)
 	quote->type = T_WORD;
 	if (c == '"')
 		quote->type = T_XWORD;
-	quote->group = 0;
 	*p = end + 1;
 	return (quote);
 }

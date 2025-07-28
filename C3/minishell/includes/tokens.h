@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:29:38 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/17 15:07:40 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/28 19:41:13 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_token_list
 	char				*word;
 	size_t				size;
 	t_token				type;
-	size_t				group;
 }	t_token_list;
 
 typedef struct s_tree
@@ -44,6 +43,8 @@ typedef struct s_tree
 	struct s_tree	*left;
 	struct s_tree	*right;
 	size_t			len;
+	size_t			from;
+	size_t			to;
 }	t_tree;
 
 #endif

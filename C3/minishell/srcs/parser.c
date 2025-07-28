@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:00:04 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/27 17:58:51 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/28 19:41:53 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	make_tree(t_tree *ast, t_token type, t_token_list *node)
 	ast->node = node;
 	ast->left = NULL;
 	ast->right = NULL;
+	ast->len = 0;
+	ast->from = 0;
+	ast->to = 0;
 }
 
 t_tree	*tree_sym(t_token_list *tok, t_token sym)
@@ -88,8 +91,6 @@ int	in_cut(t_tree *ast, t_token sym)
 
 void	parse(t_shell *shell)
 {
-	size_t	i;
-
 	shell->ast = malloc(sizeof(t_tree));
 	if (!shell->ast)
 		frexit("Error in parse", shell);
@@ -102,10 +103,4 @@ void	parse(t_shell *shell)
 		frexit("Error in in_cut", shell);
 	if (group_str(shell))
 		frexit("Error in group_str", shell);
-	print_a(shell->ast, 0);
-	i = 0;
-	while (shell->ast && i < shell->ast->len)
-		printf("|%c| ", shell->tot_str[i++]);
-	printf("\n");
-	printf("%ld\n", shell->ast->len);
 }

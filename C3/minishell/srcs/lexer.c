@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 12:34:56 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/15 00:33:57 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:46:46 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_token_list	*rem_space(t_token_list *head)
 	head->size = token->word - head->word;
 	token->next = head->next;
 	token->type = T_ALL;
-	token->group = 0;
 	head->next = token;
 	return (token);
 }
@@ -85,11 +84,10 @@ void	lexer(t_shell *shell)
 	lex_clean(&shell->tokens);
 	lex_expnd(shell->tokens, shell->env, shell->value);
 	lex_clean(&shell->tokens);
-	if (lex_trims(&shell->tokens))
-		frexit("Error in lex_trims", shell);
-	lex_clean(&shell->tokens);
 	if (lex_split(&shell->tokens))
 		frexit("Error in lex_split", shell);
 	lex_clean(&shell->tokens);
-	print_t(shell->tokens, 0);
 }
+	//if (lex_trims(&shell->tokens))
+	//	frexit("Error in lex_trims", shell);
+	//lex_clean(&shell->tokens);
