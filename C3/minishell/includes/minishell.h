@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:49 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/28 18:03:40 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/30 23:25:44 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,8 @@ int		lex_split(t_token_list **head);
 int		group_str(t_shell *shell);
 void	print_t(t_token_list *tokens, size_t level);
 void	print_a(t_tree *ast, size_t level);
+
+/*commandes*/
+int		echo(int argc, char **argv);
 
 #endif

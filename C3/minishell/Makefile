@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 18:35:44 by pbona             #+#    #+#              #
-#    Updated: 2025/07/17 15:07:56 by mguillot         ###   ########.fr        #
+#    Updated: 2025/07/30 23:26:10 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS = \
 	$(DIR_SRCS)/lexer_symbols.c \
 	$(DIR_SRCS)/parser.c \
 	$(DIR_SRCS)/parser_strings.c \
+	$(DIR_SRCS)/echo.c \
 	
 OBJS = $(SRCS:.c=.o)
 
