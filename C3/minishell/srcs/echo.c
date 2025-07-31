@@ -6,34 +6,38 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 21:39:24 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/30 23:42:56 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/31 21:04:02 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../includes/minishell.h"
 
-int	n_option(int argc, char **argv)
+int	n_option(char *str)
 {
-	return (argc > 1 && argv[1][0] == '-' && argv[1][1] == 'n' && !argv[1][2]);
+	if (!str || *(str++) != '-' || *(str++) != 'n')
+		return (0);
+	while (*str && *str == 'n')
+		str++;
+	return (!*str);
 }
 
 int	echo(int argc, char **argv)
 {
+	int	newline;
 	int	i;
 
-	while (n_option(argc, argv) && n_option(argc - 1, argv + 1))
-	{
-		argc--;
-		argv++;
-	}
-	i = n_option(argc, argv);
+	i = 1;
+	while (i < argc && n_option(argv[i]))
+		i++;
+	newline = i == 1;
+	if (i < argc)
+		if (write(1, argv[i], ft_strlen(argv[i])) < 0)
+			return (1);
 	while (++i < argc)
-	{
-		printf("%s", argv[i]);
-		if (i + 1 < argc)
-			printf(" ");
-	}
-	if (!n_option(argc, argv))
-		printf("\n");
+		if (write(1, " ", 1) < 0 || write(1, argv[i], ft_strlen(argv[i])) < 0)
+			return (1);
+	if (newline)
+		if (write(1, "\n", 1) < 0)
+			return (1);
 	return (0);
 }

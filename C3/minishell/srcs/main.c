@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:01:56 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/28 19:44:30 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/31 22:46:56 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	reset_shell(t_shell *shell)
 
 int	main(int ac, char *av[], char *env[])
 {
+	size_t	i;
+	size_t	count;
 	t_shell	*shell;
 
 	if (ac != 1 || !av)
@@ -69,8 +71,17 @@ int	main(int ac, char *av[], char *env[])
 	while (shell->input)
 	{
 		lexer(shell);
+		print_t(shell->tokens, 0);
 		parse(shell);
 		print_a(shell->ast, 0);
+		i = 0;
+		count = 0;
+		while (count < shell->str_nbr && i < shell->ast->len)
+		{
+			printf("String %ld: %s\n", count + 1, &shell->tot_str[i]);
+			i += strlen(&shell->tot_str[i]) + 1;
+			count++;
+		}
 		frexit(NULL, shell);
 		reset_shell(shell);
 	}

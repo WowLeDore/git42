@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:49 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/30 23:25:44 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/07/31 21:26:57 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # include <stdio.h>
 # include <readline/readline.h>
+# include <unistd.h>
 
 /*structures*/
 typedef struct s_shell
