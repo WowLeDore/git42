@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:00:04 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/28 19:41:53 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:32:42 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ void	parse(t_shell *shell)
 {
 	shell->ast = malloc(sizeof(t_tree));
 	if (!shell->ast)
-		frexit("Error in parse", shell);
+		frexit(shell, "Error in parse");
 	make_tree(shell->ast, N_TOKEN, shell->tokens);
 	if (in_cut(shell->ast, N_PIPE)
 		|| in_cut(shell->ast, N_OUT)
 		|| in_cut(shell->ast, N_IN)
 		|| in_cut(shell->ast, N_APPEND)
 		|| in_cut(shell->ast, N_HEREDOC))
-		frexit("Error in in_cut", shell);
+		frexit(shell, "Error in in_cut");
 	if (group_str(shell))
-		frexit("Error in group_str", shell);
+		frexit(shell, "Error in group_str");
 }

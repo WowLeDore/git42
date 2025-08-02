@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 14:59:54 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/31 23:36:43 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/02 19:17:24 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	space_split(char *str, size_t n, size_t *count)
 	i = 0;
 	while (i < n)
 	{
-		if (str[i] == ' ')
+		if (str[i] == ' ' || str[i] == '\t')
 		{
 			str[i] = 0;
 			*count = *count + 1;

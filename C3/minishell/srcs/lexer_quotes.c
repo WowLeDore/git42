@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:47:27 by mguillot          #+#    #+#             */
-/*   Updated: 2025/07/28 17:33:46 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/02 19:33:35 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,24 @@ char	first_quote(char *str)
 	if (double_quote)
 		return ('"');
 	return ('\0');
+}
+
+char	*first_char(char *str, size_t len, char c1, char c2)
+{
+	char	*char1;
+	char	*char2;
+
+	char1 = ft_memchr(str, c1, len);
+	char2 = ft_memchr(str, c2, len);
+	if (char1 && char2 && char1 < char2)
+		return (char1);
+	if (char1 && char2 && char1 > char2)
+		return (char2);
+	if (char1)
+		return (char1);
+	if (char2)
+		return (char2);
+	return (NULL);
 }
 
 int	lex_quote(t_token_list **head, char *str)

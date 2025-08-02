@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:27:49 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/31 21:26:57 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/02 19:32:21 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,24 @@ typedef struct s_shell
 	char			*input;
 	t_token_list	*tokens;
 	t_tree			*ast;
-	unsigned char	value;
 	char			*tot_str;
 	size_t			str_nbr;
+	unsigned char	value;
 }	t_shell;
 
 /*fonctions*/
+void	frexit(t_shell *shell, char *err_msg);
+char	**copy_env(char **env);
+void	reset_shell(t_shell *shell, unsigned char value);
 void	lexer(t_shell *shell);
-void	parse(t_shell *shell);
-void	frexit(char *err, t_shell *shell);
 int		lex_quote(t_token_list **head, char *str);
+char	*first_char(char *str, size_t len, char c1, char c2);
 int		mak_expnd(t_token_list	**head);
 void	lex_expnd(t_token_list *tokens, char **env, unsigned char value);
 int		lex_split(t_token_list **head);
+void	parse(t_shell *shell);
 int		group_str(t_shell *shell);
-void	print_t(t_token_list *tokens, size_t level);
-void	print_a(t_tree *ast, size_t level);
+void	free_env(char **env);
 
 /*commandes*/
 int		echo(int argc, char **argv);

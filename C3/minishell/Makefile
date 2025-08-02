@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 18:35:44 by pbona             #+#    #+#              #
-#    Updated: 2025/07/30 23:26:10 by mguillot         ###   ########.fr        #
+#    Updated: 2025/08/02 15:28:06 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ DIR_SRCS = srcs
 
 SRCS = \
 	$(DIR_SRCS)/main.c \
+	$(DIR_SRCS)/free.c \
+	$(DIR_SRCS)/env.c \
 	$(DIR_SRCS)/lexer.c \
 	$(DIR_SRCS)/lexer_quotes.c \
 	$(DIR_SRCS)/lexer_expand.c \
@@ -37,6 +39,7 @@ SRCS = \
 	$(DIR_SRCS)/parser.c \
 	$(DIR_SRCS)/parser_strings.c \
 	$(DIR_SRCS)/echo.c \
+	$(DIR_SRCS)/cd.c \
 	
 OBJS = $(SRCS:.c=.o)
 

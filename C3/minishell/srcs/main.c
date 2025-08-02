@@ -6,90 +6,11 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:01:56 by pbona             #+#    #+#             */
-/*   Updated: 2025/07/31 22:46:56 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/02 17:56:57 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	free_t(t_tree *ast)
-{
-	t_token_list	*tmp;
-
-	if (!ast)
-		return ;
-	while (ast->node)
-	{
-		tmp = ast->node->next;
-		free(ast->node);
-		ast->node = tmp;
-	}
-	free_t(ast->left);
-	free_t(ast->right);
-	free(ast);
-}
-
-void	frexit(char *err, t_shell *shell)
-{
-	if (shell)
-		free_t(shell->ast);
-	if (shell)
-		free(shell->input);
-	if (shell && shell->tot_str)
-		free(shell->tot_str);
-	if (!err)
-		return ;
-	else if (shell)
-		free(shell);
-	write(2, err, ft_strlen(err));
-	write(2, "\n", 1);
-	exit(1);
-}
-
-void	reset_shell(t_shell *shell)
-{
-	shell->input = readline("mSh:~# ");
-	shell->tokens = NULL;
-	shell->ast = NULL;
-	shell->tot_str = NULL;
-}
-
-int	main(int ac, char *av[], char *env[])
-{
-	size_t	i;
-	size_t	count;
-	t_shell	*shell;
-
-	if (ac != 1 || !av)
-		return (0);
-	shell = malloc(sizeof(t_shell));
-	if (!shell)
-		frexit("Error in minishell", NULL);
-	shell->env = env;
-	shell->value = 0;
-	reset_shell(shell);
-	while (shell->input)
-	{
-		lexer(shell);
-		print_t(shell->tokens, 0);
-		parse(shell);
-		print_a(shell->ast, 0);
-		i = 0;
-		count = 0;
-		while (count < shell->str_nbr && i < shell->ast->len)
-		{
-			printf("String %ld: %s\n", count + 1, &shell->tot_str[i]);
-			i += strlen(&shell->tot_str[i]) + 1;
-			count++;
-		}
-		frexit(NULL, shell);
-		reset_shell(shell);
-	}
-	frexit(NULL, shell);
-	free(shell);
-	printf("exit\n");
-	exit(0);
-}
 
 void	print_t(t_token_list *tokens, size_t level)
 {
@@ -138,5 +59,58 @@ void	print_a(t_tree *ast, size_t level)
 	print_a(ast->right, level);
 	printf("%*s└─\n", (int) level * 2, "");
 }
-/*
-*/
+
+void	print_str(char *str, size_t tot_len, size_t str_nbr)
+{
+	size_t	i;
+	size_t	count;
+
+	i = 0;
+	count = 0;
+	while (count < str_nbr && i < tot_len)
+	{
+		printf("String %02ld: |%s|\n", count + 1, &str[i]);
+		i += ft_strlen(&str[i]) + 1;
+		count++;
+	}
+}
+
+void	reset_shell(t_shell *shell, unsigned char value)
+{
+	shell->input = readline("mSh:~# ");
+	shell->tokens = NULL;
+	shell->ast = NULL;
+	shell->tot_str = NULL;
+	shell->str_nbr = 0;
+	shell->value = value;
+}
+
+int	main(int ac, char *av[], char *env[])
+{
+	t_shell	*shell;
+
+	if (ac != 1 || !av)
+		return (0);
+	shell = malloc(sizeof(t_shell));
+	if (!shell)
+		frexit(NULL, "Error in minishell");
+	shell->env = copy_env(env);
+	if (!shell->env)
+		frexit(shell, "Error in copy_env");
+	reset_shell(shell, 0);
+	while (shell->input)
+	{
+		lexer(shell);
+		print_t(shell->tokens, 0);
+		parse(shell);
+		print_a(shell->ast, 0);
+		print_str(shell->tot_str, shell->ast->len, shell->str_nbr);
+		frexit(shell, NULL);
+		reset_shell(shell, shell->value);
+	}
+	frexit(shell, NULL);
+	free_env(shell->env);
+	free(shell);
+	write(1, "exit\n", 5);
+	exit(0);
+}
