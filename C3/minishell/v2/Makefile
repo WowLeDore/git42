@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 13:46:07 by mguillot          #+#    #+#              #
-#    Updated: 2025/08/09 19:22:22 by mguillot         ###   ########.fr        #
+#    Updated: 2025/08/12 17:57:09 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,10 @@ HDRS	:= $(addprefix $(HDIR),	\
 				minishell.h		\
 			)
 SRCS	:= $(addprefix $(SDIR),	\
+				free.c			\
 				split.c			\
 				group.c			\
+				env.c			\
 				print.c			\
 				parse.c			\
 				minishell.c		\

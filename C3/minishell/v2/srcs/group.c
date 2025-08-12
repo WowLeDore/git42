@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 19:17:58 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/09 19:18:10 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/12 17:25:19 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	group_operators(t_minishell *shell)
 {
-	t_command	*tmp_com;
-	t_token		*tmp_tok;
-	void		*to_free;
+	t_pipe	*tmp_pipe;
+	t_token	*tmp_tok;
+	void	*to_free;
 
-	tmp_com = shell->coms;
-	while (tmp_com)
+	tmp_pipe = shell->pipes;
+	while (tmp_pipe)
 	{
-		tmp_tok = tmp_com->toks;
+		tmp_tok = tmp_pipe->toks;
 		while (tmp_tok)
 		{
 			if (tmp_tok->type >= IN && tmp_tok->next
@@ -37,7 +37,7 @@ void	group_operators(t_minishell *shell)
 			}
 			tmp_tok = tmp_tok->next;
 		}
-		tmp_com = tmp_com->next;
+		tmp_pipe = tmp_pipe->next;
 	}
 }
 
@@ -55,43 +55,43 @@ int	next_remove(t_token *tmp_tok)
 
 void	remove_meta(t_minishell *shell)
 {
-	t_command	*tmp_com;
-	t_token		*tmp_tok;
+	t_pipe	*tmp_pipe;
+	t_token	*tmp_tok;
 
-	tmp_com = shell->coms;
-	while (tmp_com)
+	tmp_pipe = shell->pipes;
+	while (tmp_pipe)
 	{
-		tmp_tok = tmp_com->toks;
+		tmp_tok = tmp_pipe->toks;
 		while (tmp_tok && tmp_tok->type == META)
 		{
-			tmp_com->toks = tmp_com->toks->next;
+			tmp_pipe->toks = tmp_pipe->toks->next;
 			free(tmp_tok);
-			tmp_tok = tmp_com->toks;
+			tmp_tok = tmp_pipe->toks;
 		}
 		while (tmp_tok)
 		{
 			if (!next_remove(tmp_tok))
 				tmp_tok = tmp_tok->next;
 		}
-		tmp_com = tmp_com->next;
+		tmp_pipe = tmp_pipe->next;
 	}
 }
 
 void	group_redirections(t_minishell *shell)
 {
-	t_command	*tmp_com;
-	t_token		*tmp_tok;
-	void		*to_free;
+	t_pipe	*tmp_pipe;
+	t_token	*tmp_tok;
+	void	*to_free;
 
-	tmp_com = shell->coms;
-	while (tmp_com)
+	tmp_pipe = shell->pipes;
+	while (tmp_pipe)
 	{
-		tmp_tok = tmp_com->toks;
+		tmp_tok = tmp_pipe->toks;
 		while (tmp_tok)
 		{
 			if (tmp_tok->type >= HEREDOC)
 			{
-				tmp_tok->indx = tmp_tok->next->indx;
+				tmp_tok->word = tmp_tok->next->word;
 				tmp_tok->size = tmp_tok->next->size;
 				to_free = (void *) tmp_tok->next;
 				tmp_tok->next = tmp_tok->next->next;
@@ -99,6 +99,6 @@ void	group_redirections(t_minishell *shell)
 			}
 			tmp_tok = tmp_tok->next;
 		}
-		tmp_com = tmp_com->next;
+		tmp_pipe = tmp_pipe->next;
 	}
 }

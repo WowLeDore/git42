@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 11:13:15 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/09 19:00:04 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:52:02 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ const char	*get_type_color(t_type type)
 		return (BOLD GREEN);
 	if (type == OPTION)
 		return (YELLOW);
+	if (type == DQUOTE)
+		return (BLUE);
+	if (type == SQUOTE)
+		return (BOLD BLUE);
 	return (WHITE);
 }
 
@@ -63,59 +67,79 @@ const char	*get_type_name(t_type type)
 		return ("COMMAND");
 	if (type == OPTION)
 		return ("OPTION");
+	if (type == DQUOTE)
+		return ("DOUBLE QUOTE");
+	if (type == SQUOTE)
+		return ("SIMPLE QUOTE");
 	return ("UNKNOWN");
 }
 
-void	print_token(t_command *cmd, t_token *token)
+void	print_token(t_token *token)
 {
+	char	*word;
+	char	*space;
+	t_token	*subs;
+
 	if (!token)
 	{
 		printf("       " RED "Token: NULL" RESET "\n");
 		return ;
 	}
-	printf("       " BOLD "Token:" RESET " %s%s" RESET " (idx: %zu, size: %zu, "
-		"content: \"%.*s\")\n", get_type_color(token->type),
-		get_type_name(token->type), token->indx, token->size, (int) token->size,
-		cmd->word + token->indx);
+	if (token->word && *token->word)
+		word = token->word;
+	else
+		word = "";
+	space = "       ";
+	if (token->subs)
+		space = "   ";
+	printf("%s" BOLD "Token:" RESET " %s%s" RESET " (size: %zu, content: "
+		"\"%.*s\")\n", space, get_type_color(token->type),
+		get_type_name(token->type), token->size, (int) token->size, word);
+	subs = token->subs;
+	while (subs)
+	{
+		print_token(subs);
+		subs = subs->next;
+	}
 }
 
-void	print_command(t_command *cmd)
+void	print_command(t_pipe *pipe)
 {
 	t_token	*token;
 
-	if (!cmd)
+	if (!pipe)
 	{
 		printf("   " RED "Command: NULL" RESET "\n");
 		return ;
 	}
-	printf("   " BOLD "Command:" RESET " \"%s\"\n", cmd->word);
-	token = cmd->toks;
+	printf("   " BOLD "Command:" RESET " \"%s\"\n", pipe->word);
+	token = pipe->toks;
 	while (token)
 	{
-		print_token(cmd, token);
+		print_token(token);
 		token = token->next;
 	}
 }
 
-void	print_minishell(t_minishell *ms)
+void	print_minishell(t_minishell *shell)
 {
-	t_command	*cmd;
-	size_t		cmd_num;
+	t_pipe	*pipe;
+	size_t	pipe_num;
 
-	if (!ms)
+	if (!shell)
 	{
 		printf(RED "MiniShell: NULL" RESET "\n");
 		return ;
 	}
 	printf(BOLD CYAN "MiniShell Structure" RESET "\n");
 	printf("================================\n");
-	cmd = ms->coms;
-	cmd_num = 1;
-	while (cmd)
+	pipe = shell->pipes;
+	pipe_num = 1;
+	while (pipe)
 	{
-		printf(BOLD YELLOW "Command #%ld" RESET "\n", cmd_num++);
-		print_command(cmd);
+		printf(BOLD YELLOW "Command #%ld" RESET "\n", pipe_num++);
+		print_command(pipe);
 		printf("--------------------------------\n");
-		cmd = cmd->next;
+		pipe = pipe->next;
 	}
 }

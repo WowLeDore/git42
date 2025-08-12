@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:51:23 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/09 18:53:20 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:11:41 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,17 @@ int	main(int argc, char **argv)
 	shell = malloc(sizeof(t_minishell));
 	if (!shell)
 		return (1);
-	if (parser("export TEST=eof", shell))
+	if (parser(shell, "\"echo\" \'hi\' $USER \" are you $?\""))
 		free(shell);
-	else if (parser("export LWC='-l'", shell))
+	else if (parser(shell, "export TEST=eof"))
 		free(shell);
-	else if (parser("rm out' '0", shell))
+	else if (parser(shell, "export LWC='-l'"))
 		free(shell);
-	else if (parser(" cat<<	$TEST |>>out' '\"$?\"	 wc $LWC <out' '0", shell))
+	else if (parser(shell, "rm out' '0"))
 		free(shell);
-	else if (parser("cat out' '0", shell))
+	else if (parser(shell, " cat<<	$TEST |>>out' '\"$?\"	 wc $LWC <out' '0"))
+		free(shell);
+	else if (parser(shell, "cat out' '0"))
 		free(shell);
 	else
 	{
