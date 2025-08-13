@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 13:46:07 by mguillot          #+#    #+#              #
-#    Updated: 2025/08/12 17:57:09 by mguillot         ###   ########.fr        #
+#    Updated: 2025/08/13 16:55:32 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRCS	:= $(addprefix $(SDIR),	\
 				split.c			\
 				group.c			\
 				env.c			\
+				quote.c			\
+				expand.c		\
 				print.c			\
 				parse.c			\
 				minishell.c		\

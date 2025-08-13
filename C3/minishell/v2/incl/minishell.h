@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:51:35 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/12 18:39:30 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:55:18 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum e_type
 	WORDS,
 	DQUOTE,
 	SQUOTE,
+	XPNDED,
 	COMMAND,
 	OPTION,
 	META,
@@ -52,6 +53,8 @@ typedef struct s_pipe
 typedef struct s_minishell
 {
 	t_pipe	*pipes;
+	char	*value;
+	char	**env;
 }	t_minishell;
 
 int		free_all(t_minishell *shell, int value);
@@ -62,6 +65,13 @@ void	group_operators(t_minishell *shell);
 void	remove_meta(t_minishell *shell);
 void	group_redirections(t_minishell *shell);
 int		handle_quote(int quote, char c);
+int		sub_quote(t_minishell *shell);
+int		expand_vars(t_minishell	*shell);
+char	**copy_env(char **env, size_t	add);
+char	*get_env(char **env, char *key, size_t len);
+int		change_env(char **env, char *key, size_t key_len, char *value);
+int		add_env(char ***env, char *key, size_t key_len, char *value);
+int		remove_env(char	***env, char *key, size_t key_len);
 void	free_env(char ***env);
 void	print_minishell(t_minishell *shell);
 int		parser(t_minishell *shell, char *str);

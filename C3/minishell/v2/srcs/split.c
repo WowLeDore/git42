@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 19:16:41 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/12 18:26:49 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:54:48 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,6 @@ int	init_toks(t_token **toks)
 	(*toks)->word = NULL;
 	(*toks)->subs = NULL;
 	return (0);
-}
-
-int	handle_quote(int quote, char c)
-{
-	if (quote == 0 && c == '\'')
-		quote = 1;
-	else if (quote == 0 && c == '"')
-		quote = 2;
-	else if (quote == 1 && c == '\'')
-		quote = 0;
-	else if (quote == 2 && c == '"')
-		quote = 0;
-	return (quote);
 }
 
 int	handle_char(int quote, t_pipe *pipe, size_t i, t_token **tmp_tok)

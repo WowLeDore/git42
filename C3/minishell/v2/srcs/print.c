@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 11:13:15 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/12 18:52:02 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:53:24 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ const char	*get_type_color(t_type type)
 		return (BLUE);
 	if (type == SQUOTE)
 		return (BOLD BLUE);
+	if (type == XPNDED)
+		return (BOLD MAGENTA);
 	return (WHITE);
 }
 
@@ -71,6 +73,8 @@ const char	*get_type_name(t_type type)
 		return ("DOUBLE QUOTE");
 	if (type == SQUOTE)
 		return ("SIMPLE QUOTE");
+	if (type == XPNDED)
+		return ("EXPANDED VARIABLE");
 	return ("UNKNOWN");
 }
 
