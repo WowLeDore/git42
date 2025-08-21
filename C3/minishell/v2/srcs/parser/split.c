@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 19:16:41 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/13 16:54:48 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:44:26 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	init_pipe(t_pipe *pipe, char *str)
 	pipe->toks->size = 0;
 	pipe->toks->word = NULL;
 	pipe->toks->subs = NULL;
+	pipe->toks->heredoc = NULL;
 	return (0);
 }
 
@@ -38,6 +39,7 @@ int	init_toks(t_token **toks)
 	(*toks)->size = 0;
 	(*toks)->word = NULL;
 	(*toks)->subs = NULL;
+	(*toks)->heredoc = NULL;
 	return (0);
 }
 

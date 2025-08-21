@@ -6,52 +6,67 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 13:46:07 by mguillot          #+#    #+#              #
-#    Updated: 2025/08/13 16:55:32 by mguillot         ###   ########.fr        #
+#    Updated: 2025/08/20 16:12:42 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= minishell
+NAME	:=	minishell
 
-HDIR	:= ./incl/
-SDIR	:= ./srcs/
-ODIR	:= ./objs/
-LDIR	:= ./libft/
+HDIR	:=	./incl/
+SDIR	:=	./srcs/
+ODIR	:=	./objs/
+LDIR	:=	./libft/
 
-HDRS	:= $(addprefix $(HDIR),	\
-				minishell.h		\
+PDIR	:=	./parser/
+EDIR	:=	./exec/
+
+HDRS	:=	$(addprefix $(HDIR),	\
+				minishell.h			\
 			)
-SRCS	:= $(addprefix $(SDIR),	\
-				free.c			\
-				split.c			\
-				group.c			\
-				env.c			\
-				quote.c			\
-				expand.c		\
-				print.c			\
-				parse.c			\
-				minishell.c		\
+SRCS	:=	$(addprefix $(SDIR),	\
+				env.c				\
+				print.c				\
+				heredoc.c			\
+				free.c				\
+				minishell.c			\
 			)
-OBJS	:= $(addprefix $(ODIR), $(notdir $(SRCS:.c=.o)))
-LBFT	:= $(LDIR)libft.a
+SRCS	+=	$(addprefix $(SDIR)$(PDIR),	\
+				split.c					\
+				group.c					\
+				quote.c					\
+				expand.c				\
+				wordsplit.c				\
+				clean.c					\
+				assigns.c				\
+				commands.c				\
+				parse.c					\
+			)
+SRCS	+=	$(addprefix $(SDIR)$(EDIR),	\
+				exec.c					\
+			)
+OBJS	:=	$(patsubst $(SDIR)%.c,$(ODIR)%.o,$(SRCS))
+LBFT	:=	$(LDIR)libft.a
 
-CC		:= cc
-FLGS	:= -Wall -Wextra -Werror -I"$(HDIR)" -I"$(LDIR)" -lreadline
+CC		:=	cc
+CFLGS	:=	-Wall -Wextra -Werror -I"$(HDIR)" -I"$(LDIR)"
+LFLGS	:=	-lreadline
 
-RMF		:= rm -f
-RMRF	:= rm -rf
+RMF		:=	rm -f
+RMRF	:=	rm -rf
 
 
 all: $(NAME)
 
-gdb: FLGS += -g
+gdb: CFLGS += -g
 gdb: re
 
 $(NAME): $(OBJS) $(HDRS) $(LBFT)
-	$(CC) $(FLGS) $(OBJS) $(LBFT) -o $(NAME)
+	$(CC) $(CFLGS) $(OBJS) $(LBFT) -o $(NAME) $(LFLGS)
 
 $(ODIR)%.o: $(SDIR)%.c $(HDRS)
-	@mkdir -p $(ODIR)
-	$(CC) $(FLGS) -c $< -o $@
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLGS) -c $< -o $@
+
 $(LBFT):
 	@make -C "$(LDIR)"
 

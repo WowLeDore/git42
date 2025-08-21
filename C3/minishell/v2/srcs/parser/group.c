@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 19:17:58 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/12 17:25:19 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:43:41 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	group_operators(t_minishell *shell)
 {
 	t_pipe	*tmp_pipe;
 	t_token	*tmp_tok;
-	void	*to_free;
+	t_token	*to_free;
 
 	tmp_pipe = shell->pipes;
 	while (tmp_pipe)
@@ -27,13 +27,13 @@ void	group_operators(t_minishell *shell)
 			if (tmp_tok->type >= IN && tmp_tok->next
 				&& tmp_tok->next->type == tmp_tok->type)
 			{
-				to_free = (void *) tmp_tok->next;
+				to_free = tmp_tok->next;
 				tmp_tok->next = tmp_tok->next->next;
 				if (tmp_tok->type == IN)
 					tmp_tok->type = HEREDOC + 0 * tmp_tok->size++;
 				else
 					tmp_tok->type = APPEND + 0 * tmp_tok->size++;
-				free((t_token *) to_free);
+				free(to_free);
 			}
 			tmp_tok = tmp_tok->next;
 		}
@@ -43,13 +43,13 @@ void	group_operators(t_minishell *shell)
 
 int	next_remove(t_token *tmp_tok)
 {
-	void		*to_free;
+	t_token		*to_free;
 
 	if (!tmp_tok->next || tmp_tok->next->type != META)
 		return (0);
-	to_free = (void *) tmp_tok->next;
+	to_free = tmp_tok->next;
 	tmp_tok->next = tmp_tok->next->next;
-	free((t_token *) to_free);
+	free(to_free);
 	return (1);
 }
 
@@ -81,7 +81,7 @@ void	group_redirections(t_minishell *shell)
 {
 	t_pipe	*tmp_pipe;
 	t_token	*tmp_tok;
-	void	*to_free;
+	t_token	*to_free;
 
 	tmp_pipe = shell->pipes;
 	while (tmp_pipe)
@@ -93,9 +93,9 @@ void	group_redirections(t_minishell *shell)
 			{
 				tmp_tok->word = tmp_tok->next->word;
 				tmp_tok->size = tmp_tok->next->size;
-				to_free = (void *) tmp_tok->next;
+				to_free = tmp_tok->next;
 				tmp_tok->next = tmp_tok->next->next;
-				free((t_token *) to_free);
+				free(to_free);
 			}
 			tmp_tok = tmp_tok->next;
 		}

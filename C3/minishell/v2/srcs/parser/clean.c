@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/08 19:00:51 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/13 16:55:33 by mguillot         ###   ########.fr       */
+/*   Created: 2025/08/16 23:00:14 by mguillot          #+#    #+#             */
+/*   Updated: 2025/08/16 23:00:59 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,60 @@ int	checker(t_minishell *shell)
 	return (0);
 }
 
-void	remove_zero(t_token	*tok)
+void	remove_zero(t_pipe *pipe)
+{
+	t_token	*tmp_tok;
+	t_token	*to_free;
+
+	while (pipe->toks && !pipe->toks->size)
+	{
+		free_tok(pipe->toks->subs);
+		to_free = pipe->toks;
+		pipe->toks = pipe->toks->next;
+		free(to_free);
+	}
+	tmp_tok = pipe->toks;
+	while (tmp_tok && tmp_tok->next)
+	{
+		if (!tmp_tok->next->size)
+		{
+			free_tok(tmp_tok->next->subs);
+			to_free = tmp_tok->next;
+			tmp_tok->next = tmp_tok->next->next;
+			free(to_free);
+		}
+		tmp_tok = tmp_tok->next;
+	}
+}
+
+void	remove_quote(t_token *tok)
 {
 	t_token	*sub;
 	t_token	*to_free;
 
-	while (tok->subs && !tok->subs->size)
+	while (tok->subs && tok->subs->type <= DQUOTE)
 	{
 		to_free = tok->subs;
 		tok->subs = tok->subs->next;
 		free(to_free);
+		tok->size--;
 	}
 	sub = tok->subs;
 	while (sub && sub->next)
 	{
-		if (!sub->next->size)
+		if (sub->next->type <= DQUOTE)
 		{
 			to_free = sub->next;
 			sub->next = sub->next->next;
 			free(to_free);
+			tok->size--;
 		}
 		else
 			sub = sub->next;
 	}
 }
 
-void	clean(t_minishell	*shell)
+void	clean(t_minishell *shell)
 {
 	t_pipe	*tmp_pipe;
 	t_token	*tmp_tok;
@@ -77,34 +105,10 @@ void	clean(t_minishell	*shell)
 		tmp_tok = tmp_pipe->toks;
 		while (tmp_tok)
 		{
-			remove_zero(tmp_tok);
+			remove_quote(tmp_tok);
 			tmp_tok = tmp_tok->next;
 		}
+		remove_zero(tmp_pipe);
 		tmp_pipe = tmp_pipe->next;
 	}
-}
-
-int	parser(t_minishell *shell, char *str)
-{
-	shell->pipes = malloc(sizeof(t_pipe));
-	if (!shell->pipes)
-		return (free_all(shell, 1));
-	if (init_pipe(shell->pipes, str) || spliter(shell->pipes))
-		return (free_all(shell, 1));
-	group_operators(shell);
-	remove_meta(shell);
-	if (checker(shell))
-		// imprimer un message correspondant ici
-		return (free_all(shell, 0));
-	group_redirections(shell);
-	if (sub_quote(shell))
-		return (free_all(shell, 0));
-	if (expand_vars(shell))
-		return (free_all(shell, 0));
-	clean(shell);
-	//if (word_split(shell))
-	//	return (free_all(shell, 0));
-	//quote_remove(shell);
-	print_minishell(shell);
-	return (free_all(shell, 0));
 }
