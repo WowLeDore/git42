@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:08:25 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/10 17:00:14 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:46:35 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	change_env(char **env, char *key, size_t key_len, char *value)
 
 	if (!env)
 		return (0);
+	i = 0;
 	while (env[i])
 	{
 		if (!ft_strncmp(key, env[i], key_len) && env[i][key_len] == '=')

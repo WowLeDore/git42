@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 13:46:07 by mguillot          #+#    #+#              #
-#    Updated: 2025/08/20 16:12:42 by mguillot         ###   ########.fr        #
+#    Updated: 2025/08/25 17:42:56 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ LDIR	:=	./libft/
 
 PDIR	:=	./parser/
 EDIR	:=	./exec/
+BDIR	:=	./builtins/
 
 HDRS	:=	$(addprefix $(HDIR),	\
 				minishell.h			\
@@ -43,6 +44,9 @@ SRCS	+=	$(addprefix $(SDIR)$(PDIR),	\
 			)
 SRCS	+=	$(addprefix $(SDIR)$(EDIR),	\
 				exec.c					\
+			)
+SRCS	+=	$(addprefix $(SDIR)$(BDIR),	\
+				b_echo.c					\
 			)
 OBJS	:=	$(patsubst $(SDIR)%.c,$(ODIR)%.o,$(SRCS))
 LBFT	:=	$(LDIR)libft.a

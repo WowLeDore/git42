@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:51:35 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/20 19:30:21 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:44:24 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <readline/history.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
 
 typedef enum e_type
 {
@@ -106,6 +109,8 @@ int		make_commands(t_minishell *shell);
 int		parser(t_minishell *shell);
 
 int		exec(t_minishell *shell);
+
+int		b_echo(char **argv);
 
 void	print_minishell(t_minishell *shell);
 

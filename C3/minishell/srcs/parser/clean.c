@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 23:00:14 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/16 23:00:59 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:26:44 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	checker(t_minishell *shell)
 				tok = tok->next;
 			if (tmp_tok->type >= HEREDOC && (!tok || tok->type != WORDS))
 				return (1);
-			check = check == 1 || tmp_tok->type == WORDS;
+			check = ((check == 1) || (tmp_tok->type == WORDS));
 			tmp_tok = tmp_tok->next;
 		}
 		if (!check)
