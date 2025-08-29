@@ -6,7 +6,7 @@
 #    By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 13:46:07 by mguillot          #+#    #+#              #
-#    Updated: 2025/08/25 17:42:56 by mguillot         ###   ########.fr        #
+#    Updated: 2025/08/25 18:53:19 by mguillot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ HDRS	:=	$(addprefix $(HDIR),	\
 			)
 SRCS	:=	$(addprefix $(SDIR),	\
 				env.c				\
-				print.c				\
 				heredoc.c			\
 				free.c				\
 				minishell.c			\
@@ -43,10 +42,12 @@ SRCS	+=	$(addprefix $(SDIR)$(PDIR),	\
 				parse.c					\
 			)
 SRCS	+=	$(addprefix $(SDIR)$(EDIR),	\
+				files.c					\
+				simple.c				\
 				exec.c					\
 			)
 SRCS	+=	$(addprefix $(SDIR)$(BDIR),	\
-				b_echo.c					\
+				b_echo.c				\
 			)
 OBJS	:=	$(patsubst $(SDIR)%.c,$(ODIR)%.o,$(SRCS))
 LBFT	:=	$(LDIR)libft.a

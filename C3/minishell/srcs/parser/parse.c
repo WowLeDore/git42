@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 19:00:51 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/18 16:00:51 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:25:36 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	parser(t_minishell *shell)
 		frexit(shell, "Error in spliter", 6);
 	group_operators(shell);
 	remove_meta(shell);
-	if (checker(shell) && (write(2, "Syntax error\n", 13) * 0 + 1))
+	if (checker(shell) && (empty(shell)
+			|| (write(2, "Syntax error\n", 13) * 0 + 1)))
 		return (1);
 	group_redirections(shell);
 	if (sub_quote(shell))

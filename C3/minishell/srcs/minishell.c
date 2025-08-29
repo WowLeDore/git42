@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:51:23 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/25 14:49:14 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:34:54 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ void	reset_shell(t_minishell *shell)
 {
 	add_history(shell->input);
 	if (!parser(shell))
-	{
-		//print_minishell(shell);
 		exec(shell);
-	}
+		//exec_pipe(shell);
 	frexit(shell, NULL, 0);
 	shell->input = NULL;
 	shell->pipes = NULL;

@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 23:00:14 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:26:44 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:28:34 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,28 @@ int	checker(t_minishell *shell)
 		tmp_pipe = tmp_pipe->next;
 	}
 	return (0);
+}
+
+int	empty(t_minishell *shell)
+{
+	t_pipe	*tmp_pipe;
+	t_token	*tmp_tok;
+	t_token	*tok;
+
+	tmp_pipe = shell->pipes;
+	while (tmp_pipe)
+	{
+		tmp_tok = tmp_pipe->toks;
+		while (tmp_tok)
+		{
+			tok = tmp_tok;
+			if (tmp_tok->type == WORDS)
+				return (0);
+			tmp_tok = tmp_tok->next;
+		}
+		tmp_pipe = tmp_pipe->next;
+	}
+	return (1);
 }
 
 void	remove_zero(t_pipe *pipe)

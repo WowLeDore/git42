@@ -6,7 +6,7 @@
 /*   By: mguillot <mguillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:51:35 by mguillot          #+#    #+#             */
-/*   Updated: 2025/08/25 17:44:24 by mguillot         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:35:08 by mguillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 # include <readline/history.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
+# include <sys/stat.h>
 
 typedef enum e_type
 {
@@ -93,6 +91,7 @@ int		init_pipe(t_pipe *pipe, char *str);
 int		init_toks(t_token **toks);
 int		spliter(t_pipe *pipes);
 int		checker(t_minishell *shell);
+int		empty(t_minishell *shell);
 void	clean(t_minishell *shell);
 void	group_operators(t_minishell *shell);
 void	remove_meta(t_minishell *shell);
@@ -108,10 +107,12 @@ char	*assign_comms(t_token *tok, t_comm *comm, char *ptr);
 int		make_commands(t_minishell *shell);
 int		parser(t_minishell *shell);
 
+int		search_file(t_comm *comm, size_t len, char **env);
+int		exec_simple(t_minishell *shell, t_comm *comm);
 int		exec(t_minishell *shell);
+//int		exec_pipe(t_minishell *shell);
+int		rerror(char *err, int val);
 
 int		b_echo(char **argv);
-
-void	print_minishell(t_minishell *shell);
 
 #endif
